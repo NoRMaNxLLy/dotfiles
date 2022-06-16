@@ -1,0 +1,46 @@
+[global]
+    background = "#222222"
+    foreground = "#83a598"
+    frame_color = "#83a598"
+    timeout = 5
+    frame_width = 1
+
+    ### Display ###
+    monitor = 0
+    follow = mouse
+    width = 300
+    height = 50
+    origin = top-right
+
+    indicate_hidden = yes
+    sort = yes
+    idle_threshold = 120
+
+    ### Text ###
+    font = monospace 10
+    # line_height = 0
+    alignment = center
+    word_wrap = yes
+    stack_duplicates = true
+    hide_duplicate_count = true
+    show_indicators = yes
+
+    ### History ###
+    sticky_history = no
+    history_length = 20
+
+    ### Misc/Advanced ###
+    # dmenu = /usr/bin/dmenu -p dunst:
+    # browser = /usr/bin/firefox -new-tab
+    # always_run_script = true
+    title = Dunst
+    class = Dunst
+    # startup_notification = false
+
+    ### Shortcuts ###
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
+# vim: ft=cfg

@@ -1,0 +1,33 @@
+#
+# wm independent hotkeys
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+XF86Audio{Raise,Lower}Volume
+    pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
+
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+XF86MonBrightness{Up,Down}
+    xbacklight -time 0 -{inc,dec} 5% && notify-send -t 375 $(xbacklight -get | cut -d'.' -f1)
+    #light -{A,U} 5% ; exec $nsi notify-send -t 250 $(light)
+
+
+# terminal emulator
+super + Return
+	$TERMINAL   # i have set my terminal in profile
+
+# program launcher
+super + d
+	dmenu_run -p "launch:"
+
+# pcmanfm
+super + Home 
+    pcmanfm
+
+# lockscreen
+super + x
+    i3lock -c 0f0f0f -f 

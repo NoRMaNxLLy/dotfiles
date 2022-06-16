@@ -1,0 +1,18 @@
+# these are keybindings used only with i3.
+
+# kill focues window
+super + Escape
+    i3-msg -q kill
+
+# change focus
+super + {h,j,k,l} 
+   i3-msg -q focus {left,down,up,right}
+
+# move focused window
+super + shift + {h,j,k,l}
+    i3-msg -q move {left,down,up,right}
+
+# reload, restart i3.
+super + {_,shift + } r
+    i3-msg -q {reload,restart}
+
