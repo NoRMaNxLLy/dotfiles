@@ -73,7 +73,7 @@
 *.color15:      COLOR15
 
 !primary and secondary colors
-*.primary:      COLOR11
+*.primary:      COLOR9
 *.secondary:    COLOR0
 
 st.font: JetBrains Mono medium-8;

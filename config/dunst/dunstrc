@@ -1,7 +1,7 @@
 [global]
-background = "#ffae00"
+background = "#fb4934"
 foreground = "#151515"
-frame_color = "#ffae00"
+frame_color = "#fb4934"
 timeout = 5
 frame_width = 2
 
@@ -11,7 +11,7 @@ follow = mouse
 width = 300
 height = 50
 origin = top-right
-offset = 10x25
+offset = 5x35
 
 indicate_hidden = yes
 sort = yes
