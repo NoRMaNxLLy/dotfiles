@@ -6,11 +6,11 @@
 
 # a cool way to use colors ^_^
 # 0 - 15 for colors, and 16 for reset.
-color=( '\e[38;5;'{0..15}m '\e[0m' )
+color=( '\033[38;5;'{0..15}m '\033[0m' )
 
 #export PS1="\[\033[38;5;69m\]\u\[\e[0m\]: \[\e[38;5;216m\]\W\[\e[0m\] \$ "
 #PS1="➜ "
-export PS1="\[${color[11]}\]\u\[\e[0m\]: \[${color[12]}\]\W\[\e[0m\] \$ "
+export PS1="\[${color[12]}\]\u\[\e[0m\]: \[${color[10]}\]\W\[\e[0m\] \$ "
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace

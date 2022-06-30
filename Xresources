@@ -73,7 +73,8 @@
 *.color15:      COLOR15
 
 !primary and secondary colors
-*.primary:      COLOR9
+*.primary:      COLOR12
 *.secondary:    COLOR0
 
-st.font: JetBrains Mono medium-8;
+st.font: JetBrains Mono NL:pixelsize=10;
+*.alpha: 0.9

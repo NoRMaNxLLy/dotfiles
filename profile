@@ -23,7 +23,7 @@
 
 # variables
 export EDITOR="vim"
-export TERMINAL="xfce4-terminal"
+export TERMINAL="st"
 export BROWSER="qutebrowser"
 
 # setting up PATH.

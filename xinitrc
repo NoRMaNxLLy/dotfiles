@@ -1,4 +1,4 @@
-hsetroot -solid "#202020"
+hsetroot -solid "#202020" &
 #wallset &
 dunst &
 compton -b &
