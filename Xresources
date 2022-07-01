@@ -7,33 +7,33 @@
 #define COLOR8       #353535
 
 !define RED
-#define COLOR1       #cc241d
-#define COLOR9       #fb4934
+#define COLOR1       #cc2822
+#define COLOR9       #e65d57
 
 !define GREEN
 #define COLOR2       #98971a
-#define COLOR10      #b8bb26
+#define COLOR10      #cacf00
 
 !define YELLOW
-#define COLOR3       #d79921
+#define COLOR3       #f08d2b
 !#define COLOR11      #fabd2f
-#define COLOR11      #ffae00
+#define COLOR11      #ffa954
 
 !define BLUE
-#define COLOR4       #458588
-#define COLOR12      #83a598
+#define COLOR4       #2e71e6
+#define COLOR12      #6e98e1
 
 !define MAGENTA
-#define COLOR5       #b16286
-#define COLOR13      #d3869b
+#define COLOR5       #833ed1
+#define COLOR13      #9b71ca
 
 !define CYAN
-#define COLOR6       #689d6a
-#define COLOR14      #8ec07c
+#define COLOR6       #56bf5a
+#define COLOR14      #82d985
 
 !define WHITE
-#define COLOR7       #a89984
-#define COLOR15      #ebdbb2
+#define COLOR7       #acbabf
+#define COLOR15      #f8feff
 
 ! special
 *.foreground:   FOREGROUND

@@ -59,8 +59,8 @@ hi DiffAdd			    ctermbg=NONE            ctermfg=2
 hi DiffChange			ctermbg=NONE            ctermfg=8
 hi DiffDelete			ctermbg=NONE            ctermfg=1
 hi DiffText			    ctermbg=NONE            ctermfg=4
-hi IncSearch			ctermbg=12              ctermfg=0
-hi Search			    ctermbg=12              ctermfg=0
+hi IncSearch			ctermbg=13              ctermfg=0
+hi Search			    ctermbg=13              ctermfg=0
 hi Directory			ctermbg=NONE            ctermfg=4
 hi MatchParen			ctermbg=1               ctermfg=8
 hi ColorColumn			ctermbg=8               ctermfg=NONE
