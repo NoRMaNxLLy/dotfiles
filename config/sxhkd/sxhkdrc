@@ -18,7 +18,7 @@ XF86MonBrightness{Up,Down}
 
 # terminal emulator
 super + Return
-	$TERMINAL   # i have set my terminal in profile
+	$TERMINAL -e tmux_start # i have set my terminal in profile
 
 # program launcher
 super + d

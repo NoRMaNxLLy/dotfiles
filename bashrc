@@ -4,13 +4,15 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# a cool way to use colors ^_^
+# a cool way to use Colors ^_^
 # 0 - 15 for colors, and 16 for reset.
-color=( '\033[38;5;'{0..15}m '\033[0m' )
+#Co=( '\033[38;5;'{0..15}m '\033[0m' )
+#Co=( '\033[3'{0..7}m '\033[9'{0..7}m '\033[0m' )
+Co=( '\033[3'{0..7}m '\033[1;3'{0..7}m '\033[0m' )
 
 #export PS1="\[\033[38;5;69m\]\u\[\e[0m\]: \[\e[38;5;216m\]\W\[\e[0m\] \$ "
 #PS1="➜ "
-export PS1="\[${color[12]}\]\u\[\e[0m\]: \[${color[10]}\]\W\[\e[0m\] \$ "
+export PS1="\[${Co[7]}\]\u\[\033[0m\]: \[${Co[10]}\]\W\[\033[0m\] \$ "
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -67,9 +69,11 @@ fi
 #export LESS_TERMCAP_ue=$'\e[0m'
 #export LESS_TERMCAP_so=$'\e[48;5;234;38;5;69m'
 #export LESS_TERMCAP_se=$'\e[0m' 
-#
+
 # variables
 export EDITOR="vim"
 export LESSHISTFILE="/dev/null"     #lesshst file -_-
 export MANWIDTH=100     # width of man pages.
 
+# this is dumb
+# [[ $(tty) = /dev/pts/* ]] && tmux_start &> /dev/null

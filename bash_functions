@@ -2,7 +2,7 @@
 internet() {
     ping -q 1.1.1.1 -c 3 -w 3 &> /dev/null && \
         echo "yup." || \
-        ( echo "nah." ; exit 1 ) 
+        { echo "nah." ; exit 1 ;} 
 }
 
 update_repos() {
@@ -61,34 +61,44 @@ video_cut() {
 stts() {
     while [[ $# > 0 ]]; do
         case ${1,,} in
-            time) printf "${color[11]} ${color[16]} %(%H:%M)T\n" ;;
-            date) printf "${color[11]} ${color[16]} %(%a %b %d)T\n" ;;
+            time) printf "${Co[11]} ${Co[16]} %(%H:%M)T\n" ;;
+            date) printf "${Co[11]} ${Co[16]} %(%a %b %d)T\n" ;;
 
             wifi|wireless)
                 local iface="wlan0"
                 while read Key Value; do
                     case ${Key/:/} in
                         SSID) local SSID="${Value}" ;;
-                        signal) local RSSI="${Value/ /}";;
+                        signal) local RSSI="${Value/ /}" ;;
                     esac
                 done < <( iw dev $iface link )
-                if [[ -n $RSSI ]]; then
-                    printf "%s  %s\n" "$SSID" "$RSSI"
+                if [[ -n $SSID ]]; then
+                    local Ip
+                    read -r _ _ Ip < <(ip -br addr show dev $iface)
+                    printf "${Co[11]} ${Co[16]} [%s %s] - %s\n" \
+                        "$SSID" "$RSSI" "$Ip"
                 else
                     printf "[%s] is not connect.\n" $iface
                 fi
                 ;;
 
             mem*|ram)
+                if ! command -v bc &> /dev/null; then
+                    echo "bc(1) was not found." 1>&2
+                    break
+                fi
                 while read Key Total Used _; do
-                    if [[ ${Key} == "Mem:" ]]; then
-                        Usage=$(( Used / Total * 100))
-                    fi
-                    printf '%.0f%%\n' $Usage
+                    [[ ${Key} == "Mem:" ]]&& local Usage=$(echo "$Used/$Total*100"|bc -l)
                 done < <(\free -t)
-                # printf "${color[11]} ${color[16]} %s\n"    $(\free -t | awk 'FNR==2{printf("%.0f%\n"), $3/$2*100}') ;;  # not the best thing 
-            ;;
+                # printf "${Co[11]} ${Co[16]} %s\n"    $(\free -t | awk 'FNR==2{printf("%.0f%\n"), $3/$2*100}') ;;  # not the best thing 
+                printf "${Co[11]} ${Co[16]} %.0f%%\n" $Usage
+                ;;
         esac
         shift
     done
+}
+
+duck() {
+    url="https://lite.duckduckgo.com/lite?kd=-1&kp=-1&q=$(urlencode "$*")"
+    lynx "$url"
 }

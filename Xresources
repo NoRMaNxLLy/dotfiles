@@ -1,4 +1,4 @@
-#define BACKGROUND   #151515
+#define BACKGROUND   #101010
 #define FOREGROUND   #ebdbb2
 #define CURSORCOLOR  #f0f0f0
 
@@ -73,8 +73,10 @@
 *.color15:      COLOR15
 
 !primary and secondary colors
-*.primary:      COLOR12
+*.primary:      COLOR15
 *.secondary:    COLOR0
 
-st.font: JetBrains Mono NL:pixelsize=10;
-*.alpha: 0.9
+!st.font: JetBrains Mono NL:pixelsize=10;
+st.font: monospace:pixelsize=10;
+st.alpha: 0.80
+st.background:  #000000

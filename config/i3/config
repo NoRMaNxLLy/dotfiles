@@ -25,7 +25,7 @@ mode "$systemctl"{
 
 focus_follows_mouse no
 # idk
-focus_on_window_activation urgent
+focus_on_window_activation none
 
 set_from_resource   $bg         background
 set_from_resource   $fg         foreground
@@ -52,10 +52,10 @@ client.background       #ffffff
 ##I3BAR
 bar {
     status_command i3status -c $HOME/.config/i3/i3status.conf 
-    workspace_min_width 30px
-    separator_symbol "-"
+    workspace_min_width 25px
+    separator_symbol "--"
     strip_workspace_numbers yes
-    #mode hide
+    mode hide
     modifier $mod+mod1
     position top
 
@@ -87,7 +87,7 @@ assign [class="Anki"] $ws4
 assign [class="PacketTracer"] $ws5
 assign [class="TelegramDesktop"] $ws6
 
-for_window [class="mpv|Sxiv"] floating enable, move absolute position center
+for_window [class="mpv|Sxiv"] floating enable, move absolute position center, workspace $ws3
 for_window [class="Zathura"] workspace $ws4
 for_window [class="Pcmanfm"] floating enable, resize set 600 700
 for_window [workspace=$ws5] floating disable
@@ -96,7 +96,7 @@ for_window [window_type="dialog"] floating enable
 for_window [class="Gcolor3"] floating enable
 
 # PACKETTRACER
-for_window[title="PDU Information at Device:.*"] floating enable
+for_window [title="PDU Information at Device:.*"] floating enable
 
 #---------------------------------WORKSPACES-----------------------------------
 set $ws1   1:

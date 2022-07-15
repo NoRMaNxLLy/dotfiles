@@ -1,4 +1,4 @@
-hsetroot -solid "#202020" &
+hsetroot -solid "#252525" &
 #wallset &
 dunst &
 compton -b &
@@ -15,4 +15,6 @@ xrdb ~/.Xresources
 
 exec i3 
 #exec bspwm
+#{ while :; do date '+%a %b %d [%H:%M]'; sleep 5;done ;} |\
+        #while read line;do xsetroot -name "$line";done &
 #exec dwm

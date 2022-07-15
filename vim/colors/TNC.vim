@@ -29,7 +29,7 @@ hi Special              ctermbg=NONE            ctermfg=7
 hi Statement            ctermbg=NONE            ctermfg=7
 hi String               ctermbg=NONE            ctermfg=10
 hi Number               ctermbg=NONE            ctermfg=3
-hi Todo                 ctermbg=2               ctermfg=0
+hi Todo                 ctermbg=NONE            ctermfg=7
 hi Type                 ctermbg=NONE            ctermfg=7
 hi Underlined           ctermbg=NONE            ctermfg=1           cterm=underline
 hi StatusLine           ctermbg=7               ctermfg=0
@@ -62,7 +62,7 @@ hi DiffText			    ctermbg=NONE            ctermfg=4
 hi IncSearch			ctermbg=13              ctermfg=0
 hi Search			    ctermbg=13              ctermfg=0
 hi Directory			ctermbg=NONE            ctermfg=4
-hi MatchParen			ctermbg=1               ctermfg=8
+hi MatchParen			ctermbg=13              ctermfg=0
 hi ColorColumn			ctermbg=8               ctermfg=NONE
 hi signColumn			ctermbg=NONE            ctermfg=4
 hi ErrorMsg			    ctermbg=NONE            ctermfg=9
@@ -134,7 +134,8 @@ hi cssFunctionName      ctermbg=NONE            ctermfg=4
 
 
 " markdown
-hi markdownH1           ctermbg=NONE            ctermfg=7
+hi markdownH1Delimiter  ctermbg=NONE            ctermfg=11
+hi markdownH1           ctermbg=NONE            ctermfg=3
 hi link markdownH2 markdownH1
 hi link markdownH3 markdownH1
 hi link markdownH4 markdownH1
@@ -148,13 +149,14 @@ hi markdownCodeBlock    ctermbg=NONE            ctermfg=3
 hi markdownCodeDelimiter ctermbg=NONE           ctermfg=5
 hi markdownItalic       cterm=Italic
 hi markdownBold         cterm=Bold
+hi markdownListMarker   ctermbg=NONE            ctermfg=5
 
 " python
-hi pythonOperator       ctermbg=NONE            ctermfg=5
-hi pythonFunction       ctermbg=NONE            ctermfg=4
-hi pythonRepeat         ctermbg=NONE            ctermfg=5
-hi pythonStatement      ctermbg=NONE            ctermfg=1 cterm=Bold
-hi pythonBuiltIn        ctermbg=NONE            ctermfg=4
+"hi pythonOperator       ctermbg=NONE            ctermfg=5
+"hi pythonFunction       ctermbg=NONE            ctermfg=4
+"hi pythonRepeat         ctermbg=NONE            ctermfg=5
+"hi pythonStatement      ctermbg=NONE            ctermfg=1 cterm=Bold
+"hi pythonBuiltIn        ctermbg=NONE            ctermfg=4
 
 " C, C++
 hi cOperator            ctermbg=NONE            ctermfg=6
@@ -171,6 +173,8 @@ hi shDerefVar           ctermbg=NONE            ctermfg=15
 hi link shDerefSimple shDerefVar
 hi shVariable           ctermbg=NONE            ctermfg=15
 hi shVarassign          ctermbg=NONE            ctermfg=12
+hi shderefvarArray      ctermbg=NONE            ctermfg=7
+hi shForPP              ctermbg=NONE            ctermfg=15
 
 " other stuff
 hi scssSelectorChar     ctermbg=NONE            ctermfg=7
