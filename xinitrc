@@ -1,7 +1,8 @@
-hsetroot -solid "#252525" &
-#wallset &
+#hsetroot -solid "#252525" &
+wallset -r &
 dunst &
-compton -b &
+# compton -b &
+picom -b &
 
 # setting up the keyboard
 { [ -f "$HOME/Scripts/keyboard_set" ] && $HOME/Scripts/keyboard_set ; } &
@@ -14,7 +15,6 @@ sxhkd &
 xrdb ~/.Xresources
 
 exec i3 
-#exec bspwm
 #{ while :; do date '+%a %b %d [%H:%M]'; sleep 5;done ;} |\
         #while read line;do xsetroot -name "$line";done &
 #exec dwm

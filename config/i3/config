@@ -146,9 +146,9 @@ bindsym $mod+i			    gaps inner current minus5
 bindsym $mod+Shift+i		gaps inner current plus 5
 bindsym $mod+o			    gaps outer current minus5
 bindsym $mod+Shift+o		gaps outer current plus 5
-#smart_gaps on
+smart_gaps on
 #Activate smart borders (always)
-#smart_borders on
+smart_borders on
 
 #-------------------------------BINDING KEYS----------------------------------
 bindsym $mod+shift+c kill
