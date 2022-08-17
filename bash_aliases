@@ -14,8 +14,8 @@ alias grep='grep --color=auto'
 
 alias lss='exa -l --color=auto --group-directories-first'
 alias startx='startx &> /dev/null'
-[ -d $HOME/dotfiles ]&& alias cc='file=$(find $HOME/dotfiles/ -not -path "*.git*" -type f -printf "%P\n" | fzf) && vi $HOME/dotfiles/$file ; unset file'
-[ -d $HOME/Scripts ] && alias SS='file=$(find $HOME/Scripts ! -path "*.git*" -type f | fzf) && vi $file ; unset file'
+#[ -d $HOME/dotfiles ]&& alias vic='file=$(find $HOME/dotfiles/ -not -path "*.git*" -type f -printf "%P\n" | fzf) && vi $HOME/dotfiles/$file ; unset file'
+[ -d $HOME/Scripts ] && alias vis='file=$(find $HOME/Scripts ! -path "*.git*" -type f | fzf) && vi $file ; unset file'
 # neomutt always miss up wal colors..
 #[ -f "$HOME/.cache/wal/sequences" ] && alias neomutt=' (sleep 0.100 ; cat ~/.cache/wal/sequences) & neomutt'
 alias neomutt='TERM=screen-256color neomutt'

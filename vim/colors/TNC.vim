@@ -32,7 +32,7 @@ hi Number               ctermbg=NONE            ctermfg=3
 hi Todo                 ctermbg=NONE            ctermfg=7
 hi Type                 ctermbg=NONE            ctermfg=7
 hi Underlined           ctermbg=NONE            ctermfg=1           cterm=underline
-hi StatusLine           ctermbg=7               ctermfg=0
+hi StatusLine           ctermbg=NONE            ctermfg=7           cterm=NONE
 hi StatusLineNC         ctermbg=8               ctermfg=0
 hi TabLine              ctermbg=NONE            ctermfg=8
 hi TabLineFill          ctermbg=NONE            ctermfg=8
@@ -78,14 +78,14 @@ hi SpellCap             ctermbg=NONE            ctermfg=4 cterm=underline
 hi SpellLocal           ctermbg=NONE            ctermfg=5 cterm=underline
 hi SpellRare            ctermbg=NONE            ctermfg=6 cterm=underline
 hi Boolean              ctermbg=NONE            ctermfg=5
-hi Character            ctermbg=NONE            ctermfg=1
+hi Character            ctermbg=NONE            ctermfg=10
 hi Conditional          ctermbg=NONE            ctermfg=7
 hi Define               ctermbg=NONE            ctermfg=5
 hi Delimiter            ctermbg=NONE            ctermfg=15
 hi Float                ctermbg=NONE            ctermfg=5
 hi Include              ctermbg=NONE            ctermfg=4
 hi Keyword              ctermbg=NONE            ctermfg=5
-hi Label                ctermbg=NONE            ctermfg=3
+hi Label                ctermbg=NONE            ctermfg=7
 hi Operator             ctermbg=NONE            ctermfg=10
 hi Repeat               ctermbg=NONE            ctermfg=15
 hi SpecialChar          ctermbg=NONE            ctermfg=13
@@ -135,6 +135,11 @@ hi cssFunctionName      ctermbg=NONE            ctermfg=4
 
 " markdown
 hi markdownH1Delimiter  ctermbg=NONE            ctermfg=11
+hi link markdownH2Delimiter markdownH1Delimiter
+hi link markdownH3Delimiter markdownH1Delimiter
+hi link markdownH4Delimiter markdownH1Delimiter
+hi link markdownH5Delimiter markdownH1Delimiter
+hi link markdownH6Delimiter markdownH1Delimiter
 hi markdownH1           ctermbg=NONE            ctermfg=3
 hi link markdownH2 markdownH1
 hi link markdownH3 markdownH1
@@ -159,10 +164,12 @@ hi markdownListMarker   ctermbg=NONE            ctermfg=5
 "hi pythonBuiltIn        ctermbg=NONE            ctermfg=4
 
 " C, C++
-hi cOperator            ctermbg=NONE            ctermfg=6
+hi cOperator            ctermbg=NONE            ctermfg=7 
 hi cPreCondit           ctermbg=NONE            ctermfg=5
+hi cRepeat              ctermbg=NONE            ctermfg=7
+hi cFormat              ctermbg=NONE            ctermfg=7
 
-hi xdefaultsValue       ctermbg=NONE            ctermfg=7
+ri xdefaultsValue       ctermbg=NONE            ctermfg=7
 
 " Bash and Shell colors
 hi shQuote              ctermbg=NONE            ctermfg=10  cterm=BOLD

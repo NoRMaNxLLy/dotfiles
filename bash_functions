@@ -1,6 +1,6 @@
 #!/bin/bash
 internet() {
-    ping -q 1.1.1.1 -c 3 -w 3 &> /dev/null && \
+    ping 1.1.1.1 -c 3 -w 3 &> /dev/null && \
         echo "yup." || \
         { echo "nah." ; exit 1 ;} 
 }
@@ -99,6 +99,7 @@ stts() {
 }
 
 duck() {
-    url="https://lite.duckduckgo.com/lite?kd=-1&kp=-1&q=$(urlencode "$*")"
+    local url="https://lite.duckduckgo.com/lite?kd=-1&kp=-1&q=$(urlencode "$*")"
     lynx "$url"
 }
+

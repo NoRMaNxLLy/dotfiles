@@ -2,8 +2,11 @@
 set $mod Mod4
 set $nsi --no-startup-id
 
+# 
+exec $TERMINAL -e tmux_start
+
 #font pango: DejaVu Sans mono, Font Awesome 6 free Solid 9
-font pango: IBM Plex Mono SmBld, Font Awesome 6 free Solid 8
+font pango: monospace bold 8 
 
 floating_modifier $mod
 
@@ -53,7 +56,7 @@ client.background       #ffffff
 bar {
     status_command i3status -c $HOME/.config/i3/i3status.conf 
     workspace_min_width 25px
-    separator_symbol "--"
+    separator_symbol "  "
     strip_workspace_numbers yes
     mode hide
     modifier $mod+mod1

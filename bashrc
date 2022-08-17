@@ -12,7 +12,7 @@ Co=( '\033[3'{0..7}m '\033[1;3'{0..7}m '\033[0m' )
 
 #export PS1="\[\033[38;5;69m\]\u\[\e[0m\]: \[\e[38;5;216m\]\W\[\e[0m\] \$ "
 #PS1="➜ "
-export PS1="\[${Co[12]}\]\u\[${Co[16]}\]: \[${Co[10]}\]\W\[${Co[16]}\] \$ "
+export PS1="\[${Co[7]}\]\u: \[${Co[10]}\]\W \[${Co[15]}\]\$ \[${Co[16]}\]"
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -73,7 +73,5 @@ fi
 # variables
 export EDITOR="vim"
 export LESSHISTFILE="/dev/null"     #lesshst file -_-
-export MANWIDTH=100     # width of man pages.
+export MANWIDTH=120     # width of man pages.
 
-# this is dumb
-# [[ $(tty) = /dev/pts/* ]] && tmux_start &> /dev/null

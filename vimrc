@@ -1,7 +1,7 @@
 "setting space as leader key
 let mapleader = " "
 
-set nu  incsearch  hlsearch  ruler  relativenumber  wildmenu  noswapfile  hidden  shiftwidth=4 softtabstop=4 tabstop=4 expandtab
+set nu  incsearch  hlsearch  ruler  relativenumber  wildmenu  noswapfile  hidden  shiftwidth=4 softtabstop=4 tabstop=4 expandtab laststatus=2
 
 set scrolloff=999
 " show arabic text in the proper way.
@@ -12,7 +12,7 @@ set timeoutlen=250
 
 " from TFL
 set nowrap
-set  sidescroll=999 sidescrolloff=999
+" set  sidescroll=999 sidescrolloff=999
 set colorcolumn=80
 
 "Goyo
@@ -53,7 +53,7 @@ map Y y$
 nnoremap <C-L> :nohl<CR><C-L>
 
 " disable search highlighting with <C-L> when refreshing screen
-nnoremap <C-L> :nohl<CR><C-L>
+nnoremap <silent> <C-L> :nohl<CR><C-L>
 
 " better use of arrow keys, number increment/decrement
 nnoremap <up> <C-a>

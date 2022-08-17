@@ -6,9 +6,9 @@ set completion-group-fg "#101010"
 set completion-highlight-bg "#acbabf"
 set completion-highlight-fg "#101010"
 
-set recolor-lightcolor "#101010"
+set recolor-lightcolor "#151515"
 set recolor-darkcolor "#ebdbb2"
-set default-bg "#101010"
+set default-bg "#151515"
 set default-fg "#ebdbb2"
 
 set inputbar-bg "#101010"
@@ -16,19 +16,19 @@ set inputbar-fg "#acbabf"
 
 set notification-bg "#101010"
 set notification-fg "#acbabf"
-set notification-error-bg "#101010"
+set notification-error-bg "#151515"
 set notification-error-fg "#cc2822"
-set notification-warning-bg "#101010"
+set notification-warning-bg "#151515"
 set notification-warning-fg "#e65d57"
 
 set statusbar-bg "#101010"
 set statusbar-fg "#acbabf"
 
-set index-bg "#101010"
+set index-bg "#151515"
 set index-fg "#ebdbb2"
 set index-active-bg "#acbabf"
 set index-active-fg "#101010"
 
-set render-loading-bg "#101010"
+set render-loading-bg "#151515"
 set render-loading-fg "#2e71e6"
 set recolor-keephue

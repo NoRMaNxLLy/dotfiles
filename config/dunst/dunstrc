@@ -1,9 +1,9 @@
 [global]
-background = "#353535"
+background = "#151515"
 foreground = "#acbabf"
-frame_color = "#acbabf"
+frame_color = "#151515"
 timeout = 5
-frame_width = 2
+frame_width = 1
 
 ###Display###
 monitor = 0
