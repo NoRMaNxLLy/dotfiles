@@ -1,7 +1,10 @@
 "setting space as leader key
 let mapleader = " "
 
-set nu  incsearch  hlsearch  ruler  relativenumber  wildmenu  noswapfile  hidden  shiftwidth=4 softtabstop=4 tabstop=4 expandtab laststatus=2
+set nu  incsearch  hlsearch  ruler  relativenumber  wildmenu  noswapfile  shiftwidth=4 softtabstop=4 tabstop=4 expandtab laststatus=2
+
+" this is causing a problem: not able to close Netrw.
+" set hidden
 
 set scrolloff=999
 " show arabic text in the proper way.

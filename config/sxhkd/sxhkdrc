@@ -31,3 +31,7 @@ super + Home
 # lockscreen
 super + x
     i3lock -c 0f0f0f -f 
+
+# stick the current window to the top 
+super + s
+   stickit 

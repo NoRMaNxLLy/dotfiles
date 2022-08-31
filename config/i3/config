@@ -52,28 +52,30 @@ client.urgent           #2f343a     #900000     #ffffff     #900000       #90000
 client.placeholder      #000000     #0c0c0c     #ffffff     #000000       #0c0c0c
 client.background       #ffffff
 
-##I3BAR
-bar {
-    status_command i3status -c $HOME/.config/i3/i3status.conf 
-    workspace_min_width 25px
-    separator_symbol "  "
-    strip_workspace_numbers yes
-    mode hide
-    modifier $mod+mod1
-    position top
+#I3BAR
+ bar {
+     #i3bar_command i3bar --transparency
+         status_command i3status -c $HOME/.config/i3/i3status.conf 
+         workspace_min_width 25px
+         separator_symbol "|"
+         strip_workspace_numbers yes
+         mode dock
+         modifier $mod+mod1
+         position top
+ 
+         colors {
+         background $bg
+         statusline $primary
+         separator  $fg     
+ #                          Border       background      text
+         focused_workspace  $primary     $primary        $bg       
+         active_workspace   $primary     $primary        $fg
+         inactive_workspace $bg          $bg             $primary
+         urgent_workspace   $bg          $bg             $red   
+         binding_mode       $primary     $primary        $bg   
+     }
+ }
 
-    colors {
-        background $bg
-        statusline $primary
-        separator  $fg     
-#                          Border       background      text
-        focused_workspace  $primary     $primary        $bg       
-        active_workspace   $primary     $primary        $fg
-        inactive_workspace $bg          $bg             $primary
-        urgent_workspace   $bg          $bg             $red   
-        binding_mode       $primary     $primary        $bg   
-    }
-}
 #----------------------------------WINDOWS-------------------------------------
 #default orientaion of the windows
 #default_orientation vertical
@@ -143,15 +145,14 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 #bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
 bindsym $mod+Shift+f gaps inner all toggle 5
 #
-gaps inner 5
-gaps outer 5
-bindsym $mod+i			    gaps inner current minus5
-bindsym $mod+Shift+i		gaps inner current plus 5
-bindsym $mod+o			    gaps outer current minus5
-bindsym $mod+Shift+o		gaps outer current plus 5
+gaps inner 7
+gaps outer 0
+bindsym $mod+i			    gaps inner current minus 5
+bindsym $mod+Shift+i		gaps inner current plus  5
+bindsym $mod+o			    gaps outer current minus 5
+bindsym $mod+Shift+o		gaps outer current plus  5
 smart_gaps on
-#Activate smart borders (always)
-smart_borders on
+#smart_borders on
 
 #-------------------------------BINDING KEYS----------------------------------
 bindsym $mod+shift+c kill

@@ -134,27 +134,31 @@ hi cssFunctionName      ctermbg=NONE            ctermfg=4
 
 
 " markdown
-hi markdownH1Delimiter  ctermbg=NONE            ctermfg=11
-hi link markdownH2Delimiter markdownH1Delimiter
-hi link markdownH3Delimiter markdownH1Delimiter
-hi link markdownH4Delimiter markdownH1Delimiter
-hi link markdownH5Delimiter markdownH1Delimiter
-hi link markdownH6Delimiter markdownH1Delimiter
-hi markdownH1           ctermbg=NONE            ctermfg=3
-hi link markdownH2 markdownH1
-hi link markdownH3 markdownH1
-hi link markdownH4 markdownH1
-hi link markdownH5 markdownH1
-hi link markdownH6 markdownH1
+hi markdownH1Delimiter  ctermbg=1               ctermfg=1
+hi markdownH2Delimiter  ctermbg=2               ctermfg=2
+hi markdownH3Delimiter  ctermbg=3               ctermfg=3
+hi markdownH4Delimiter  ctermbg=4               ctermfg=4
+hi markdownH5Delimiter  ctermbg=5               ctermfg=5
+hi markdownH6Delimiter  ctermbg=6               ctermfg=6
+hi markdownH1           ctermbg=1               ctermfg=0
+hi markdownH2           ctermbg=2               ctermfg=0
+hi markdownH3           ctermbg=3               ctermfg=0
+hi markdownH4           ctermbg=4               ctermfg=0
+hi markdownH5           ctermbg=5               ctermfg=0
+hi markdownH6           ctermbg=6               ctermfg=0
 hi markdownAutomaticLink ctermbg=NONE           ctermfg=2 cterm=underline
-hi link markdownUrl markdownAutomaticLink
 hi markdownError        ctermbg=NONE            ctermfg=7
-hi markdownCode         ctermbg=NONE            ctermfg=3
-hi markdownCodeBlock    ctermbg=NONE            ctermfg=3
-hi markdownCodeDelimiter ctermbg=NONE           ctermfg=5
-hi markdownItalic       cterm=Italic
-hi markdownBold         cterm=Bold
-hi markdownListMarker   ctermbg=NONE            ctermfg=5
+hi markdownCode         ctermbg=NONE            ctermfg=6
+hi markdownCodeBlock    ctermbg=NONE            ctermfg=6
+hi markdownCodeDelimiter ctermbg=NONE           ctermfg=6
+hi markdownItalic       ctermbg=NONE            ctermfg=12   cterm=Italic
+hi markdownItalicDelimiter  ctermbg=NONE        ctermfg=15
+hi markdownBold         ctermbg=NONE            ctermfg=13   cterm=Bold
+hi markdownBoldDelimiter  ctermbg=NONE        ctermfg=15
+hi markdownListMarker   ctermbg=NONE            ctermfg=4
+hi markdownLinkTextDelimiter    ctermbg=NONE    ctermfg=15
+hi markdownLinkText     ctermbg=NONE            ctermfg=4
+hi markdownUrl          ctermbg=NONE            ctermfg=4
 
 " python
 "hi pythonOperator       ctermbg=NONE            ctermfg=5
