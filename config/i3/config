@@ -57,7 +57,7 @@ client.background       #ffffff
      #i3bar_command i3bar --transparency
          status_command i3status -c $HOME/.config/i3/i3status.conf 
          workspace_min_width 25px
-         separator_symbol "|"
+         separator_symbol " | "
          strip_workspace_numbers yes
          mode dock
          modifier $mod+mod1
@@ -145,16 +145,16 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 #bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
 bindsym $mod+Shift+f gaps inner all toggle 5
 #
-gaps inner 7
+gaps inner 10
 gaps outer 0
 bindsym $mod+i			    gaps inner current minus 5
 bindsym $mod+Shift+i		gaps inner current plus  5
 bindsym $mod+o			    gaps outer current minus 5
 bindsym $mod+Shift+o		gaps outer current plus  5
 smart_gaps on
-#smart_borders on
+smart_borders on
 
-#-------------------------------BINDING KEYS----------------------------------
+#-------------------------------BINDING---------------------------------------
 bindsym $mod+shift+c kill
 
 bindsym $mod+h focus left
@@ -176,7 +176,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+f fullscreen toggle
 bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
-bindsym $mod+b bar mode toggle 
+#bindsym $mod+b bar mode toggle 
 bindsym $mod+t split toggle
 
 #counter strike style
@@ -196,6 +196,9 @@ bindsym $mod+mod1+j resize shrink up 40 px
 bindsym $mod+mod1+k resize shrink down 40 px
 bindsym $mod+mod1+l resize shrink left 40 px
 
+# hide/show i3bar (make it invisible, get raid workspace urgent)
+bindsym $mod+b bar mode dock
+bindsym $mod+Shift+b bar mode invisible
 #-----------------------------------------------------------------------------
 
 set $resize :resizing
@@ -217,8 +220,8 @@ mode "$resize" {
 
 #testing
 for_window [title="dropdown"] floating enable, move scratchpad, border pixel 2
-exec $nsi xfce4-terminal --title dropdown 
-bindsym $mod+u [title="dropdown"] scratchpad show, resize set 1024 480, move position center
+#exec $nsi xfce4-terminal --title dropdown 
+#bindsym $mod+u [title="dropdown"] scratchpad show, resize set 1024 480, move position center
 
 
 # testing xttc.

@@ -27,12 +27,12 @@ hi Ignore               ctermbg=8               ctermfg=0
 hi PreProc              ctermbg=NONE            ctermfg=15
 hi Special              ctermbg=NONE            ctermfg=7
 hi Statement            ctermbg=NONE            ctermfg=7
-hi String               ctermbg=NONE            ctermfg=10
+hi String               ctermbg=NONE            ctermfg=2
 hi Number               ctermbg=NONE            ctermfg=3
 hi Todo                 ctermbg=NONE            ctermfg=7
 hi Type                 ctermbg=NONE            ctermfg=7
 hi Underlined           ctermbg=NONE            ctermfg=1           cterm=underline
-hi StatusLine           ctermbg=NONE            ctermfg=7           cterm=NONE
+hi StatusLine           ctermbg=NONE            ctermfg=245         cterm=NONE
 hi StatusLineNC         ctermbg=8               ctermfg=0
 hi TabLine              ctermbg=NONE            ctermfg=8
 hi TabLineFill          ctermbg=NONE            ctermfg=8
@@ -40,9 +40,9 @@ hi TabLineSel           ctermbg=4               ctermfg=0
 hi TermCursorNC         ctermbg=3               ctermfg=0
 hi VertSplit            ctermbg=8               ctermfg=0
 hi Title                ctermbg=NONE            ctermfg=4
-hi CursorLine           ctermbg=2               ctermfg=0
-hi LineNr               ctermbg=NONE            ctermfg=7
-hi CursorLineNr         ctermbg=NONE            ctermfg=8
+hi CursorLine           ctermbg=0               ctermfg=NONE        cterm=NONE
+hi LineNr               ctermbg=NONE            ctermfg=240
+hi CursorLineNr         ctermbg=0               ctermfg=7           cterm=NONE
 hi helpLeadBlank        ctermbg=NONE            ctermfg=7
 hi helpNormal           ctermbg=NONE            ctermfg=7
 hi Visual               ctermbg=NONE            ctermfg=14      "cterm=reverse term=reverse
@@ -63,7 +63,7 @@ hi IncSearch			ctermbg=13              ctermfg=0
 hi Search			    ctermbg=13              ctermfg=0
 hi Directory			ctermbg=NONE            ctermfg=4
 hi MatchParen			ctermbg=13              ctermfg=0
-hi ColorColumn			ctermbg=8               ctermfg=NONE
+hi ColorColumn			ctermbg=235             ctermfg=NONE
 hi signColumn			ctermbg=NONE            ctermfg=4
 hi ErrorMsg			    ctermbg=NONE            ctermfg=9
 hi MoreMsg			    ctermbg=NONE            ctermfg=2
@@ -183,7 +183,7 @@ hi shfunction           ctermbg=NONE            ctermfg=15
 hi shDerefVar           ctermbg=NONE            ctermfg=15
 hi link shDerefSimple shDerefVar
 hi shVariable           ctermbg=NONE            ctermfg=15
-hi shVarassign          ctermbg=NONE            ctermfg=12
+hi shVarassign          ctermbg=NONE            ctermfg=7
 hi shderefvarArray      ctermbg=NONE            ctermfg=7
 hi shForPP              ctermbg=NONE            ctermfg=15
 
