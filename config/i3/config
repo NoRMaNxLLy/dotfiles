@@ -2,11 +2,11 @@
 set $mod Mod4
 set $nsi --no-startup-id
 
-# 
+#
 exec $TERMINAL -e tmux_start
 
 #font pango: DejaVu Sans mono, Font Awesome 6 free Solid 9
-font pango: monospace bold 8 
+font pango: monospace 8
 
 floating_modifier $mod
 
@@ -16,11 +16,11 @@ popup_during_fullscreen smart
 set $systemctl choose wisely: [r]estart, [s]uspend, [l]ock, [e]xit, [p]oweroff
 bindsym Ctrl+mod1+Delete mode "$systemctl"
 mode "$systemctl"{
-    bindsym r exec systemctl reboot -i  
-        bindsym s exec systemctl suspend -i, mode "default", exec i3lock -c 080808  
+    bindsym r exec systemctl reboot -i
+        bindsym s exec systemctl suspend -i, mode "default", exec i3lock -c 080808
         bindsym p exec systemctl poweroff -i
         bindsym l exec  i3lock --color 080808, mode "default"
-        bindsym e exit 
+        bindsym e exit
 
         bindsym Escape mode "default"
         bindsym Return mode "default"
@@ -32,8 +32,8 @@ focus_on_window_activation none
 
 set_from_resource   $bg         background
 set_from_resource   $fg         foreground
-set_from_resource   $black      color0     
-set_from_resource   $gray       color8     
+set_from_resource   $black      color0
+set_from_resource   $gray       color8
 set_from_resource   $red        color1
 set_from_resource   $green      color10     color8
 set_from_resource   $yellow     color11     color3
@@ -41,13 +41,13 @@ set_from_resource   $blue       color4      color12
 set_from_resource   $magenta    color5      color13
 set_from_resource   $cyan       color6      color14
 set_from_resource   $white      color7      color15
-set_from_resource   $primary    primary     color15 
+set_from_resource   $primary    primary     color15
 set_from_resource   $secondary  secondary   color15
 
 # class                 border      backgr      text        indicator     child_border
 client.focused          $primary    $primary    $bg         $primary      $primary
-client.focused_inactive $primary    $bg         $fg         $gray         $gray  
-client.unfocused        $primary    $bg         $primary    $gray         $gray     
+client.focused_inactive $primary    $bg         $fg         $gray         $gray
+client.unfocused        $primary    $bg         $primary    $gray         $gray
 client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
 client.placeholder      #000000     #0c0c0c     #ffffff     #000000       #0c0c0c
 client.background       #ffffff
@@ -55,24 +55,24 @@ client.background       #ffffff
 #I3BAR
  bar {
      #i3bar_command i3bar --transparency
-         status_command i3status -c $HOME/.config/i3/i3status.conf 
+         status_command i3status -c $HOME/.config/i3/i3status.conf
          workspace_min_width 25px
          separator_symbol " | "
          strip_workspace_numbers yes
          mode dock
          modifier $mod+mod1
-         position top
- 
+         position bottom
+
          colors {
          background $bg
          statusline $primary
-         separator  $fg     
+         separator  $fg
  #                          Border       background      text
-         focused_workspace  $primary     $primary        $bg       
+         focused_workspace  $primary     $primary        $bg
          active_workspace   $primary     $primary        $fg
          inactive_workspace $bg          $bg             $primary
-         urgent_workspace   $bg          $bg             $red   
-         binding_mode       $primary     $primary        $bg   
+         urgent_workspace   $bg          $bg             $red
+         binding_mode       $primary     $primary        $bg
      }
  }
 
@@ -176,7 +176,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+f fullscreen toggle
 bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
-#bindsym $mod+b bar mode toggle 
+#bindsym $mod+b bar mode toggle
 bindsym $mod+t split toggle
 
 #counter strike style
@@ -220,7 +220,7 @@ mode "$resize" {
 
 #testing
 for_window [title="dropdown"] floating enable, move scratchpad, border pixel 2
-#exec $nsi xfce4-terminal --title dropdown 
+#exec $nsi xfce4-terminal --title dropdown
 #bindsym $mod+u [title="dropdown"] scratchpad show, resize set 1024 480, move position center
 
 

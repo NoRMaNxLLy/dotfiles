@@ -173,7 +173,7 @@ hi cPreCondit           ctermbg=NONE            ctermfg=5
 hi cRepeat              ctermbg=NONE            ctermfg=7
 hi cFormat              ctermbg=NONE            ctermfg=7
 
-ri xdefaultsValue       ctermbg=NONE            ctermfg=7
+hi xdefaultsValue       ctermbg=NONE            ctermfg=7
 
 " Bash and Shell colors
 hi shQuote              ctermbg=NONE            ctermfg=10  cterm=BOLD

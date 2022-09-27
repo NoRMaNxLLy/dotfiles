@@ -14,27 +14,26 @@ cd ${0%/*}  # make sure we are in the right Dir.
 
 # idk why this is working
 match='!(.git|config|install.sh|README.md)'
-Files=$match
+files=$match
 
-for File in $Files
-do
-    Src="${PWD}/${File}"
-    Dst="${HOME}/.${File}"
-    [[ -e $Dst && ! -L $Dst ]] && mv $Dst $HOME/olddotfiles/    # if it exist, and it's not a link, back it up.
-    ln -nsf "$Src" "$Dst"
+for file in $files; do
+    src="${PWD}/${file}"
+    dst="${HOME}/.${file}"
+    [[ -e $dst && ! -L $dst ]] && mv $dst $HOME/olddotfiles/    # if it exist, and it's not a link, back it up.
+    ln -nsf "$src" "$dst"
 done
 
 
 #the files in the .config
 cd config
-#Files=$(find * -maxdepth 0) 
-Files=*
+#files=$(find * -maxdepth 0) 
+files=*
 
-for File in $Files
+for file in $files
 do
-    Src="${PWD}/${File}"
-    Dst="$HOME/.config/${File}"
-    [[ -e $Dst && ! -L $Dst ]] && mv $Dst $HOME/olddotfiles/config/     # same.
-    ln -nsf $Src $Dst
+    src="${PWD}/${file}"
+    dst="$HOME/.config/${file}"
+    [[ -e $dst && ! -L $dst ]] && mv $dst $HOME/olddotfiles/config/     # same.
+    ln -nsf $src $dst
 done
 
