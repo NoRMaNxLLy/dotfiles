@@ -41,3 +41,5 @@ if [ "$(tty)" = "/dev/tty1" ]; then
 else # source bashrc if we are using different tty than tty1.
     [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 fi
+
+# vim: ft=sh
