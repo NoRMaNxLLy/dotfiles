@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# works only with systemd.
+choices="suspend reboot poweroff" 
+choice=$( printf '%s\n' $choices | dmenu -p ":" ) || exit 1
+
+case $choice in
+    suspend)
+        i3lock -c 101010
+        systemctl suspend
+        ;;
+    reboot)
+        shutdown -r now
+        ;;
+    poweroff)
+        shutdown -P now
+        ;;
+esac

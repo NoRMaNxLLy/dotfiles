@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# print the time as YYYYMMDDThhmmss
+
+printf "%(%Y%m%dT%H%M%S)T"
+
+

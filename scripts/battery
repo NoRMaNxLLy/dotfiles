@@ -1,0 +1,19 @@
+#!/bin/sh
+
+battery0="/sys/class/power_supply/BAT0"
+battery1="/sys/class/power_supply/BAT1"
+
+if [ ! -d "${battery0}" ]; then
+    echo "No Battery."
+    exit 1;
+fi
+
+read -r chargefull < "${battery0}/charge_full"
+read -r chargenow < "${battery0}/charge_now"
+read -r state < "${battery0}/status"
+read -r percentage < "${battery0}/capacity"
+
+# percentage=$(echo "scale=2; ${chargenow} / ${chargefull} * 100" | bc -s)
+
+echo "${percentage%.*}% - ${state}"
+

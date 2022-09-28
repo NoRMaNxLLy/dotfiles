@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# what to do when opening new terminal..
+
+Clients=$(tmux list-clients 2> /dev/null)
+Sessions=$(tmux list-sessions 2> /dev/null)
+
+if [ -z "$Clients" ]; then
+    if [ -z "$Sessions" ]; then
+        exec tmux new-session    # no clients, no session, create one.
+    else
+        exec tmux attach-session # no clients, available session, attach to it.
+    fi
+else
+    exec tmux new-session        # there's a connected client, make a new session.
+fi

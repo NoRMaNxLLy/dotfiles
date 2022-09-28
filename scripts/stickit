@@ -1,0 +1,6 @@
+#!/usr/bin/xdotool
+
+getwindowfocus
+windowsize 25% 25%
+windowmove 1015 40
+windowstate --toggle STICKY

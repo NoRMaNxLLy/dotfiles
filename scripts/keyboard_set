@@ -1,0 +1,8 @@
+#!/bin/sh
+
+setxkbmap -layout us,ara \
+    -option "caps:swapescape,grp:alt_shift_toggle,altwin:menu_win"
+
+#speed up the cursor
+xset r rate 250 45
+

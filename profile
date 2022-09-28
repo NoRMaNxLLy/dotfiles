@@ -29,7 +29,7 @@ export BROWSER="qutebrowser"
 # setting up PATH.
 PATH="$PATH:/sbin:/usr/sbin"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:${PATH}"
-[ -d "$HOME/Scripts" ] && PATH="$HOME/Scripts:${PATH}"
+[ -d "$HOME/scripts" ] && PATH="$HOME/scripts:${PATH}"
 
 #starting X on login
 if [ "$(tty)" = "/dev/tty1" ]; then

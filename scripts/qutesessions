@@ -1,0 +1,12 @@
+#!/bin/sh
+
+qutebrowser="exec qutebrowser"
+session=$(find $HOME/.local/share/qutebrowser/sessions -maxdepth 1 -type f -printf "%f\n" | cut -d'.' -f1 | dmenu -l 5 -p "choose a session: ")
+
+if ! [ "$session" = "junk" ]; then
+    $qutebrowser --restore $session
+else
+    $qutebrowser --restore junk
+fi
+
+

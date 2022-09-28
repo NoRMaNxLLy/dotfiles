@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# edit dotfiles quickly
+
+Dir="$HOME/dotfiles/"
+
+[ -x "$Dir" ] || echo "$Dir does not exist." 2>&1
+
+Ignore="
+! -path *.git*
+! -path *vim/plugged*
+! -path *tmux/plugins*
+"
+Files="$(find $Dir $Ignore)"
+
+if [ -n "$1" ]; then
+    # dummy way, as always ;(.
+    # we can make fzf act as grep  with the -f or --filter option
+    # sometimes its better because we would search in a fuzzy way like:i3 config
+    File="$(printf "%s\n" $Files | fzf --filter="$*" | head -n1)"
+fi
+
+if [ -z "$File" ]; then
+    # fzf exit with 130 if interuptted with C-c or ESC
+    File=$(printf '%s\n' $Files | fzf) || exit 0
+fi
+
+vi $File

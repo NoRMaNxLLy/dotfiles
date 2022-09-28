@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# wall get, set.
+
+Wall="$HOME/.config/wallpaper.jpg"
+WallDir="$HOME/.config/wallpapers"
+
+if [ -n "$1" ]; then
+    case "$1" in
+        get)
+            ImageUrl="$2"
+            ImagePath="${ImageUrl##*/}"
+            if wget "$ImageUrl" -P "$WallDir"; then
+                ImagePath="${WallDir}/${ImagePath}"
+            fi ;;
+
+        -r|random)
+            ImagePath="$(find $WallDir | shuf -n1)" ;;
+
+        -o)
+            sxiv $WallDir;
+            exit 0;;
+        *) 
+            ImagePath="$1" ;;
+    esac
+    # check if the supplied arg is an image
+    type="$(file --mime-type --brief "$ImagePath")"
+    case $type in
+        *image*) cp "$ImagePath" $Wall
+    esac
+fi
+
+hsetroot -fill $Wall > /dev/null

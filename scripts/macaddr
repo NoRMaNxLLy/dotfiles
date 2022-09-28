@@ -1,0 +1,29 @@
+#!/usr/bin/bash
+
+raw_addr=$(grep -E -o ".[ace0268].{10}" <(timeout 0.01 tr -cd "0-9abcdef" < /dev/urandom ) | shuf -n1)
+
+hw_addr=
+
+# i dont want to use any other tools.....
+#for (( i=1 ; i<=11 ; i+=2 )); do 
+#    hw_addr="${hw_addr}${raw_addr:$i-1:1}"
+#    # we dont want to put a colon at the end 
+#    (( i == 11 )) && hw_addr="${hw_addr}${raw_addr:i:1}" && break
+#    hw_addr="${hw_addr}${raw_addr:i:1}:"
+#done
+
+#for (( i=0 ; i <= 11; i++ ));do
+#    if (( i % 2 == 0 )); then
+#        hw_addr="${hw_addr}${raw_addr:$i:1}" 
+#    else
+#        if (( i != 11 )); then
+#        hw_addr="${hw_addr}${raw_addr:$i:1}:" 
+#        else
+#        hw_addr="${hw_addr}${raw_addr:$i:1}" 
+#        fi
+#    fi
+#done
+
+hw_addr=${raw_addr:0:2}:${raw_addr:2:2}:${raw_addr:4:2}:${raw_addr:6:2}:${raw_addr:8:2}:${raw_addr:10:2}
+echo $hw_addr
+

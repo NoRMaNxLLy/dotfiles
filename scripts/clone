@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# https://github.com/normanxlly/dotfiles
+# git@github.com:normanxlly/dotfiles
+
+[ -z "$2" ] || depth="--depth=$2"
+repos="$HOME/repos"
+url="$1"
+repo="${url##*/}"
+owner="${url%/*}"
+owner="${owner##*/}"    # https
+owner="${owner##*:}"    # ssh
+ownerdir="${repos}/${owner}"
+
+mkdir -p "${ownerdir}"
+cd "${ownerdir}"
+echo "git clone ${url} into ${ownerdir}"
+# quoting the depth variables causing a problem if it's empty.  git
+# will see it as an empty string "".
+git clone ${depth:-} "${url}"
+
+if [ $? ]; then
+    echo "${ownerdir}/${repo}"
+fi
