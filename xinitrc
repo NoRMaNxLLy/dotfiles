@@ -1,5 +1,5 @@
 # wallset -r &
-hsetroot -solid "#1d2021" &
+# hsetroot -solid "#1d2021" &
 dunst &
 picom -b &
 

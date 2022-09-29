@@ -2,6 +2,9 @@
 
 #--------------------  variables  ----------------------------------
 
+export MYREPOS="${HOME}/repos/normanxlly"
+export DOTFILES="${MYREPOS}/dotfiles"
+export CDPATH=".:${MYREPOS}"
 export EDITOR="vim"
 export LESSHISTFILE="/dev/null"
 
@@ -35,12 +38,12 @@ alias ip="ip --color=auto"
 update_repos() {
     local currentdir=`pwd`
     clear
-    for repo in $HOME/{dotfiles,Scripts,.config/qutebrowser}; do { 
+    for repo in $HOME/{dotfiles,Scripts,.config/qutebrowser}; do {
         cd $repo;
         echo -e "### $repo ###\n";
         git add . ;
         if git commit -a -m "updating..."; then
-            git push; 
+            git push;
         fi
         echo -e "------------------------------------------------\n";
     } 
@@ -53,7 +56,7 @@ cd $currentdir
 # related to using ** in pathname Expansion
 shopt -s globstar
 
-# file starting with '.' are included in pathname expansion
+# files starting with '.' are included in pathname expansion
 shopt -s dotglob
 
 shopt -s histappend
@@ -73,6 +76,5 @@ else
         fzfComp="${fzfDir}/completion.bash"
     fi
 fi
-[[ -n $fzfKeys ]] && . "$fzfKeys"
-[[ -n $fzfComp ]] && . "$fzfComp"
-
+[[ -n ${fzfKeys} ]] && . "$fzfKeys"
+[[ -n ${fzfComp} ]] && . "$fzfComp"

@@ -1,4 +1,5 @@
-#define BACKGROUND   #1d2021
+!#define BACKGROUND   #1d2021
+#define BACKGROUND   #282828
 #define FOREGROUND   #ebdbb2
 #define CURSORCOLOR  #ebdbb2
 
@@ -79,3 +80,4 @@
 !st.font: JetBrains Mono NL:pixelsize=10;
 st.font: monospace:pixelsize=14;
 st.alpha: 1.00
+!st.background: #000000

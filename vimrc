@@ -8,6 +8,7 @@ let mapleader = " "
 
 "--------------------------  options  ----------------------------------
 
+set laststatus=1 colorcolumn=0
 set nonumber norelativenumber
 
 set incsearch hlsearch ruler  wildmenu
@@ -114,6 +115,7 @@ nnoremap <leader>a :set arabic!<CR>
 
 " toggle linenumber
 map <F1> :call ToggleLineNr()<CR>
+map <F2> :call ToggleArmor()<CR>
 
 " yank and paste to X clipboard using xclip(1)
 map <leader>y :silent .!xclip -i -selection clipboard && xclip -o -selection clipboard<CR>
@@ -130,8 +132,7 @@ set background=dark
 " colorscheme TNC
 
 hi ColorColumn cterm=NONE ctermbg=235
-hi StatusLine cterm=NONE ctermbg=235 ctermfg=245
-hi LineNr cterm=NONE ctermbg=NONE ctermfg=245
+hi LineNr cterm=NONE ctermbg=NONE ctermfg=240
 hi StatusLine cterm=NONE ctermfg=245 ctermbg=235
 hi StatusLineNC cterm=NONE ctermfg=245 ctermbg=235
 hi Normal ctermbg=NONE
@@ -140,11 +141,11 @@ hi SpecialKey ctermfg=black ctermbg=NONE
 hi ModeMsg ctermfg=245 cterm=NONE ctermbg=NONE
 hi MoreMsg ctermfg=245 ctermbg=NONE
 hi NonText ctermfg=235 ctermbg=NONE
-hi ErrorMsg cterm=NONE ctermbg=236 ctermfg=1
+hi ErrorMsg cterm=NONE ctermbg=234 ctermfg=1
 hi Error cterm=NONE ctermbg=NONE ctermfg=darkred
 hi SpellBad cterm=NONE ctermbg=235 ctermfg=darkred
 hi SpellRare ctermbg=235 ctermfg=darkblue cterm=NONE
-hi Search ctermbg=236 ctermfg=1
+hi Search ctermbg=234 ctermfg=1
 hi Todo ctermbg=236 ctermfg=darkred
 hi IncSearch cterm=NONE ctermbg=236 ctermfg=darkred
 hi MatchParen ctermbg=236 ctermfg=darkred
@@ -171,7 +172,7 @@ call plug#end()
 "-----------------------------  testing  -------------------------------
 set ruf=%50(%=%#ModeMsg#%f\ %y\ %l:%L\ %p%%%)
 
-function Armor_toggle()
+function ToggleArmor()
     call ToggleLineNr()
     if &number || &relativenumber
         set colorcolumn=80

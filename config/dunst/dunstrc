@@ -1,5 +1,5 @@
 [global]
-background = "#1d2021"
+background = "#282828"
 foreground = "#d9caa4"
 frame_color = "#d9caa4"
 timeout = 5
