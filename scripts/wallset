@@ -2,32 +2,34 @@
 
 # wall get, set.
 
-Wall="$HOME/.config/wallpaper.jpg"
-WallDir="$HOME/.config/wallpapers"
+wallpaper="$HOME/.config/wallpaper.jpg"
+wallpapers="$HOME/.config/wallpapers"
 
 if [ -n "$1" ]; then
     case "$1" in
         get)
-            ImageUrl="$2"
-            ImagePath="${ImageUrl##*/}"
-            if wget "$ImageUrl" -P "$WallDir"; then
-                ImagePath="${WallDir}/${ImagePath}"
-            fi ;;
-
+            url="$2"
+            imagepath="${url##*/}"
+            if wget "${url}" -P "${wallpapers}"; then
+                imagepath="${wallpapers}/${imagepath}"
+            fi
+            ;;
         -r|random)
-            ImagePath="$(find $WallDir | shuf -n1)" ;;
-
+            imagepath="$(find "${wallpapers}" | shuf -n1)"
+            ;;
         -o)
-            sxiv $WallDir;
-            exit 0;;
-        *) 
-            ImagePath="$1" ;;
+            sxiv "${wallpapers}"
+            exit 0
+            ;;
+        *)
+            imagepath="$1" ;;
     esac
     # check if the supplied arg is an image
-    type="$(file --mime-type --brief "$ImagePath")"
-    case $type in
-        *image*) cp "$ImagePath" $Wall
+    filetype="$(file --mime-type --brief "${imagepath}")"
+    case "${filetype}" in
+        *image*) cp "${imagepath}" ${wallpaper} ;;
+        *) echo "not jpeg." && exit 1
     esac
 fi
 
-hsetroot -fill $Wall > /dev/null
+hsetroot -fill "${wallpaper}" > /dev/null
