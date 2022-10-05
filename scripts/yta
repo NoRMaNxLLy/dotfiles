@@ -1,0 +1,4 @@
+#!/bin/sh
+
+[ -n "$*" ] || exit 1
+exec mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"
