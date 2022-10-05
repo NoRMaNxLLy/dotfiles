@@ -27,7 +27,8 @@ alias cp='cp -v'
 alias df='df -h'
 alias du='du -h --block-size=M'
 alias grep='grep --color=auto'
-alias lss='exa -l --color=auto --group-directories-first'
+#alias lss='exa -l --color=auto --group-directories-first'
+alias lss='ls -l --color=auto --group-directories-first'
 alias startx='startx &> /dev/null'
 alias neomutt='TERM=screen-256color neomutt'
 alias wget="wget --no-hsts"
@@ -51,8 +52,15 @@ done
 cd $currentdir
 }
 
+_ps1() {
+    local branch="$(git branch --show-current 2>/dev/null)"
+    PS1="\[${Co[12]}\]\w \[${Co[13]}\]${branch} \[${Co[11]}\]➜\[${Co[16]}\] "
+}; PROMPT_COMMAND="_ps1"
+
 #---------------------  Bash Options  ------------------------------
 
+# testing vi mode 
+set -o vi
 # related to using ** in pathname Expansion
 shopt -s globstar
 
@@ -62,6 +70,12 @@ shopt -s dotglob
 shopt -s histappend
 
 #------------------------------------------------------------------
+
+if command -v dircolors > /dev/null 2>&1; then
+    if [[ -r $HOME/.config/dircolors ]]; then
+        eval "$(dircolors -b "$HOME/.config/dircolors")"
+    fi
+fi
 
 # fzf
 # the directories are not the same on Debian and Arch.
@@ -78,3 +92,6 @@ else
 fi
 [[ -n ${fzfKeys} ]] && . "$fzfKeys"
 [[ -n ${fzfComp} ]] && . "$fzfComp"
+
+#------------------ testing --------------------
+
