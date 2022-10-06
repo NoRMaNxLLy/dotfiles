@@ -144,13 +144,13 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 #bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
 bindsym $mod+Shift+f gaps inner all toggle 5
 #
-gaps inner 15
+gaps inner 10
 gaps outer 0
 bindsym $mod+i			    gaps inner current minus 5
 bindsym $mod+Shift+i		gaps inner current plus  5
 bindsym $mod+o			    gaps outer current minus 5
 bindsym $mod+Shift+o		gaps outer current plus  5
-#smart_gaps on
+smart_gaps on
 smart_borders on
 
 #-------------------------------BINDING---------------------------------------

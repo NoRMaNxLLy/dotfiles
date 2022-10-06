@@ -25,13 +25,13 @@ super + d
 	dmenu_run -p "launch:"
 
 # pcmanfm
-super + Home 
+super + Home
     pcmanfm
 
 # lockscreen
 super + x
-    i3lock -c 0f0f0f -f 
+    i3lock -c 000000 -f
 
-# stick the current window to the top 
+# stick the current window to the top
 super + s
-   stickit 
+   stickit

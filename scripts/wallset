@@ -32,4 +32,5 @@ if [ -n "$1" ]; then
     esac
 fi
 
-hsetroot -fill "${wallpaper}" > /dev/null
+#hsetroot -fill "${wallpaper}" > /dev/null
+hsetroot -full "${wallpaper}" > /dev/null

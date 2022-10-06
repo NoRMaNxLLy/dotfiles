@@ -1,83 +1,47 @@
-!#define BACKGROUND   #1d2021
-#define BACKGROUND   #282828
-#define FOREGROUND   #ebdbb2
-#define CURSORCOLOR  #ebdbb2
+#define BACKGROUND      #252525
+#define FOREGROUND      #ebdbb2
+#define CURSORCOLOR     #ebdbb2
+#define COLOR0          #282828
+#define COLOR8          #928374
+#define COLOR1          #cc241d
+#define COLOR9          #fb4934
+#define COLOR2          #98971a
+#define COLOR10         #b8bb26
+#define COLOR3          #d79921
+#define COLOR11         #fabd2f
+#define COLOR4          #458588
+#define COLOR12         #83a598
+#define COLOR5          #b16286
+#define COLOR13         #d3869b
+#define COLOR6          #689d6a
+#define COLOR14         #8ec07c
+#define COLOR7          #a89984
+#define COLOR15         #ebdbb2
 
-!define BLACK
-#define COLOR0       #101010
-#define COLOR8       #353535
-
-!define RED
-#define COLOR1       #cc2822
-#define COLOR9       #e65d57
-
-!define GREEN
-#define COLOR2       #98971a
-#define COLOR10      #cacf00
-
-!define YELLOW
-#define COLOR3       #f08d2b
-#define COLOR11      #ffa954
-
-!define BLUE
-#define COLOR4       #2e71e6
-#define COLOR12      #6e98e1
-
-!define MAGENTA
-#define COLOR5       #833ed1
-#define COLOR13      #9b71ca
-
-!define CYAN
-#define COLOR6       #56bf5a
-#define COLOR14      #82d985
-
-!define WHITE
-
-#define COLOR7       #a89984
-#define COLOR15       #d9caa4
-
-! special
 *.foreground:   FOREGROUND
 *.background:   BACKGROUND
 *.cursorColor:  CURSORCOLOR
-
-! black
 *.color0:       COLOR0
 *.color8:       COLOR8
-
-! red
 *.color1:       COLOR1
 *.color9:       COLOR9
-
-! green
 *.color2:       COLOR2
 *.color10:      COLOR10
-
-! yellow
 *.color3:       COLOR3
 *.color11:      COLOR11
-
-! blue
 *.color4:       COLOR4
 *.color12:      COLOR12
-
-! magenta
 *.color5:       COLOR5
 *.color13:      COLOR13
-
-! cyan
 *.color6:       COLOR6
 *.color14:      COLOR14
-
-! white
 *.color7:       COLOR7
 *.color15:      COLOR15
-
 !primary and secondary colors
 *.primary:      COLOR15
 *.secondary:    COLOR0
 
-!st.font: JetBrains Mono NL:pixelsize=10;
+!st.font: JetBrains Mono NL:pixelsize=14;
 st.font: monospace:pixelsize=14;
 st.alpha: 1.00
-!st.background: #000000
+st.background: #000000

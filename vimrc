@@ -132,9 +132,10 @@ set background=dark
 " colorscheme TNC
 
 hi ColorColumn cterm=NONE ctermbg=235
+hi VertSplit cterm=NONE ctermbg=NONE ctermfg=245
 hi LineNr cterm=NONE ctermbg=NONE ctermfg=240
-hi StatusLine cterm=NONE ctermfg=245 ctermbg=235
-hi StatusLineNC cterm=NONE ctermfg=245 ctermbg=235
+hi StatusLine cterm=NONE ctermfg=245 ctermbg=NONE
+hi StatusLineNC cterm=NONE ctermfg=240 ctermbg=NONE
 hi Normal ctermbg=NONE
 hi Special ctermfg=cyan
 hi SpecialKey ctermfg=black ctermbg=NONE
