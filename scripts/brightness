@@ -1,0 +1,10 @@
+#!/bin/sh
+
+dir="/sys/class/backlight/intel_backlight"
+
+read -r now < "${dir}/brightness"
+read -r max < "${dir}/max_brightness"
+
+percent=$(echo "scale=2; ${now} / ${max} * 100" | bc)
+
+echo ${percent}%
