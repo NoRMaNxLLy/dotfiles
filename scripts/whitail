@@ -1,0 +1,4 @@
+#!/bin/sed -f
+
+# remove whitespaces at the end.
+s/\s*$//g
