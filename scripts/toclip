@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if command -v xclip > /dev/null 2>&1; then
+    # rmlastnl remove the newline at the end.
+    xclip -in -selection clipboard -rmlastnl
+elif command -v xsel > /dev/null 2>&1; then
+    xsel --input --clipboard
+else
+    echo "xclip and xsel are not found." 2>&1
+fi
