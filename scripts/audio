@@ -1,0 +1,63 @@
+#!/bin/sh
+
+# i'm using this script for the function keys..
+
+_running() {
+    pgrep "$1" >/dev/null 2>&1
+}
+
+_have() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+_err() {
+    echo "$*" 2>&1
+    exit 1
+}
+
+# define functions based on if we are using pulseaudio or just alsa.
+if _running "pulseaudio"; then
+    echo "running pulseaudio"
+    # pactl should be shipped with pulseaudio package anyway...
+    if _have "pactl"; then
+        mixer="pactl"
+    else
+        err "pactl is not found"
+    fi
+else
+    echo "running alsa"
+    if _have "amixer"; then
+        mixer="amixer"
+    else
+        err "amixer is not found"
+    fi
+fi
+
+if [ "${mixer}" = "pactl" ]; then
+    # define functions for pactl
+    volume_set() { pactl set-sink-volume @DEFAULT_SINK@ $1 ;}
+    volume_up() { pactl set-sink-volume @DEFAULT_SINK@ +$1 ;}
+    volume_down() { pactl set-sink-volume @DEFAULT_SINK@ -$1 ;}
+    volume_toggle() { pactl set-sink-mute @DEFAULT_SINK@ toggle ;}
+    volume_mute() { pactl set-sink-mute @DEFAULT_SINK@ true ;}
+    volume_unmute() { pactl set-sink-mute @DEFAULT_SINK@ false ;}
+elif [ "${mixer}" = "amixer" ]; then
+    volume_set() { amixer set Master $1 ;}
+    volume_up() { amixer set Master $1+ ;}
+    volume_down() { amixer set Master $1- ;}
+    volume_toggle() { amixer set Master toggle ;}
+    volume_mute() { amixer set Master mute ;}
+    volume_unmute() { amixer set Master unmute ;}
+else
+    err "no was mixer found."
+fi
+
+case "$1" in
+    set) volume_set $2;;
+    up) volume_up $2;;
+    down) volume_down $2;;
+    toggle) volume_toggle;;
+    mute) volume_mute;;
+    unmute) volume_unmute;;
+    *) echo "${0##*/} {set|up num%|down num%|toggle|mute|umute}"
+esac

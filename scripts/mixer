@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Wether to use alsamixer or pulsemixer 🙂
+_have() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+_running() {
+    pgrep "$1" > /dev/null 2>&1
+}
+
+# just testing this out.
+if _running pulseaudio; then
+    echo "pulseaudio"
+    if _have "pulsemixer"; then
+        mixer="pulsemixer"
+    else
+        echo "pulsemixer is not installed." 2>&1
+    fi
+else
+    echo "alsa"
+    if _have "alsamixer"; then
+        mixer="alsamixer"
+    else
+        echo "alsamixer is not installed" 2>&1
+    fi
+fi
+
+if [ -n "${mixer}" ]; then
+    exec "${mixer}"
+else
+    echo "no mixer was found." 2>&1
+    exit 1
+fi
