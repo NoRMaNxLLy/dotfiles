@@ -1,41 +1,31 @@
 #!/bin/bash
 
-# a script for linking the config files
-
-# the script is working, however it's executing ln(1) so many times,
-# which make it a little bit slower.
-# TODO: find a way to use ln(1) once, instead of calling it multiple times.
-#----------------------------------------------------------------------------------------------------------------------
-
 shopt -s extglob
-cd ${0%/*}  # make sure we are in the right Dir.
+cd ${0%/*}
 
-[[ -d $HOME/olddotfiles ]] || mkdir -p $HOME/olddotfiles/config
+_symlink() {
+    ln -nsf "$1" "$2"
+}
+
+if (( $# > 0 )); then
+    for i in "$@"; do
+        i="${i%/}"
+        [[ -e "${PWD}/${i}" ]] || continue
+        src="${PWD}/${i}"
+        dst="${HOME}/.${i}"
+        _symlink "${src}" "${dst}"
+    done
+    exit 0
+fi
 
 # idk why this is working
-match='!(.git|config|install.sh|README.md|scripts)'
-files="${match}"
+match='!(.git|config|install.sh|README.md|scripts) config/*'
 
-for file in ${files}; do
-    src="${PWD}/${file}"
-    dst="${HOME}/.${file}"
-    [[ -e ${dst} && ! -L ${dst} ]] && mv ${dst} ${HOME}/olddotfiles/    # if it exist, and it's not a link, back it up.
-    ln -nsf "${src}" "${dst}"
+for i in ${match}; do
+    src="${PWD}/${i}"
+    dst="${HOME}/.${i}"
+    _symlink "${src}" "${dst}"
 done
 
 # the script directory
-ln -nsf "${PWD}/scripts" "${HOME}/scripts"
-
-#the files in the .config
-cd config
-#files=$(find * -maxdepth 0) 
-files=*
-
-for file in ${files}
-do
-    src="${PWD}/${file}"
-    dst="$HOME/.config/${file}"
-    [[ -e ${dst} && ! -L ${dst} ]] && mv ${dst} ${HOME}/olddotfiles/config/     # same.
-    ln -nsf ${src} ${dst}
-done
-
+_symlink "${PWD}/scripts" "${HOME}/scripts"
