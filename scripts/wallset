@@ -5,32 +5,49 @@
 wallpaper="$HOME/.config/wallpaper.jpg"
 wallpapers="$HOME/.config/wallpapers"
 
+_hash_image() {
+    imagehash=$(md5sum "$1")
+    imagehash=${imagehash%% *}
+}
+
+_is_image() {
+    filetype="$(file --mime-type --brief "$1")"
+    case "${filetype}" in
+        *image*) return 0;;
+        *) echo "not jpeg." 2>&1 && return 1;;
+    esac
+}
+
+_set_as_wallpaper() {
+    cp "$1" "${wallpaper}"
+}
+
+get_image() {
+    url="$1"
+    tempname="$(mktemp)"
+    wget -q "${url}" -O "${tempname}" || exit 1
+    if _is_image "${tempname}"; then
+        _hash_image "${tempname}"
+        imagepath="${wallpapers}/${imagehash}.jpg"
+        mv "${tempname}" "${imagepath}"
+    else
+        rm "${tempname}"
+    fi
+}
+
 if [ -n "$1" ]; then
     case "$1" in
-        get)
-            url="$2"
-            imagepath="${url##*/}"
-            if wget "${url}" -P "${wallpapers}"; then
-                imagepath="${wallpapers}/${imagepath}"
-            fi
-            ;;
-        -r|random)
-            imagepath="$(find "${wallpapers}" | shuf -n1)"
-            ;;
-        -o)
-            sxiv "${wallpapers}"
-            exit 0
-            ;;
-        *)
-            imagepath="$1" ;;
+        get) get_image "$2" ;;
+        -r|random) imagepath="$(shuf -n1 -e ${wallpapers}/*)" ;;
+        -o|open) sxiv "${wallpapers}"; exit 0 ;;
+        *) imagepath="$1" ;;
     esac
-    # check if the supplied arg is an image
-    filetype="$(file --mime-type --brief "${imagepath}")"
-    case "${filetype}" in
-        *image*) cp "${imagepath}" ${wallpaper} ;;
-        *) echo "not jpeg." && exit 1
-    esac
+
+    if _is_image "${imagepath}"; then
+        _set_as_wallpaper "${imagepath}"
+    else
+        echo "${imagepath} is not an image" 2>&1
+    fi
 fi
 
-#hsetroot -fill "${wallpaper}" > /dev/null
 hsetroot -full "${wallpaper}" > /dev/null
