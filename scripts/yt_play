@@ -1,0 +1,35 @@
+#!/bin/sh
+
+_prompt() {
+    local reply
+    reply="$(printf '%s\n' "$@" | dmenu -p "format:")"
+    echo "${reply}"
+}
+
+choose_format() {
+    local opts="1080 720 480 360 240 144 audio"
+    format=$(_prompt ${opts})
+    case "${format}" in
+        audio) ytdl_format="bestaudio";;
+        *) ytdl_format="bestvideo[height=${format}]+bestaudio/bestvideo[height=360]+bestaudio/best"
+    esac
+}
+
+get_description() {
+    mkdir /tmp/youtube --mode 700 2>/dev/null
+    video_title="$(yt-dlp --print title "$1" 2>/dev/null)"
+    yt-dlp --print description "$1" > /tmp/youtube/"${video_title}".txt
+}
+
+play_video() {
+    mpv --ytdl-format="$1" "$2"
+}
+
+# ---
+
+[ -n "$1" ] || exit 1
+url="$1"
+
+choose_format
+get_description "${url}" &
+play_video "${ytdl_format}" "${url}"
