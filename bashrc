@@ -2,22 +2,25 @@
 
 #--------------------  variables  ----------------------------------
 
-export MYREPOS="${HOME}/repos/normanxlly"
+export REPOS="${HOME}/repos"
+export MYREPOS="${REPOS}/normanxlly"
 export DOTFILES="${MYREPOS}/dotfiles"
-export CDPATH=".:${MYREPOS}"
+export TODO_DIR="$HOME/todo"
+export CDPATH=".:${MYREPOS}:${REPOS}"
 export EDITOR="vim"
 export LESSHISTFILE="/dev/null"
 
 # width of man pages.
 # export MANWIDTH=79
+
 # 0 - 15 for colors, and 16 for reset.
 Co=( '\033[3'{0..7}m '\033[1;3'{0..7}m '\033[0m' )
-
-PS1="\[${Co[10]}\]\w \[${Co[11]}\]➜\[${Co[16]}\] "
 
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+PROMPT_COMMAND="_ps1"
 
 #--------------------  Aliases  -------------------------------------
 
@@ -36,31 +39,19 @@ alias ip="ip --color=auto"
 
 #--------------------  Functions  -----------------------------------
 
-update_repos() {
-    local currentdir=`pwd`
-    clear
-    for repo in $HOME/{dotfiles,Scripts,.config/qutebrowser}; do {
-        cd $repo;
-        echo -e "### $repo ###\n";
-        git add . ;
-        if git commit -a -m "updating..."; then
-            git push;
-        fi
-        echo -e "------------------------------------------------\n";
-    } 
-done
-cd $currentdir
+_empty() {
+    test -z "$1"
 }
 
-_ps1() {
-    local branch="$(git branch --show-current 2>/dev/null)"
-    PS1="\[${Co[12]}\]\w \[${Co[13]}\]${branch} \[${Co[11]}\]➜\[${Co[16]}\] "
-}; PROMPT_COMMAND="_ps1"
+__in_repo() {
+    git branch --show-current 2>/dev/null
+}
 
 #---------------------  Bash Options  ------------------------------
 
-# testing vi mode 
+# i'm going to vi all the things 💀
 set -o vi
+
 # related to using ** in pathname Expansion
 shopt -s globstar
 
@@ -77,21 +68,34 @@ if command -v dircolors > /dev/null 2>&1; then
     fi
 fi
 
-# fzf
-# the directories are not the same on Debian and Arch.
-fzfDir="/usr/share/doc/fzf/examples"
-if [[ -d $fzfDir ]]; then
-    fzfKeys="${fzfDir}/key-bindings.bash"
-    fzfComp="${fzfDir}/completion.bash"
-else
-    fzfDir="/usr/share/fzf"
-    if [[ -d $fzfDir ]]; then
-        fzfKeys="${fzfDir}/key-bindings.bash"
-        fzfComp="${fzfDir}/completion.bash"
+#-------------------- my bloated prompt ---------------------------
+
+_ps1() {
+    declare -A _p=(
+     [u]="\[${Co[11]}\]\u\[${Co[16]}\]"          # user
+     [h]="\[${Co[12]}\]\h\[${Co[16]}\]"          # hostname
+     [w]="\[${Co[10]}\]\W\[${Co[16]}\]"          # working directory
+     [b]="\[${Co[13]}\]\[${branch}\]${Co[16]}"   # git branch
+     [d]="\[${Co[14]}\]\$\[${Co[16]}\]"          # $
+     [c]="\[${Co[15]}\]:\[${Co[16]}\]"            # :
+     [-]="\[${Co[15]}\]-\[${Co[16]}\]"            # -
+    [lb]="\[${Co[15]}\][\[${Co[16]}\]"          # [
+    [lp]="\[${Co[15]}\](\[${Co[16]}\]"          # (
+    [rb]="\[${Co[15]}\]]\[${Co[16]}\]"          # ]
+    [rp]="\[${Co[15]}\])\[${Co[16]}\]"          # )
+    [at]="\[${Co[15]}\]@\[${Co[16]}\]"           # @
+    )
+    local branch=$(__in_repo)
+    if ! _empty "${branch}"; then
+        if [[ "${branch}" == @(main|master) ]]; then
+            _p[b]="\[${Co[9]}\]${branch}\[${Co[16]}\]"
+        else
+            _p[b]="\[${Co[14]}\]${branch}\[${Co[16]}\]"
+        fi
+        PS1="${_p[lb]}${_p[u]}${_p[at]}${_p[h]}${_p[c]}${_p[w]}${_p[rb]}${_p[-]}${_p[lp]}${_p[b]}${_p[rp]}${_p[d]} "
+    else
+        PS1="${_p[lb]}${_p[u]}${_p[at]}${_p[h]}${_p[c]}${_p[w]}${_p[rb]}${_p[d]} "
     fi
-fi
-[[ -n ${fzfKeys} ]] && . "$fzfKeys"
-[[ -n ${fzfComp} ]] && . "$fzfComp"
+}
 
 #------------------ testing --------------------
-
