@@ -8,7 +8,7 @@ _prompt() {
 
 choose_format() {
     local opts="1080 720 480 360 240 144 audio"
-    format=$(_prompt ${opts})
+    format="$(_prompt ${opts})"
     case "${format}" in
         audio) ytdl_format="bestaudio";;
         *) ytdl_format="bestvideo[height=${format}]+bestaudio/bestvideo[height=360]+bestaudio/best"

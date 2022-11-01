@@ -17,6 +17,5 @@ if [ ! -x "$lynxpath" ]; then
   exit 1
 fi
 
-# disable interuptting lynx with C-c 
-"$lynxpath" --useragent="$useragent" "$@"
+exec "$lynxpath" --useragent="$useragent" "$@"
 
