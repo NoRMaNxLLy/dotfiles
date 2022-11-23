@@ -53,7 +53,7 @@ set nofoldenable
 " this is causing a problem: not able to close Netrw.
 " set hidden
 
-" show arabic text in the proper way.
+" do :help 'termbidi'
 " set termbidi
 
 " set timeout
@@ -76,6 +76,9 @@ filetype plugin on
 " set  sidescroll=999 sidescrolloff=999
 " set colorcolumn=80
 " set scrolloff=999
+
+" ruler format
+set ruf=%50(%=%#ModeMsg#%f\ %y\ %l:%L\ %p%%%)
 
 "--------------------------  remaps  -----------------------------------
 
@@ -109,7 +112,7 @@ nnoremap <silent> <C-L> :nohl<CR><C-L>
 " better use of arrow keys, number increment/decrement
 nnoremap <up> <C-a>
 nnoremap <down> <C-x>
- 
+
 " switch between arabic and normal
 nnoremap <leader>a :set arabic!<CR>
 
@@ -117,9 +120,9 @@ nnoremap <leader>a :set arabic!<CR>
 map <F1> :call ToggleLineNr()<CR>
 map <F2> :call ToggleArmor()<CR>
 
-" yank and paste to X clipboard using xclip(1)
-map <leader>y :silent .!xclip -i -selection clipboard && xclip -o -selection clipboard<CR>
-map <leader>p :silent .!xclip -o -selection clipboard<CR>
+" yank and paste to X clipboard using
+map <leader>y :silent .!toclip && fromclip<CR>
+map <leader>p :silent .!fromclip<CR>
 
 "------------------------  syntax highlighting  ------------------------
 
@@ -161,18 +164,6 @@ function ToggleLineNr()
 	endif
 endfunction
 
-"----------------------------  Plugins  --------------------------------
-
-call plug#begin('~/.vim/plugged')
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'chrisbra/Colorizer'
-Plug 'junegunn/goyo.vim'
-call plug#end()
-
-"-----------------------------  testing  -------------------------------
-set ruf=%50(%=%#ModeMsg#%f\ %y\ %l:%L\ %p%%%)
-
 function ToggleArmor()
     call ToggleLineNr()
     if &number || &relativenumber
@@ -183,3 +174,18 @@ function ToggleArmor()
         set laststatus&
     endif
 endfunction
+
+"----------------------------  Plugins  --------------------------------
+
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'chrisbra/Colorizer'
+Plug 'junegunn/goyo.vim'
+call plug#end()
+
+"-----------------------------  testing  -------------------------------
+
+"vnoremap <leader>y "xy:call system('xclip -i -selection clipboard', getreg('x'))<CR>
+" enable omni-completion
+set omnifunc=syntaxcomplete#Complete

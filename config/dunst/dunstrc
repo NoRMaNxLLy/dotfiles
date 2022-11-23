@@ -1,7 +1,7 @@
 [global]
-background = "#282828"
-foreground = "#ebdbb2"
-frame_color = "#ebdbb2"
+background = "#a89984"
+foreground = "#282828"
+frame_color = "#a89984"
 timeout = 5
 frame_width = 1
 

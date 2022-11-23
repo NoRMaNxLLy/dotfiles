@@ -5,7 +5,6 @@
 export REPOS="${HOME}/repos"
 export MYREPOS="${REPOS}/normanxlly"
 export DOTFILES="${MYREPOS}/dotfiles"
-export TODO_DIR="$HOME/todo"
 export CDPATH=".:${MYREPOS}:${REPOS}"
 export EDITOR="vim"
 export LESSHISTFILE="/dev/null"
@@ -75,15 +74,15 @@ _ps1() {
      [u]="\[${Co[11]}\]\u\[${Co[16]}\]"          # user
      [h]="\[${Co[12]}\]\h\[${Co[16]}\]"          # hostname
      [w]="\[${Co[10]}\]\W\[${Co[16]}\]"          # working directory
-     [b]="\[${Co[13]}\]\[${branch}\]${Co[16]}"   # git branch
+     [b]="\[${Co[14]}\]\[${branch}\]${Co[16]}"   # git branch
      [d]="\[${Co[14]}\]\$\[${Co[16]}\]"          # $
-     [c]="\[${Co[15]}\]:\[${Co[16]}\]"            # :
-     [-]="\[${Co[15]}\]-\[${Co[16]}\]"            # -
-    [lb]="\[${Co[15]}\][\[${Co[16]}\]"          # [
-    [lp]="\[${Co[15]}\](\[${Co[16]}\]"          # (
-    [rb]="\[${Co[15]}\]]\[${Co[16]}\]"          # ]
-    [rp]="\[${Co[15]}\])\[${Co[16]}\]"          # )
-    [at]="\[${Co[15]}\]@\[${Co[16]}\]"           # @
+     [c]="\[${Co[8]}\]:\[${Co[16]}\]"            # :
+     [-]="\[${Co[8]}\]-\[${Co[16]}\]"            # -
+    [lb]="\[${Co[9]}\][\[${Co[16]}\]"          # [
+    [rb]="\[${Co[9]}\]]\[${Co[16]}\]"          # ]
+    [lp]="\[${Co[8]}\](\[${Co[16]}\]"          # (
+    [rp]="\[${Co[8]}\])\[${Co[16]}\]"          # )
+    [at]="\[${Co[8]}\]@\[${Co[16]}\]"           # @
     )
     local branch=$(__in_repo)
     if ! _empty "${branch}"; then

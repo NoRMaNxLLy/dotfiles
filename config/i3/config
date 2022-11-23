@@ -53,36 +53,36 @@ client.placeholder      #000000     #0c0c0c     #ffffff     #000000       #0c0c0
 client.background       #ffffff
 
 #I3BAR
- bar {
-         status_command i3status -c $HOME/.config/i3/i3status.conf
-         workspace_min_width 25px
-         separator_symbol " | "
-         strip_workspace_numbers yes
-         mode invisible
-         modifier $mod+mod1
-         position bottom
-
-         colors {
-         background $bg
-         statusline $primary
-         separator  $fg
- #                          Border       background      text
-         focused_workspace  $primary     $primary        $bg
-         active_workspace   $primary     $primary        $fg
-         inactive_workspace $bg          $bg             $primary
-         urgent_workspace   $bg          $bg             $red
-         binding_mode       $primary     $primary        $bg
-     }
- }
-
+# bar {
+#         status_command i3status -c $HOME/.config/i3/i3status.conf
+#         workspace_min_width 25px
+#         separator_symbol " | "
+#         strip_workspace_numbers yes
+#         mode invisible
+#         modifier $mod+mod1
+#         position bottom
+#
+#         colors {
+#         background $bg
+#         statusline $primary
+#         separator  $fg
+# #                          Border       background      text
+#         focused_workspace  $primary     $primary        $bg
+#         active_workspace   $primary     $primary        $fg
+#         inactive_workspace $bg          $bg             $primary
+#         urgent_workspace   $bg          $bg             $red
+#         binding_mode       $primary     $primary        $bg
+#     }
+# }
+#
 #----------------------------------WINDOWS-------------------------------------
 #default orientaion of the windows
 #default_orientation vertical
 
 # remove the titlebar for the windows
-for_window [class=".*"] border pixel 1
+for_window [class=".*"] border pixel 2
 
-assign [class="Firefox"] $ws2
+assign [class="firefox"] $ws2
 assign [class="qutebrowser"] $ws2
 assign [class="mpv"] $ws3
 assign [class="Sxiv"] $ws3
@@ -98,6 +98,7 @@ for_window [workspace=$ws5] floating disable
 for_window [class="TelegramDesktop"] floating enable, resize set 520 720
 for_window [window_type="dialog"] floating enable
 for_window [class="Gcolor3"] floating enable
+for_window [class="Matplotlib"] floating enable
 
 # PACKETTRACER
 for_window [title="PDU Information at Device:.*"] floating enable
@@ -177,9 +178,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 #bindsym $mod+b bar mode toggle
 bindsym $mod+t split toggle
-
-#counter strike style
-bindsym $mod+q workspace back_and_forth
+bindsym $mod+semicolon workspace back_and_forth
 
 #dual monitor
 bindsym $mod+shift+n move workspace to output right

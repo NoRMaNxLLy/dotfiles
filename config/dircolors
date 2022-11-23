@@ -217,5 +217,6 @@ EXEC 01;32
 .rpmsave 00;90
 .md 01;33
 .conf 01;35
+.pdf 01;35
 # Subsequent TERM or COLORTERM entries, can be used to add / override
 # config specific to those matching environment variables.
