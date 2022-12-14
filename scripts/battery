@@ -2,7 +2,10 @@
 
 BAT="BAT${1:-0}"
 battery="/sys/class/power_supply/${BAT}"
-[ -d "${battery}" ] || exit 1
+
+test -d "${battery}" || exit 1
+
 read -r state < "${battery}/status"
 read -r percentage < "${battery}/capacity"
+
 echo "${BAT} ${percentage} - ${state}"

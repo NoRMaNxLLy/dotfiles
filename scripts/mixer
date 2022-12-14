@@ -26,7 +26,7 @@ else
     fi
 fi
 
-if [ -n "${mixer}" ]; then
+if test -n "${mixer}"; then
     exec "${mixer}"
 else
     echo "no mixer was found." 2>&1

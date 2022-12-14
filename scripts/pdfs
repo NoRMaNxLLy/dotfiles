@@ -5,5 +5,5 @@
 #    exec zathura "$file" || echo "Error: couldn't open the document" 1>&2
 
 dir="$HOME/pdfs"
-file=$(find $dir -iname "*.pdf" -printf "%P\n" | dmenu -i -l 30 -p "choose a pdf:" ) && \
-    exec zathura "${dir}/${file}" &
+file="$(find "$dir" -iname "*.pdf" -printf "%P\n" | dmenu -i -l 30 -p "choose a pdf:" )" && \
+    exec zathura "${dir}/${file}"

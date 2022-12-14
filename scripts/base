@@ -34,13 +34,14 @@ esac
 shift
 
 # if no args, read stdin
-if [ $# -gt 0 ]; then
+if test $# -gt 0; then
     for i in "$@"; do
         _convert ${from} ${to} $i
     done
-else
-    while IFS= read -r i; do
-        _convert ${from} ${to} $i
-    done
+    exit
 fi
+
+while IFS= read -r i; do
+    _convert ${from} ${to} $i
+done
 
