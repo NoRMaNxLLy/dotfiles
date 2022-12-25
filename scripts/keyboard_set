@@ -3,6 +3,9 @@
 setxkbmap -layout us,ara \
     -option "caps:swapescape,grp:alt_shift_toggle,altwin:menu_win"
 
+# for my T450
+xmodmap -e "keysym Print = Super_R"
+
 #speed up the cursor
 xset r rate 250 45
 

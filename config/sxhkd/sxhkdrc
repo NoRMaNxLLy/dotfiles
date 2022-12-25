@@ -19,7 +19,7 @@ XF86MonBrightness{Up,Down}
 
 # terminal emulator
 super + Return
-	$TERMINAL -e tmux_start # i have set my terminal in profile
+	exec $TERMINAL  # i have set my terminal in profile
 
 # program launcher
 super + d
@@ -36,3 +36,7 @@ super + x
 # stick the current window to the top
 super + s
    stickit
+
+# play youtube vid
+super + y
+    yt_play "$(fromclip)"

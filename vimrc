@@ -136,7 +136,7 @@ set background=dark
 
 hi ColorColumn cterm=NONE ctermbg=235
 hi VertSplit cterm=NONE ctermbg=NONE ctermfg=245
-hi LineNr cterm=NONE ctermbg=NONE ctermfg=240
+hi LineNr cterm=NONE ctermbg=NONE ctermfg=245
 hi StatusLine cterm=NONE ctermfg=245 ctermbg=NONE
 hi StatusLineNC cterm=NONE ctermfg=240 ctermbg=NONE
 hi Normal ctermbg=NONE
@@ -144,7 +144,7 @@ hi Special ctermfg=cyan
 hi SpecialKey ctermfg=black ctermbg=NONE
 hi ModeMsg ctermfg=245 cterm=NONE ctermbg=NONE
 hi MoreMsg ctermfg=245 ctermbg=NONE
-hi NonText ctermfg=235 ctermbg=NONE
+hi NonText ctermfg=240 ctermbg=NONE
 hi ErrorMsg cterm=NONE ctermbg=234 ctermfg=1
 hi Error cterm=NONE ctermbg=NONE ctermfg=darkred
 hi SpellBad cterm=NONE ctermbg=235 ctermfg=darkred

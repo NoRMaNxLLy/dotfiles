@@ -39,10 +39,13 @@
 *.color7:       COLOR7
 *.color15:      COLOR15
 !primary and secondary colors
-*.primary:      COLOR7
+*.primary:      COLOR4
 *.secondary:    COLOR0
 
 !st.font: JetBrains Mono NL:pixelsize=14;
-st.font: monospace:pixelsize=18;
+!st.font: monospace:pixelsize=18;
+st.font: mononoki:pixelsize=18;
+!st.font: inconsolata:pixelsize=18;
 st.alpha: 1.00
+st.background: #1A1A1A
 !st.background: #000000

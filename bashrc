@@ -13,7 +13,7 @@ export LESSHISTFILE="/dev/null"
 # export MANWIDTH=79
 
 # 0 - 15 for colors, and 16 for reset.
-Co=( '\033[3'{0..7}m '\033[1;3'{0..7}m '\033[0m' )
+Co=( '\033[3'{0..7}m '\033[9'{0..7}m '\033[0m' )
 
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
@@ -31,10 +31,12 @@ alias du='du -h --block-size=M'
 alias grep='grep --color=auto'
 #alias lss='exa -l --color=auto --group-directories-first'
 alias lss='ls -l --color=auto --group-directories-first'
+alias ls='ls --color=auto --group-directories-first'
 alias startx='startx &> /dev/null'
 alias neomutt='TERM=screen-256color neomutt'
-alias wget="wget --no-hsts"
+alias wget="wget --hsts-file=/dev/null"
 alias ip="ip --color=auto"
+alias bb='busybox'
 
 #--------------------  Functions  -----------------------------------
 
