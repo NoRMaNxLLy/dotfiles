@@ -1,0 +1,58 @@
+#!/bin/sh
+
+_prompt() {
+    local reply
+    reply="$(printf '%s\n' "$@" | dmenu -p "format:")"
+    echo "${reply}"
+}
+
+choose_format() {
+    local opts="1080 720 480 360 240 144 audio"
+    format="$(_prompt ${opts})"
+
+    case "${format}" in
+        audio) ytdl_format="bestaudio";;
+        *) ytdl_format="bestvideo[height<=${format}]+bestaudio/best"
+    esac
+}
+
+_playlist() {
+    case "$1" in
+        *playlist*) return 0;;
+    esac
+    return 1
+}
+
+_download() {
+    exec yt-dlp -f "${1:-best}" -o "$2" "$3"
+}
+
+
+
+main() {
+    url="$*"
+    if test -z "${url}"; then
+        echo "$0 <url>"
+        exit 1
+    fi
+
+    # check for the directory
+    if ! test -d "${videos_dir}"; then
+        mkdir -p "${videos_dir}"
+    fi
+
+    choose_format
+
+    if _playlist "${url}"; then
+        dir_fmt="%(playlist_uploader)s/%(playlist)s/%(playlist_index)03d-%(title)s.%(ext)s"
+    else
+        dir_fmt="%(channel)s/%(title)s.%(ext)s"
+    fi
+
+    _download "${ytdl_format}" "${videos_dir}/${dir_fmt}" "${url}"
+}
+
+# ---
+
+videos_dir="${HOME}/videos/youtube"
+main "$@"
