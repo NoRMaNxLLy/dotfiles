@@ -37,16 +37,15 @@ alias neomutt='TERM=screen-256color neomutt'
 alias wget="wget --hsts-file=/dev/null"
 alias ip="ip --color=auto"
 alias bb='busybox'
+# from rwxrob
+alias ?='duck'
 
 #--------------------  Functions  -----------------------------------
 
-_empty() {
-    test -z "$1"
-}
-
-__in_repo() {
-    git branch --show-current 2>/dev/null
-}
+clear() { printf '\033[2J\033[H' ;}
+temp() { cd "$(mktemp -d)" ;}
+_empty() { test -z "$1" ;}
+__in_repo() { git branch --show-current 2>/dev/null ;}
 
 #---------------------  Bash Options  ------------------------------
 

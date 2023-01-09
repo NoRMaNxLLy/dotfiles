@@ -4,7 +4,7 @@ export TERMINAL="st"
 export BROWSER="qutebrowser"
 
 # setting up PATH.
-PATH="$PATH:/sbin:/usr/sbin"
+#PATH="$PATH:/sbin:/usr/sbin"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:${PATH}"
 [ -d "$HOME/scripts" ] && PATH="$HOME/scripts:${PATH}"
 

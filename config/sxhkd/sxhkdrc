@@ -39,4 +39,4 @@ super + s
 
 # play youtube vid
 super + y
-    yt_play "$(fromclip)"
+    ytplay "$(fromclip)"

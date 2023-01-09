@@ -10,3 +10,5 @@ hi markdownH4 ctermfg=blue
 
 " spell
 set spell
+
+set conceallevel=2
