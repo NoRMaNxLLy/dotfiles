@@ -2,6 +2,6 @@
 #exec w3m "duckduckgo.com/lite?kd=-1&kp=-1&q=$*"
 #exec lynx "https://lite.duckduckgo.com/lite?kd=-1&kp=-1&q=$(urlencode $*)" # 🦆
 #exec /usr/bin/lynx "https://lite.duckduckgo.com/lite?kd=-1&kp=-1&q=$(urlencode $*)" # 🦆
-exec lynx "duckduckgo.com/lite?q=$*" # 🦆
-#exec lynx "duckduckgo.com/lite?q=$*"
+#exec lynx "duckduckgo.com/lite?q=$*" # 🦆
+exec w3m "duckduckgo.com/lite?q=$*"
 
