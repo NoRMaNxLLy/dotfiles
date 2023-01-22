@@ -12,3 +12,12 @@ hi markdownH4 ctermfg=blue
 set spell
 
 set conceallevel=2
+
+" pressing <Tab> make N spaces
+set softtabstop=2
+
+" a <Tab> count for N spaces
+set tabstop=2
+
+" how autoindentation should be (set to 0 to use value of tabstop)
+set shiftwidth=2
