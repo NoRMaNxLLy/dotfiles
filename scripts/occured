@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# how many times did a word occured in a file??
+#
+declare -A words
+
+_seen() {
+    if [[ -z "${words[$1]}" ]]; then
+        return 1
+    fi
+
+    return 0
+}
+
+main() {
+    while read -r line; do
+        for w in ${line}; do
+            if _seen "$w"; then
+                words["$w"]=$((${words[$w]} + 1))   # this is ugly -_-
+            else
+                words["$w"]=1
+            fi
+        done
+    done < "${1:-/dev/stdin}"
+
+    # get the keys, print "value, key"
+    for word in "${!words[@]}"; do
+        printf "%d %s\n" "${words[$word]}" "${word}"
+    done
+}
+
+main "$@"
