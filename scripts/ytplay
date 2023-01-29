@@ -29,12 +29,12 @@ _play() {
 main() {
     url="$1"
     if test -z "$1"; then
-        echo "$0 <url>"
+        echo "${0##*/} <url>"
         exit 1
     fi
 
     choose_format
-    get_description "${url}"
+    get_description "${url}" &
     _play "${ytdl_format}" "${url}"
 }
 

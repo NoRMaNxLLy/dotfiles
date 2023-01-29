@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec firefox --private-window >/dev/null 2>&1 &
