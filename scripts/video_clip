@@ -1,4 +1,5 @@
 #!/bin/bash
+
 if (($# < 4)); then
     echo "${0##*/} Start End Src Dst"
     exit 1
@@ -9,7 +10,7 @@ End="$2"
 Src="$3"
 Dst="$4"
 youtube_dl="${YouTubeDl:-youtube-dl} --no-playlist -f best --get-url "$Src""
-[ "$Src" = *www.* ] && Src=$($youtube_dl)
-echo $Src 
+[[ "$Src" = *www.* ]] && Src="$($youtube_dl)"
+echo $Src
 exit
-ffmpeg -ss $Start -to $End -i $Src -codec copy $Dst
+ffmpeg -ss $Start -to $End -i $Src -codec copy "$Dst"

@@ -35,7 +35,7 @@ get_image() {
     fi
 }
 
-if [ -n "$1" ]; then
+if test -n "$1"; then
     case "$1" in
         get) get_image "$2" ;;
         -r|random) imagepath="$(shuf -n1 -e ${wallpapers}/*)" ;;
