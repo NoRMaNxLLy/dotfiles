@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# create a new tmux session
+
+main() {
+    if tmux has-session -t "$1" >/dev/null 2>&1; then
+        echo "session $1 exists."
+        exit 1
+    fi
+
+    tmux new-session -d -s "$1" -c "#{pane_current_path}"
+    tmux switch-client -t "$1"
+}
+
+if test -z "$1"; then
+    echo "${0##*/} <session-name>"
+    exit 1
+fi
+
+main "$@"
