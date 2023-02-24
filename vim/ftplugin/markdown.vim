@@ -7,6 +7,12 @@ hi markdownH3Delimiter ctermfg=yellow
 hi markdownH3 ctermfg=yellow
 hi markdownH4Delimiter ctermfg=blue
 hi markdownH4 ctermfg=blue
+hi markdownBold ctermfg=NONE
+hi markdownItalic ctermfg=NONE
+hi markdownListMarker ctermfg=green
+hi MarkdownCode ctermfg=magenta
+hi MarkdownLinkText ctermfg=green
+hi MarkdownUrl ctermfg=cyan
 
 " spell
 set spell

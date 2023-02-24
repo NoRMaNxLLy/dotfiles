@@ -11,7 +11,7 @@ let mapleader = " "
 set laststatus=1 colorcolumn=0
 set nonumber norelativenumber
 
-set incsearch hlsearch ruler  wildmenu
+set incsearch hlsearch ruler wildmenu
 
 set showmode
 
@@ -72,13 +72,14 @@ set ttyfast
 " viminfo
 set viminfo='20,<1000,s100
 
-filetype plugin on
 " set  sidescroll=999 sidescrolloff=999
 " set colorcolumn=80
 " set scrolloff=999
 
 " ruler format
 set ruf=%50(%=%#ModeMsg#%f\ %y\ %l:%L\ %p%%%)
+
+filetype plugin on
 
 "--------------------------  remaps  -----------------------------------
 
@@ -132,17 +133,16 @@ match Visual '\s\+$'
 " just use 16 colors of the terminal ...
 set t_Co=16
 set background=dark
-" colorscheme TNC
 
 hi ColorColumn cterm=NONE ctermbg=235
 hi VertSplit cterm=NONE ctermbg=NONE ctermfg=245
-hi LineNr cterm=NONE ctermbg=NONE ctermfg=245
+hi LineNr cterm=NONE ctermbg=NONE ctermfg=7
 hi StatusLine cterm=NONE ctermfg=245 ctermbg=NONE
 hi StatusLineNC cterm=NONE ctermfg=240 ctermbg=NONE
 hi Normal ctermbg=NONE
 hi Special ctermfg=cyan
 hi SpecialKey ctermfg=black ctermbg=NONE
-hi ModeMsg ctermfg=245 cterm=NONE ctermbg=NONE
+hi ModeMsg ctermfg=7 cterm=NONE ctermbg=NONE
 hi MoreMsg ctermfg=245 ctermbg=NONE
 hi NonText ctermfg=240 ctermbg=NONE
 hi ErrorMsg cterm=NONE ctermbg=234 ctermfg=1
@@ -153,6 +153,9 @@ hi Search ctermbg=234 ctermfg=1
 hi Todo ctermbg=236 ctermfg=darkred
 hi IncSearch cterm=NONE ctermbg=236 ctermfg=darkred
 hi MatchParen ctermbg=236 ctermfg=darkred
+hi Pmenu ctermbg=0 ctermfg=7
+hi PmenuSel ctermbg=7 ctermfg=0
+hi Todo ctermbg=NONE ctermfg=5 cterm=bold
 
 "------------------------- functions  ----------------------------------
 

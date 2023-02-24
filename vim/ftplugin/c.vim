@@ -8,3 +8,6 @@ setlocal tabstop=8
 setlocal shiftwidth=8
 
 setlocal nolinebreak
+
+" stop miss aligning cases of switch statments
+set cinoptions+=:0

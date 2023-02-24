@@ -21,8 +21,8 @@ set notification-error-fg "#cc241d"
 set notification-warning-bg "#282828"
 set notification-warning-fg "#fb4934"
 
-set statusbar-bg "#282828"
-set statusbar-fg "#458588"
+set statusbar-bg "#101010"
+set statusbar-fg "#a89984"
 
 set index-bg "#282828"
 set index-fg "#ebdbb2"
