@@ -17,6 +17,6 @@ while read -r line; do
     (( lines >= 5 )) && break
 done < /dev/random
 
-long_string=$(tr -cd "[:graph:]" <<< $garbage)
+long_string="$(tr -cd "[:graph:]" <<< $garbage)"
 
-echo ${long_string:0:${length}}
+echo "${long_string:0:${length}}"
