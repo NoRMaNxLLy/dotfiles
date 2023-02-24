@@ -30,50 +30,59 @@ focus_follows_mouse no
 # idk
 focus_on_window_activation none
 
-set_from_resource   $bg         background
-set_from_resource   $fg         foreground
-set_from_resource   $black      color0
-set_from_resource   $gray       color8
-set_from_resource   $red        color1
-set_from_resource   $green      color10     color8
-set_from_resource   $yellow     color11     color3
-set_from_resource   $blue       color4      color12
-set_from_resource   $magenta    color5      color13
-set_from_resource   $cyan       color6      color14
-set_from_resource   $white      color7      color15
-set_from_resource   $primary    primary     color15
-set_from_resource   $secondary  secondary   color15
+set_from_resource $bg           background
+set_from_resource $fg           foreground
+set_from_resource $color0       color0
+set_from_resource $color1       color1
+set_from_resource $color2       color2
+set_from_resource $color3       color3
+set_from_resource $color4       color4
+set_from_resource $color5       color5
+set_from_resource $color6       color6
+set_from_resource $color7       color7
+set_from_resource $color8       color8
+set_from_resource $color9       color9
+set_from_resource $color10      color10
+set_from_resource $color11      color11
+set_from_resource $color12      color12
+set_from_resource $color13      color13
+set_from_resource $color14      color14
+set_from_resource $color15      color15
 
 # class                 border      backgr      text        indicator     child_border
-#client.focused          $primary    $primary    $bg         $primary      $primary
-#client.focused_inactive $primary    $bg         $fg         $gray         $gray
-#client.unfocused        $primary    $bg         $primary    $gray         $gray
-#client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
-#client.placeholder      #000000     #0c0c0c     #ffffff     #000000       #0c0c0c
-#client.background       #ffffff
+client.focused          $color8     $bg         $fg         $fg           $fg
+client.focused_inactive $color8     $bg         $fg         $gray         $gray
+client.unfocused        $color8     $bg         $primary    $gray         $gray
+client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
+client.placeholder      #000000     #0c0c0c     #ffffff     #000000       #0c0c0c
+client.background       #ffffff
 
 #I3BAR
 bar {
-    font pango: monospace 8
-    status_command i3status -c $HOME/.config/i3/i3status.conf
+    font pango: mononoki 22px
+    #status_command i3status -c $HOME/.config/i3/i3status.conf
+    status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
     workspace_min_width 25px
-    separator_symbol " | "
+    separator_symbol "  "
     strip_workspace_numbers yes
-    mode invisible
+    mode dock
     modifier $mod+mod1
     position bottom
+    # stop chaning workspaces
+    bindsym button4 nop
+    bindsym button5 nop
 
-#         colors {
-#         background $bg
-#         statusline $primary
-#         separator  $fg
-# #                          Border       background      text
-#         focused_workspace  $primary     $primary        $bg
-#         active_workspace   $primary     $primary        $fg
-#         inactive_workspace $bg          $bg             $primary
-#         urgent_workspace   $bg          $bg             $red
-#         binding_mode       $primary     $primary        $bg
-#     }
+    colors {
+            background $bg
+            statusline $color7
+            separator  $fg
+#                              Border       background      text
+            focused_workspace  $bg          $bg             $fg
+            active_workspace   $primary     $primary        $fg
+            inactive_workspace $bg          $bg             $color8
+            urgent_workspace   $bg          $bg             $color1
+            binding_mode       $bg          $bg             $color7
+    }
 }
 
 #----------------------------------WINDOWS-------------------------------------
@@ -81,12 +90,16 @@ bar {
 #default_orientation vertical
 
 # remove the titlebar for the windows
-for_window [class=".*"] border pixel 2
+default_border pixel 1
+
+#Smart borders will draw borders on windows only if there is more than
+#one window in a workspace
+smart_borders on
 
 assign [class="firefox"] $ws2
 assign [class="qutebrowser"] $ws2
 assign [class="mpv"] $ws3
-assign [class="Sxiv"] $ws3
+#assign [class="Sxiv"] $ws3
 assign [class="Zathura"] $ws4
 assign [class="Anki"] $ws4
 assign [instance="libreoffice"] $ws4
@@ -96,7 +109,8 @@ assign [class="TelegramDesktop"] $ws6
 assign [class="Wireshark"] $ws5
 
 
-for_window [class="mpv|Sxiv"] floating enable, move absolute position center, workspace $ws3
+for_window [class="mpv"] floating enable, move absolute position center, workspace $ws3
+for_window [class="Sxiv"] floating enable
 for_window [class="Zathura"] workspace $ws4
 for_window [class="Pcmanfm"] floating enable, resize set 600 700
 for_window [workspace=$ws5] floating disable
@@ -148,16 +162,16 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 #-----------------------------------GAPS--------------------------------------
 #bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
-bindsym $mod+Shift+f gaps inner all toggle 5
+#bindsym $mod+Shift+f gaps inner all toggle 5
 #
-gaps inner 5
-gaps outer 0
-bindsym $mod+i			    gaps inner current minus 5
-bindsym $mod+Shift+i		gaps inner current plus  5
-bindsym $mod+o			    gaps outer current minus 5
-bindsym $mod+Shift+o		gaps outer current plus  5
-smart_gaps on
-smart_borders on
+#gaps inner 5
+#gaps outer 0
+#bindsym $mod+i			    gaps inner current minus 5
+#bindsym $mod+Shift+i		gaps inner current plus  5
+#bindsym $mod+o			    gaps outer current minus 5
+#bindsym $mod+Shift+o		gaps outer current plus  5
+#smart_gaps on
+#smart_borders on
 
 #-------------------------------BINDING---------------------------------------
 bindsym $mod+shift+c kill
