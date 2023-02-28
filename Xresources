@@ -1,6 +1,5 @@
-!#define BACKGROUND      #1d2021
-#define BACKGROUND      #101010
 #define FOREGROUND      #ebdbb2
+#define BACKGROUND      #282828
 #define CURSORCOLOR     #ebdbb2
 #define COLOR0          #282828
 #define COLOR8          #928374

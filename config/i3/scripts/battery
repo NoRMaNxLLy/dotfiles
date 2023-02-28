@@ -1,0 +1,15 @@
+#!/bin/sh
+
+id="${1:-0}"
+dir="/sys/class/power_supply/BAT$id"
+
+test -d "$dir" || exit 1
+
+read -r state < "$dir/status"
+read -r percentage < "$dir/capacity"
+
+icon=
+
+test "$state" = "Charging" && icon=
+
+echo "$icon $percentage%"
