@@ -1,0 +1,15 @@
+# vim-like jumping
+keymap C-o UNDO
+keymap C-i REDO
+
+# run a command
+keymap : COMMAND
+
+# why this stopped working?
+keymap TAB NEXT_LINK
+
+# clean html
+keymap \\\r COMMAND "READ_SHELL 'rdrview -H $W3M_URL > /tmp/readable.html' ; LOAD /tmp/readable.html; DELETE_PREVBUF"
+
+# rtl the text
+keymap \\\a PIPE_BUF "fribidi --width $(tput cols)"
