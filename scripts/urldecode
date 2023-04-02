@@ -1,0 +1,12 @@
+#!/bin/bash
+
+urldecode() {
+    str="$*"
+    str="${str//+/ }"
+    str="${str//%/\\x}"
+    printf "$str"
+}
+
+while IFS= read line; do
+    urldecode "$line"
+done < "${1:-/dev/stdin}"

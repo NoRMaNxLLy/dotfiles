@@ -1,33 +1,24 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# and i stole this from rwxrob, no shame.
+urlencode() {
+    local str="$*"
+    local len="${#str}"
+    local str_encoded=
+    local c_encoded=
+    local p c
 
-# yeah, i totally stole this from stack exchange, no shame
+    for ((p = 0; p < len; p++)); do
+        c="${str:$p:1}"
+        c_encoded="$c"
+        if [[ $c != [-_.~0-9a-zA-Z] ]]; then
+            printf -v c_encoded '%%%02x' "'$c'"
+        fi
+        str_encoded+="$c_encoded"
+    done
 
-rawurlencode() {
-  local string="${1}"
-  local strlen=${#string}
-  local encoded=""
-  local pos c o
-
-  for ((pos = 0; pos < strlen; pos++)); do
-    c=${string:$pos:1}
-    case "$c" in
-    [-_.~a-zA-Z0-9]) o="${c}" ;;
-    *) printf -v o '%%%02x' "'$c'" ;;
-    esac
-    encoded+="${o}"
-  done
-  echo "${encoded}"  # You can either set a return variable (FASTER)
-  REPLY="${encoded}" #+or echo the result (EASIER)... or both... :p
+    printf '%s\n' "$str_encoded"
 }
 
-if test -n "$1"; then
-  rawurlencode "$*"
-  exit
-fi
-
-IFS=
-while read -r line; do
-  rawurlencode "$line"
-done
+while IFS= read line; do
+    urlencode "$line"
+done < "${1:-/dev/stdin}"
