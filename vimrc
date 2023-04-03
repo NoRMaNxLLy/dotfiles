@@ -72,12 +72,8 @@ set ttyfast
 " viminfo
 set viminfo='20,<1000,s100
 
-" set  sidescroll=999 sidescrolloff=999
-" set colorcolumn=80
-" set scrolloff=999
-
 " ruler format
-set ruf=%50(%=%#ModeMsg#%f\ %y\ %l:%L\ %p%%%)
+set ruf=%50(%=%#ModeMsg#%f\ %y\ %LL\ %l:%c%)
 
 filetype plugin on
 
@@ -156,6 +152,7 @@ hi MatchParen ctermbg=236 ctermfg=darkred
 hi Pmenu ctermbg=0 ctermfg=7
 hi PmenuSel ctermbg=7 ctermfg=0
 hi Todo ctermbg=NONE ctermfg=5 cterm=bold
+hi Title ctermbg=NONE ctermfg=gray
 
 "------------------------- functions  ----------------------------------
 
@@ -193,3 +190,6 @@ call plug#end()
 "vnoremap <leader>y "xy:call system('xclip -i -selection clipboard', getreg('x'))<CR>
 " enable omni-completion
 set omnifunc=syntaxcomplete#Complete
+
+" highligh kunnash
+au BufRead ????????T?????? set ft=markdown

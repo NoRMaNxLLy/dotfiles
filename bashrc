@@ -4,6 +4,7 @@
 
 export REPOS="${HOME}/repos"
 export MYREPOS="${REPOS}/normanxlly"
+export KNSH_DIR="$MYREPOS/knsh"
 export DOTFILES="${MYREPOS}/dotfiles"
 export CDPATH=".:${MYREPOS}:${HOME}:${REPOS}"
 export EDITOR="vim"
@@ -12,17 +13,11 @@ export CFLAGS="-Wall -Wextra -Werror"
 # colorful manpages
 export PAGER="less --use-color -r -R -DErk -DPw -DSrk -Dd+g -Dkr -Ds+m -DuY"
 export GREP_COLORS='mt=31;40:ms31;40:mc=31;40:fn=32'
-
-# width of man pages.
-# export MANWIDTH=79
-
 # 0 - 15 for colors, and 16 for reset.
 Co=( '\033[3'{0..7}m '\033[9'{0..7}m '\033[0m' )
-
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
-
 PROMPT_COMMAND="_ps1"
 
 #--------------------  Aliases  -------------------------------------

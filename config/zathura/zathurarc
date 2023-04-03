@@ -6,3 +6,5 @@ map D toggle_page_mode
 set selection-clipboard clipboard
 
 include colors
+
+set font "monospace normal 16"
