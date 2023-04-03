@@ -1,100 +1,60 @@
-# setting up some variables
+# --- options
+
 set $mod Mod4
 set $nsi --no-startup-id
 
-#
-exec $TERMINAL -e tmux_start
-
-#font pango: DejaVu Sans mono, Font Awesome 6 free Solid 9
 font pango: monospace 10
-
+focus_follows_mouse no
+focus_on_window_activation focus
 floating_modifier $mod
 
-popup_during_fullscreen smart
+set_from_resource $bg   background
+set_from_resource $fg   foreground
+set_from_resource $c0   color0
+set_from_resource $c1   color1
+set_from_resource $c2   color2
+set_from_resource $c3   color3
+set_from_resource $c4   color4
+set_from_resource $c5   color5
+set_from_resource $c6   color6
+set_from_resource $c7   color7
+set_from_resource $c8   color8
+set_from_resource $c9   color9
+set_from_resource $c10  color10
+set_from_resource $c11  color11
+set_from_resource $c12  color12
+set_from_resource $c13  color13
+set_from_resource $c14  color14
+set_from_resource $c15  color15
 
-#shutdown, restart, lock
-set $systemctl choose wisely: [r]estart, [s]uspend, [l]ock, [e]xit, [p]oweroff
-bindsym Ctrl+mod1+Delete mode "$systemctl"
-mode "$systemctl"{
-    bindsym r exec systemctl reboot -i
-        bindsym s exec systemctl suspend -i, mode "default", exec i3lock -c 080808
-        bindsym p exec systemctl poweroff -i
-        bindsym l exec  i3lock --color 080808, mode "default"
-        bindsym e exit
+# --- window options
 
-        bindsym Escape mode "default"
-        bindsym Return mode "default"
-}
+# remove the titlebar for the windows
+default_border pixel 2
 
-focus_follows_mouse no
-# idk
-focus_on_window_activation none
-
-set_from_resource $bg           background
-set_from_resource $fg           foreground
-set_from_resource $color0       color0
-set_from_resource $color1       color1
-set_from_resource $color2       color2
-set_from_resource $color3       color3
-set_from_resource $color4       color4
-set_from_resource $color5       color5
-set_from_resource $color6       color6
-set_from_resource $color7       color7
-set_from_resource $color8       color8
-set_from_resource $color9       color9
-set_from_resource $color10      color10
-set_from_resource $color11      color11
-set_from_resource $color12      color12
-set_from_resource $color13      color13
-set_from_resource $color14      color14
-set_from_resource $color15      color15
+# draw borders if having multiple windows
+smart_borders on
 
 # class                 border      backgr      text        indicator     child_border
-client.focused          $color8     $bg         $fg         $fg           $fg
-client.focused_inactive $color8     $bg         $fg         $gray         $gray
-client.unfocused        $color8     $bg         $primary    $gray         $gray
+client.focused          $c8         $bg         $fg         $fg           $c3
+client.focused_inactive $c8         $bg         $fg         $gray         $gray
+client.unfocused        $c8         $bg         $primary    $gray         $gray
 client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
 client.placeholder      #000000     #0c0c0c     #ffffff     #000000       #0c0c0c
 client.background       #ffffff
 
-#I3BAR
-bar {
-    font pango: mononoki 22px
-    #status_command i3status -c $HOME/.config/i3/i3status.conf
-    status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
-    workspace_min_width 25px
-    separator_symbol "  "
-    strip_workspace_numbers yes
-    mode dock
-    modifier $mod+mod1
-    position bottom
-    # stop chaning workspaces
-    bindsym button4 nop
-    bindsym button5 nop
+# --- workspace options
 
-    colors {
-            background $bg
-            statusline $color7
-            separator  $fg
-#                              Border       background      text
-            focused_workspace  $bg          $bg             $fg
-            active_workspace   $primary     $primary        $fg
-            inactive_workspace $bg          $bg             $color8
-            urgent_workspace   $bg          $bg             $color1
-            binding_mode       $bg          $bg             $color7
-    }
-}
-
-#----------------------------------WINDOWS-------------------------------------
-#default orientaion of the windows
-#default_orientation vertical
-
-# remove the titlebar for the windows
-default_border pixel 1
-
-#Smart borders will draw borders on windows only if there is more than
-#one window in a workspace
-smart_borders on
+set $ws1   1:
+set $ws2   2:
+set $ws3   3:
+set $ws4   4:
+set $ws5   5:
+set $ws6   6:
+set $ws7   7:
+set $ws8   8:
+set $ws9   9:
+set $ws10 10:
 
 assign [class="firefox"] $ws2
 assign [class="qutebrowser"] $ws2
@@ -108,72 +68,20 @@ assign [class="GNS3"] $ws5
 assign [class="TelegramDesktop"] $ws6
 assign [class="Wireshark"] $ws5
 
-
 for_window [class="mpv"] floating enable, move absolute position center, workspace $ws3
 for_window [class="Sxiv"] floating enable
 for_window [class="Zathura"] workspace $ws4
 for_window [class="Pcmanfm"] floating enable, resize set 600 700
 for_window [workspace=$ws5] floating disable
-for_window [class="TelegramDesktop"] floating enable, resize set 520 720
 for_window [window_type="dialog"] floating enable
 for_window [class="Gcolor3"] floating enable
 for_window [class="matplotlib"] floating enable
-
-# PACKETTRACER
+# packettracer thing
 for_window [title="PDU Information at Device:.*"] floating enable
+for_window [urgent=latest] focus
 
-#---------------------------------WORKSPACES-----------------------------------
-set $ws1   1:
-set $ws2   2:
-set $ws3   3:
-set $ws4   4:
-set $ws5   5:
-set $ws6   6:
-set $ws7   7:
-set $ws8   8:
-set $ws9   9:
-set $ws10 10:
+# --- keybinds
 
-bindsym $mod+period workspace next
-bindsym $mod+comma workspace prev
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-
-#workspace_auto_back_and_forth yes
-
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-
-#-----------------------------------GAPS--------------------------------------
-#bindsym $mod+Shift+f gaps inner current set 0; gaps outer current set 0
-#bindsym $mod+Shift+f gaps inner all toggle 5
-#
-#gaps inner 5
-#gaps outer 0
-#bindsym $mod+i			    gaps inner current minus 5
-#bindsym $mod+Shift+i		gaps inner current plus  5
-#bindsym $mod+o			    gaps outer current minus 5
-#bindsym $mod+Shift+o		gaps outer current plus  5
-#smart_gaps on
-#smart_borders on
-
-#-------------------------------BINDING---------------------------------------
 bindsym $mod+shift+c kill
 
 bindsym $mod+h focus left
@@ -213,11 +121,58 @@ bindsym $mod+mod1+j resize shrink up 40 px
 bindsym $mod+mod1+k resize shrink down 40 px
 bindsym $mod+mod1+l resize shrink left 40 px
 
-# hide/show i3bar (make it invisible, get raid workspace urgent)
-#bindsym $mod+b bar mode dock
-#bindsym $mod+Shift+b bar mode invisible
+bindsym $mod+period workspace next
+bindsym $mod+comma workspace prev
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
-#-----------------------------------------------------------------------------
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# --- i3bar
+
+bar {
+    font pango: mononoki 22px
+    status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
+    workspace_min_width 25px
+    separator_symbol "  "
+    strip_workspace_numbers yes
+    modifier $mod+mod1
+    position bottom
+    # stop chaning workspaces
+    bindsym button4 nop
+    bindsym button5 nop
+
+    colors {
+            background $bg
+            statusline $c7
+            separator  $fg
+#                              Border   background    text
+            focused_workspace  $bg      $bg           $fg
+            active_workspace   $c1      $c1           $fg
+            inactive_workspace $bg      $bg           $c8
+            urgent_workspace   $bg      $bg           $c1
+            binding_mode       $bg      $bg           $c7
+    }
+}
+
+# --- testing
 
 set $resize :resizing
 bindsym $mod+apostrophe mode "$resize"
@@ -235,18 +190,4 @@ mode "$resize" {
         bindsym Escape mode "default"
 }
 
-
-#testing
-for_window [title="dropdown"] floating enable, move scratchpad, border pixel 2
-#exec $nsi xfce4-terminal --title dropdown
-#bindsym $mod+u [title="dropdown"] scratchpad show, resize set 1024 480, move position center
-
-
-# testing xttc.
-bindsym $mod+bracketright exec $nsi xttc.awk -i inplace -v change="up" $HOME/.config/xfce4/terminal/terminalrc
-bindsym $mod+bracketleft exec $nsi xttc.awk -i inplace -v change="down" $HOME/.config/xfce4/terminal/terminalrc
-
-
-# testing some scripts
-#exec i3a-master-stack
-bindsym $mod+g exec $nsi i3a-swap
+exec $TERMINAL -e tmux_start

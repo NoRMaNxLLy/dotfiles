@@ -8,7 +8,17 @@ test -d "$dir" || exit 1
 read -r state < "$dir/status"
 read -r percentage < "$dir/capacity"
 
-icon=
+if test $percentage -ge 90; then
+    icon=
+elif test $percentage -ge 65; then
+    icon=
+elif test $percentage -ge 40; then
+    icon=
+elif test $percentage -ge 15; then
+    icon=
+elif test $percentage -ge 1; then
+    icon=
+fi
 
 test "$state" = "Charging" && icon=
 
