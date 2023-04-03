@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# todo using my `knsh` script
+
+set -e
+
+export KNSH_DIR="$MYREPOS/todo"
+exec knsh "$@"
