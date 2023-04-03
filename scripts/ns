@@ -8,12 +8,12 @@ main() {
         exit 1
     fi
 
-    tmux new-session -d -s "$1" -c "${PWD}"
+    tmux new-session -d -s "$1" -c "${2:-${PWD}}"
     tmux switch-client -t "$1"
 }
 
 if test -z "$1"; then
-    echo "${0##*/} <session-name>"
+    echo "${0##*/} <session-name> [dir]"
     exit 1
 fi
 

@@ -3,27 +3,28 @@
 # just do not do it this way: ':smile::sad:'. It wont work as expected
 declare -A emojies=(
 [smile]=🙂 [tear]=😢 [happy]=😃 [lol]=🤣 [hot]=🥵 [cool]=😎 [skull]=💀
-[sad]=☹️  [crying]=😭 [thinking]=🤔 [xd]=😆 [cold]=🥶 [fire]=🔥 [ghost]=👻
+[sad]=☹️  [cry]=😭 [think]=🤔 [xd]=😆 [cold]=🥶 [fire]=🔥 [ghost]=👻
 [bot]=🤖 [cowboy]=🤠 [heart]=❤️  [celebrate]=🥳 [disappointed]=😞 [frog]=🐸
 [mindblow]=🤯 [evil]=😈 [scared]=😱
-#😵😗😟😚 😪😳🤕😮 🤩🤑😼 🤥☺️ 😹🤬😈 😤😃 😫😽🥰‍
-#🥸😉🙂😦 😡☠️😬🤓 😓😸😄🙁 👺🤡👹😴 😿😋😷😊 🤤👾🥴 😲🥺🤒 😌🤧🤗
-#😇😒👽😨 😝😶😑 🤣😖😛😅 🎃😙🤫😥 🤪😜😏 🙀😰🧐🤢 #😵💫😕😘🤨
-#🤮😣😞🤭 😯😁 😾😔🥲 😍😀😧 #❤️🩹😂🥱😻 #😩😺👿😐 😶🌫️🤐😠😮💨 🙄
+#😵😗😟😚😪😳🤕😮🤩🤑😼🤥☺️😹🤬😈😤😃😫😽🥰🥸😉🙂😦😡☠️😬🤓😓😸😄🙁
+#👺🤡👹😴😿😋😷😊🤤👾🥴😲🥺🤒😌🤧🤗😇😒👽😨😝😶😑🤣😖😛😅
+#🎃😙🤫😥🤪😜😏🙀😰🧐🤢#😵💫😕😘🤨🤮😣🤭😯😁😾😔🥲😍😀😧
+#❤️ 🩹😂🥱😻#😩😺👿😐😶🌫️🤐😠😮💨🙄
 )
 
 pattern=':([a-zA-Z]+):'
 
 while IFS=$'\n' read -r line; do
-    # look for :key: only if the pattern is matched.
-    if [[ ${line} =~ ${pattern} ]]; then
-        for word in ${line}; do
-            # check the word if it matches, otherwise skip it.
-            [[ ${word} =~ ${pattern} ]] || continue
-            key=${BASH_REMATCH[1]}
-            emoji=${emojies[${key,,}]:-:${key}:} # if no key, leave it.
-            line=${line//:${key}:/${emoji}}
-        done
+    if [[ ! $line =~ $pattern ]]; then
+        printf '%s\n' "$line"
+        continue
     fi
-    echo "${line}"  # quoting saves the indentation of the line 🤔
+
+    for w in ${line}; do
+        [[ $w =~ ${pattern} ]] || continue
+        k=${BASH_REMATCH[1]}
+        v=${emojies[$k]:-":$k:"}
+        line="${line//:$k:/$v}"
+    done
+    printf '%s\n' "$line"
 done < ${1:-/dev/stdin}
