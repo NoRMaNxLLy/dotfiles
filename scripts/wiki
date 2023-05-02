@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec w3m "https://wikipedia.org/wiki/Special:Search?search=$(urlencode -s $*)&ns0=1"
