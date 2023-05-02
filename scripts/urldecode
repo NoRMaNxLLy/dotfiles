@@ -7,6 +7,12 @@ urldecode() {
     printf "$str"
 }
 
+if [[ $1 == "-s" ]]; then
+    shift
+    urldecode "$*"
+    exit
+fi
+
 while IFS= read line; do
     urldecode "$line"
 done < "${1:-/dev/stdin}"

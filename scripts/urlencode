@@ -16,8 +16,14 @@ urlencode() {
         str_encoded+="$c_encoded"
     done
 
-    printf '%s\n' "$str_encoded"
+    printf '%s' "$str_encoded"
 }
+
+if [[ $1 == "-s" ]]; then
+    shift
+    urlencode "$*"
+    exit
+fi
 
 while IFS= read line; do
     urlencode "$line"
