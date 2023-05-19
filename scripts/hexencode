@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# turn a string into hex
+
+hexencode() {
+    local str="$*"
+    local len="${#str}"
+    local p c
+
+    for ((p = 0; p < len; p++)); do
+        c="${str:$p:1}"
+        printf '%02x' "'$c'"
+    done
+}
+
+if [[ $1 == "-s" ]]; then
+    shift
+    hexencode "$*"
+    exit
+fi
+
+while IFS= read line; do
+    hexencode "$line"
+done < "${1:-/dev/stdin}"
