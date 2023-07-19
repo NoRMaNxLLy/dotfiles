@@ -14,7 +14,7 @@ export CFLAGS="-Wall -Wextra -Werror"
 export PAGER="less --use-color -r -R -DErk -DPw -DSrk -Dd+g -Dkr -Ds+m -DuY"
 export GREP_COLORS='mt=31;40:ms31;40:mc=31;40:fn=32'
 # 0 - 15 for colors, and 16 for reset.
-Co=( '\033[3'{0..7}m '\033[9'{0..7}m '\033[0m' )
+Co=( '\033[3'{0..7}m '\033[1;9'{0..7}m '\033[0m' )
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
@@ -39,6 +39,7 @@ alias ?='duck'  # from rwxrob
 alias tt='tt -notheme -blockcursor -highlight1 -w 78'  # terminal based typetesting
 alias idate='idate --simple | sed -E "s/(.*) - (.*)\(.*\) - (.*)\(.*\)/\2, \3, \1/"'
 alias mean='trans -w 72 en:ar'
+alias vi='vim'
 
 #--------------------  Functions  -----------------------------------
 
@@ -72,23 +73,23 @@ fi
 
 _ps1() {
     declare -A _p=(
-     [u]="\[${Co[3]}\]\u\[${Co[16]}\]"          # user
-     [h]="\[${Co[4]}\]\h\[${Co[16]}\]"          # hostname
-     [w]="\[${Co[2]}\]\W\[${Co[16]}\]"          # working directory
+     [u]="\[${Co[13]}\]\u\[${Co[16]}\]"          # user
+     [h]="\[${Co[11]}\]\h\[${Co[16]}\]"          # hostname
+     [w]="\[${Co[10]}\]\W\[${Co[16]}\]"          # working directory
      [b]="\[${Co[6]}\]\[${branch}\]${Co[16]}"   # git branch
-     [d]="\[${Co[5]}\]\$\[${Co[16]}\]"          # $
-     [c]="\[${Co[8]}\]:\[${Co[16]}\]"            # :
+     [d]="\[${Co[4]}\]\$\[${Co[16]}\]"          # $
+     [c]="\[${Co[7]}\]:\[${Co[16]}\]"            # :
      [-]="\[${Co[8]}\]-\[${Co[16]}\]"            # -
     [lb]="\[${Co[7]}\][\[${Co[16]}\]"          # [
     [rb]="\[${Co[7]}\]]\[${Co[16]}\]"          # ]
     [lp]="\[${Co[8]}\](\[${Co[16]}\]"          # (
     [rp]="\[${Co[8]}\])\[${Co[16]}\]"          # )
-    [at]="\[${Co[8]}\]@\[${Co[16]}\]"           # @
+    [at]="\[${Co[7]}\]@\[${Co[16]}\]"           # @
     )
     local branch=$(__in_repo)
     if ! _empty "${branch}"; then
         if [[ "${branch}" == @(main|master) ]]; then
-            _p[b]="\[${Co[1]}\]${branch}\[${Co[16]}\]"
+            _p[b]="\[${Co[9]}\]${branch}\[${Co[16]}\]"
         else
             _p[b]="\[${Co[6]}\]${branch}\[${Co[16]}\]"
         fi

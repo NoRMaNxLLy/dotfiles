@@ -8,9 +8,9 @@ let mapleader = " "
 
 "--------------------------  options  ----------------------------------
 
-set laststatus=1 colorcolumn=0
+set laststatus=1
 set nonumber norelativenumber
-
+set colorcolumn=80
 set incsearch hlsearch ruler wildmenu
 
 set showmode
@@ -19,7 +19,6 @@ set nowrap
 
 set textwidth=72
 
-" dont make any .swp files
 set noswapfile
 
 " keep the same indentation as the previous line
@@ -73,7 +72,7 @@ set ttyfast
 set viminfo='20,<1000,s100
 
 " ruler format
-set ruf=%50(%=%#ModeMsg#%f\ %y\ %LL\ %l:%c%)
+set ruf=%50(%=%#Normal#%f\ %y\ %LL\ %l:%c%)
 
 filetype plugin on
 
@@ -124,35 +123,34 @@ map <leader>p :silent .!fromclip<CR>
 "------------------------  syntax highlighting  ------------------------
 
 " mark trailing spaces as errors (from rwxrob)
-match Visual '\s\+$'
+match SpellBad '\s\+$'  
 
-" just use 16 colors of the terminal ...
-set t_Co=16
-set background=dark
+syntax on
+colorscheme PaperColor
 
-hi ColorColumn cterm=NONE ctermbg=235
-hi VertSplit cterm=NONE ctermbg=NONE ctermfg=245
-hi LineNr cterm=NONE ctermbg=NONE ctermfg=7
-hi StatusLine cterm=NONE ctermfg=245 ctermbg=NONE
-hi StatusLineNC cterm=NONE ctermfg=240 ctermbg=NONE
+hi ErrorMsg cterm=NONE ctermbg=NONE ctermfg=1
 hi Normal ctermbg=NONE
-hi Special ctermfg=cyan
-hi SpecialKey ctermfg=black ctermbg=NONE
-hi ModeMsg ctermfg=7 cterm=NONE ctermbg=NONE
-hi MoreMsg ctermfg=245 ctermbg=NONE
-hi NonText ctermfg=240 ctermbg=NONE
-hi ErrorMsg cterm=NONE ctermbg=234 ctermfg=1
-hi Error cterm=NONE ctermbg=NONE ctermfg=darkred
-hi SpellBad cterm=NONE ctermbg=235 ctermfg=darkred
-hi SpellRare ctermbg=235 ctermfg=darkblue cterm=NONE
-hi Search ctermbg=234 ctermfg=1
-hi Todo ctermbg=236 ctermfg=darkred
-hi IncSearch cterm=NONE ctermbg=236 ctermfg=darkred
-hi MatchParen ctermbg=236 ctermfg=darkred
-hi Pmenu ctermbg=0 ctermfg=7
-hi PmenuSel ctermbg=7 ctermfg=0
-hi Todo ctermbg=NONE ctermfg=5 cterm=bold
-hi Title ctermbg=NONE ctermfg=gray
+"hi ColorColumn cterm=NONE ctermbg=250
+"hi VertSplit cterm=NONE ctermbg=NONE ctermfg=245
+"hi LineNr cterm=NONE ctermbg=NONE ctermfg=7
+"hi StatusLine cterm=NONE ctermfg=245 ctermbg=NONE
+"hi StatusLineNC cterm=NONE ctermfg=240 ctermbg=NONE
+"hi Special ctermfg=cyan
+"hi SpecialKey ctermfg=black ctermbg=NONE
+"hi ModeMsg ctermfg=7 cterm=NONE ctermbg=NONE
+"hi MoreMsg ctermfg=245 ctermbg=NONE
+"hi NonText ctermfg=240 ctermbg=NONE
+"hi Error cterm=NONE ctermbg=NONE ctermfg=darkred
+"hi SpellBad cterm=NONE ctermbg=235 ctermfg=darkred
+"hi SpellRare ctermbg=235 ctermfg=darkblue cterm=NONE
+"hi Search ctermbg=234 ctermfg=1
+"hi Todo ctermbg=236 ctermfg=darkred
+"hi IncSearch cterm=NONE ctermbg=236 ctermfg=darkred
+"hi MatchParen ctermbg=236 ctermfg=darkred
+"hi Pmenu ctermbg=0 ctermfg=7
+"hi PmenuSel ctermbg=7 ctermfg=0
+"hi Todo ctermbg=NONE ctermfg=5 cterm=bold
+"hi Title ctermbg=NONE ctermfg=gray
 
 "------------------------- functions  ----------------------------------
 
