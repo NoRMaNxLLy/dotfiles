@@ -14,7 +14,7 @@ export CFLAGS="-Wall -Wextra -Werror"
 export PAGER="less --use-color -R -DErk -DPw -DSrk -DdC -Dkr -Ds+Y -DuM"
 export GREP_COLORS='mt=31;40:ms31;40:mc=31;40:fn=32'
 # 0 - 15 for colors, and 16 for reset.
-Co=( '\033[3'{0..7}m '\033[9'{0..7}m '\033[0m' )
+Co=( '\033[3'{0..7}m '\033[1;9'{0..7}m '\033[0m' )
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
@@ -40,6 +40,7 @@ alias tt='tt -notheme -blockcursor -highlight1 -w 78'  # terminal based typetest
 alias mean='trans -w 72 en:ar'
 alias clear='printf "\033[2J\033[H"'
 alias cls='clear'
+alias vi='vim'
 
 #--------------------  Functions  -----------------------------------
 
@@ -72,23 +73,23 @@ fi
 
 _ps1() {
     declare -A _p=(
-     [u]="\[${Co[11]}\]\u\[${Co[16]}\]"          # user
-     [h]="\[${Co[12]}\]\h\[${Co[16]}\]"          # hostname
+     [u]="\[${Co[13]}\]\u\[${Co[16]}\]"          # user
+     [h]="\[${Co[11]}\]\h\[${Co[16]}\]"          # hostname
      [w]="\[${Co[10]}\]\W\[${Co[16]}\]"          # working directory
-     [b]="\[${Co[14]}\]\[${branch}\]${Co[16]}"   # git branch
-     [d]="\[${Co[14]}\]\$\[${Co[16]}\]"          # $
-     [c]="\[${Co[8]}\]:\[${Co[16]}\]"            # :
+     [b]="\[${Co[6]}\]\[${branch}\]${Co[16]}"   # git branch
+     [d]="\[${Co[4]}\]\$\[${Co[16]}\]"          # $
+     [c]="\[${Co[7]}\]:\[${Co[16]}\]"            # :
      [-]="\[${Co[8]}\]-\[${Co[16]}\]"            # -
     [lb]="\[${Co[1]}\][\[${Co[16]}\]"          # [
     [rb]="\[${Co[1]}\]]\[${Co[16]}\]"          # ]
     [lp]="\[${Co[8]}\](\[${Co[16]}\]"          # (
     [rp]="\[${Co[8]}\])\[${Co[16]}\]"          # )
-    [at]="\[${Co[8]}\]@\[${Co[16]}\]"           # @
+    [at]="\[${Co[7]}\]@\[${Co[16]}\]"           # @
     )
     local branch=$(__in_repo)
     if ! _empty "${branch}"; then
         if [[ "${branch}" == @(main|master) ]]; then
-            _p[b]="\[${Co[1]}\]${branch}\[${Co[16]}\]"
+            _p[b]="\[${Co[9]}\]${branch}\[${Co[16]}\]"
         else
             _p[b]="\[${Co[14]}\]${branch}\[${Co[16]}\]"
         fi

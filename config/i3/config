@@ -160,16 +160,16 @@ bar {
     bindsym button5 nop
 
     colors {
-            background #1C1C1C
-            statusline $c7
+            background #e4e4e4
+            statusline $fg
             separator  $fg
 #                              Border   background    text
-            focused_workspace  $bg      $bg           $fg
+            focused_workspace  #e4e4e4  #e4e4e4       $fg
             active_workspace   $c1      $c1           $fg
-            inactive_workspace $bg      $bg           $c8
+            inactive_workspace #e4e4e4  #e4e4e4       $c5
             urgent_workspace   $bg      $bg           $c1
             binding_mode       $bg      $bg           $c7
-    }
+   }
 }
 
 # --- testing
