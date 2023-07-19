@@ -14,7 +14,7 @@ declare -A emojies=(
 
 pattern=':([a-zA-Z]+):'
 
-while IFS=$'\n' read -r line; do
+while read -r line; do
     if [[ ! $line =~ $pattern ]]; then
         printf '%s\n' "$line"
         continue

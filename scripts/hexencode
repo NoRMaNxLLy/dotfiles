@@ -9,7 +9,7 @@ hexencode() {
 
     for ((p = 0; p < len; p++)); do
         c="${str:$p:1}"
-        printf '%02x' "'$c'"
+        printf '%02X' "'$c'"
     done
 }
 

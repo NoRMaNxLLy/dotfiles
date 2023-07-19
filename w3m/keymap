@@ -11,5 +11,14 @@ keymap TAB NEXT_LINK
 # clean html
 keymap \\\r COMMAND "READ_SHELL 'rdrview -H $W3M_URL > /tmp/readable.html' ; LOAD /tmp/readable.html; DELETE_PREVBUF"
 
+# clean html under cursor
+keymap \\\R COMMAND "EXTERN_LINK 'rdrview -H %s > /tmp/readable.html' ; LOAD /tmp/readable.html"
+
 # rtl the text
 keymap \\\a PIPE_BUF "fribidi --width $(tput cols)"
+
+# yank page url to clipboard
+keymap y EXTERN "echo %s | toclip"
+
+# yank hyperlink to clipboard
+keymap Y EXTERN_LINK "echo %s | toclip"

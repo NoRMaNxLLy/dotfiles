@@ -1,15 +1,15 @@
 set spell
-hi markdownH1Delimiter ctermfg=red
-hi markdownH1 ctermfg=red
+hi markdownH1Delimiter ctermfg=green
+hi markdownH1 ctermfg=green
 hi markdownH2Delimiter ctermfg=green
 hi markdownH2 ctermfg=green
-hi markdownH3Delimiter ctermfg=yellow
-hi markdownH3 ctermfg=yellow
-hi markdownH4Delimiter ctermfg=blue
-hi markdownH4 ctermfg=blue
+hi markdownH3Delimiter ctermfg=green
+hi markdownH3 ctermfg=green
+hi markdownH4Delimiter ctermfg=green
+hi markdownH4 ctermfg=green
 hi markdownBold ctermfg=NONE
 hi markdownItalic ctermfg=NONE
-hi markdownListMarker ctermfg=green
+hi markdownListMarker ctermfg=cyan cterm=bold
 hi MarkdownCode ctermfg=magenta
 hi MarkdownLinkText ctermfg=green
 hi MarkdownUrl ctermfg=cyan

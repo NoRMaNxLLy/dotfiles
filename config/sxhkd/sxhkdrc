@@ -31,7 +31,7 @@ super + Home
 
 # lockscreen
 super + x
-    exec i3lock -c 000000 -f
+    exec scrlock
 
 # stick the current window to the top
 super + s

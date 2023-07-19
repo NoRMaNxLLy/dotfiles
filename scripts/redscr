@@ -1,4 +1,8 @@
 #!/bin/sh
 
-redshift -x
-redshift -O $1
+if test "$1" == "clear"; then
+    redshift -x
+    exit 0
+fi
+
+redshift -x && redshift -O "$1"

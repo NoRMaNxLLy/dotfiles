@@ -75,6 +75,8 @@ set viminfo='20,<1000,s100
 " ruler format
 set ruf=%50(%=%#ModeMsg#%f\ %y\ %LL\ %l:%c%)
 
+set colorcolumn=80
+
 filetype plugin on
 
 "--------------------------  remaps  -----------------------------------
@@ -130,7 +132,7 @@ match Visual '\s\+$'
 set t_Co=16
 set background=dark
 
-hi ColorColumn cterm=NONE ctermbg=235
+hi ColorColumn cterm=NONE ctermbg=234
 hi VertSplit cterm=NONE ctermbg=NONE ctermfg=245
 hi LineNr cterm=NONE ctermbg=NONE ctermfg=7
 hi StatusLine cterm=NONE ctermfg=245 ctermbg=NONE
@@ -140,7 +142,7 @@ hi Special ctermfg=cyan
 hi SpecialKey ctermfg=black ctermbg=NONE
 hi ModeMsg ctermfg=7 cterm=NONE ctermbg=NONE
 hi MoreMsg ctermfg=245 ctermbg=NONE
-hi NonText ctermfg=240 ctermbg=NONE
+hi NonText ctermfg=7 ctermbg=NONE
 hi ErrorMsg cterm=NONE ctermbg=234 ctermfg=1
 hi Error cterm=NONE ctermbg=NONE ctermfg=darkred
 hi SpellBad cterm=NONE ctermbg=235 ctermfg=darkred

@@ -27,3 +27,9 @@ POSIX
 virtualized
 #agi
 yagi/!
+DHCP
+ICMP
+semiprime
+ECB
+plaintext
+ciphertext

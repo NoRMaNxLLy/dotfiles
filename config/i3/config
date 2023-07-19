@@ -3,7 +3,7 @@
 set $mod Mod4
 set $nsi --no-startup-id
 
-font pango: monospace 10
+font pango: monospace 12
 focus_follows_mouse no
 focus_on_window_activation focus
 floating_modifier $mod
@@ -36,7 +36,7 @@ default_border pixel 2
 smart_borders on
 
 # class                 border      backgr      text        indicator     child_border
-client.focused          $c8         $bg         $fg         $fg           $c3
+client.focused          $c11        $bg         $fg         $fg           $c3
 client.focused_inactive $c8         $bg         $fg         $gray         $gray
 client.unfocused        $c8         $bg         $primary    $gray         $gray
 client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
@@ -148,7 +148,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # --- i3bar
 
 bar {
-    font pango: mononoki 22px
+    font pango: Inconsolata 24px
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
     workspace_min_width 25px
     separator_symbol "  "
@@ -160,7 +160,7 @@ bar {
     bindsym button5 nop
 
     colors {
-            background $bg
+            background #1C1C1C
             statusline $c7
             separator  $fg
 #                              Border   background    text

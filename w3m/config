@@ -42,7 +42,7 @@ high-intensity 0
 basic_color terminal
 anchor_color green
 image_color yellow
-form_color white
+form_color terminal
 mark_color blue
 bg_color terminal
 active_style 1

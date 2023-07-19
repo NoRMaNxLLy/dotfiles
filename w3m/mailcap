@@ -4,7 +4,8 @@
 
 audio/*; /usr/bin/xdg-open %s
 
-image/*; /usr/bin/xdg-open %s
+image/*; /usr/bin/sxiv %s
+
 
 application/msword; /usr/bin/xdg-open %s
 # application/pdf; /usr/bin/xdg-open %s
