@@ -1,0 +1,158 @@
+#!/bin/bash
+
+declare -A theme_dark=(
+[background]="#282828"
+[foreground]="#ebdbb2"
+[cursorColor]="#ebdbb2"
+ [0]="#282828"
+ [1]="#cc241d"
+ [2]="#98971a"
+ [3]="#d79921"
+ [4]="#458588"
+ [5]="#b16286"
+ [6]="#689d6a"
+ [7]="#7c6f64"
+ [8]="#928374"
+ [9]="#fb4934"
+[10]="#b8bb26"
+[11]="#fabd2f"
+[12]="#83a598"
+[13]="#d3869b"
+[14]="#8ec07c"
+[15]="#ebdbb2"
+)
+
+declare -A theme_light=(
+[background]="#eeeeee"
+[foreground]="#444444"
+[cursorColor]="#444444"
+ [0]="#eeeeee"
+ [1]="#af0000"
+ [2]="#008700"
+ [3]="#5f8700"
+ [4]="#0087af"
+ [5]="#878787"
+ [6]="#005f87"
+ [7]="#444444"
+ [8]="#bcbcbc"
+ [9]="#d70000"
+[10]="#d70087"
+[11]="#8700af"
+[12]="#d75f00"
+[13]="#d75f00"
+[14]="#005faf"
+[15]="#005f87"
+)
+
+_set_vim_colors() {
+    bg="$1"
+    colorscheme="$2"
+    sed -i -E "
+    s/set (bg|background).*/set \1=$bg/;
+    s/(colo|colorscheme) .*/\1 $colorscheme/
+    " "$HOME/.vimrc"
+}
+
+_set_i3_colors() {
+    background="$1"
+
+    case "$background" in
+        dark) bar_bg="#3a3a3a";;
+        light) bar_bg="#e4e4e4";;
+    esac
+
+    sed -i -E "
+    s/set .barcolor.*/set \\\$barcolor $bar_bg/;
+    " "$HOME/.config/i3/config"
+
+    i3-msg reload
+}
+
+_set_tmux_colors() {
+    background="$1"
+
+    case "$background" in
+        dark)
+            bar_bg="#3a3a3a"
+            bar_fg="${theme_dark[foreground]}"
+            ;;
+        light)
+            bar_bg="#e4e4e4"
+            bar_fg="${theme_light[foreground]}"
+    esac
+
+    sed -i -E "
+    s/status-style.*/status-style \'fg=$bar_fg bg=$bar_bg\'/;
+    s/pane-border-style.*/pane-border-style \'fg=$bar_bg bg=$bar_bg\'/;
+    s/pane-active-border-style.*/pane-active-border-style \'fg=$bar_bg bg=$bar_bg\'/;
+    s/popup-border-style.*/popup-border-style \'bg=$bar_bg fg=$bar_bg\'/
+    " "$HOME/.tmux.conf"
+
+    tmux source-file "$HOME/.tmux.conf"
+}
+
+set_dark_theme() {
+    # Xresrouces
+    xrdb -override << EOF
+     *.background: ${theme_dark[background]}
+     *.foreground: ${theme_dark[foreground]}
+    *.cursorColor: ${theme_dark[cursorColor]}
+         *.color0: ${theme_dark[0]}
+         *.color1: ${theme_dark[1]}
+         *.color2: ${theme_dark[2]}
+         *.color3: ${theme_dark[3]}
+         *.color4: ${theme_dark[4]}
+         *.color5: ${theme_dark[5]}
+         *.color6: ${theme_dark[6]}
+         *.color7: ${theme_dark[7]}
+         *.color8: ${theme_dark[8]}
+         *.color9: ${theme_dark[9]}
+        *.color10: ${theme_dark[10]}
+        *.color11: ${theme_dark[11]}
+        *.color12: ${theme_dark[12]}
+        *.color13: ${theme_dark[13]}
+        *.color14: ${theme_dark[14]}
+        *.color15: ${theme_dark[15]}
+EOF
+    _set_vim_colors "dark" "gruvbox"
+    _set_i3_colors "dark"
+    _set_tmux_colors "dark"
+}
+
+set_light_theme() {
+    # Xresrouces
+    xrdb -override << EOF
+     *.background: ${theme_light[background]}
+     *.foreground: ${theme_light[foreground]}
+    *.cursorColor: ${theme_light[cursorColor]}
+         *.color0: ${theme_light[0]}
+         *.color1: ${theme_light[1]}
+         *.color2: ${theme_light[2]}
+         *.color3: ${theme_light[3]}
+         *.color4: ${theme_light[4]}
+         *.color5: ${theme_light[5]}
+         *.color6: ${theme_light[6]}
+         *.color7: ${theme_light[7]}
+         *.color8: ${theme_light[8]}
+         *.color9: ${theme_light[9]}
+        *.color10: ${theme_light[10]}
+        *.color11: ${theme_light[11]}
+        *.color12: ${theme_light[12]}
+        *.color13: ${theme_light[13]}
+        *.color14: ${theme_light[14]}
+        *.color15: ${theme_light[15]}
+EOF
+    _set_vim_colors "light" "PaperColor"
+    _set_i3_colors "light"
+    _set_tmux_colors "light"
+}
+
+main() {
+    case "$1" in
+        dark) set_dark_theme;;
+        light) set_light_theme;;
+        *) echo "usage: ${0##*/} [dark|light]" 1>&2 && exit 1;;
+    esac
+}
+
+main "$@"
