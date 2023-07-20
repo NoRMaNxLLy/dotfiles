@@ -3,6 +3,7 @@ hsetroot -solid "#000000" &
 dunst &
 picom -b &
 sxhkd &
+redshift -t 6000:3500 -l 32.3256:15.0993 -l manual &
 
 # setting up the keyboard
 [ -f "$HOME/scripts/keyboard_set" ] && $HOME/scripts/keyboard_set
@@ -13,8 +14,5 @@ xrandr --fbmm $(xrandr | awk '/\sconnected\s/ {gsub("mm","");print $13$14$15}')
 xrdb ~/.Xresources
 
 exec i3
-#{ while :; do date '+%a %b %d [%H:%M]'; sleep 5;done ;} \
-#| while read line;do xsetroot -name "$line";done &
-#exec dwm
 
 # vim: ft=sh
