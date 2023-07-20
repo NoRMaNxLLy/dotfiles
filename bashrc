@@ -17,7 +17,7 @@ export GREP_COLORS='mt=31;40:ms31;40:mc=31;40:fn=32'
 Co=( '\033[3'{0..7}m '\033[1;9'{0..7}m '\033[0m' )
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
-HISTFILESIZE=2000
+HISTFILESIZE=10000
 PROMPT_COMMAND="_ps1"
 
 #--------------------  Aliases  -------------------------------------
