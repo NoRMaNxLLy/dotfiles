@@ -112,7 +112,7 @@ nnoremap <up> <C-a>
 nnoremap <down> <C-x>
 
 " switch between arabic and normal
-nnoremap <leader>a :set arabic!<CR>
+nnoremap <leader>a :call ToggleArabic()<CR>
 
 " toggle linenumber
 map <F1> :call ToggleLineNr()<CR>
@@ -172,6 +172,16 @@ function ToggleArmor()
     else
         set colorcolumn&
         set laststatus&
+    endif
+endfunction
+
+function ToggleArabic()
+    if ! &arabic
+        set arabic
+        set nospell
+    else
+        set noarabic
+        set spell
     endif
 endfunction
 
