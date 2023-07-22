@@ -51,6 +51,9 @@ _set_vim_colors() {
     s/set (bg|background).*/set \1=$bg/;
     s/(colo|colorscheme) .*/\1 $colorscheme/
     " "$HOME/.vimrc"
+
+    # make sure to have SigUSR1 autocmd in your vimrc
+    pkill -10 vim
 }
 
 _set_i3_colors() {
