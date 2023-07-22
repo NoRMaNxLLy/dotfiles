@@ -94,8 +94,29 @@ _set_tmux_colors() {
     tmux source-file "$HOME/.tmux.conf"
 }
 
+_set_xfce4_terminal_colors() {
+    background="$1"
+    case "$background" in
+        dark)
+            sed -E -i "
+            s/ColorBackground=.*/ColorBackground=${theme_dark[background]}/;
+            s/ColorForeground=.*/ColorForeground=${theme_dark[foreground]}/;
+            s/ColorCursor=.*/ColorCursor=${theme_dark[cursorColor]}/;
+            s/ColorPalette=.*/ColorPalette=${theme_dark[0]};${theme_dark[1]};${theme_dark[2]};${theme_dark[3]};${theme_dark[4]};${theme_dark[5]};${theme_dark[6]};${theme_dark[7]};${theme_dark[8]};${theme_dark[9]};${theme_dark[10]};${theme_dark[11]};${theme_dark[12]};${theme_dark[13]};${theme_dark[14]};${theme_dark[15]}/
+            " "$HOME/.config/xfce4/terminal/terminalrc"
+            ;;
+        light)
+            sed -E -i "
+            s/ColorBackground=.*/ColorBackground=${theme_light[background]}/;
+            s/ColorForeground=.*/ColorForeground=${theme_light[foreground]}/;
+            s/ColorCursor=.*/ColorCursor=${theme_light[cursorColor]}/;
+            s/ColorPalette=.*/ColorPalette=${theme_light[0]};${theme_light[1]};${theme_light[2]};${theme_light[3]};${theme_light[4]};${theme_light[5]};${theme_light[6]};${theme_light[7]};${theme_light[8]};${theme_light[9]};${theme_light[10]};${theme_light[11]};${theme_light[12]};${theme_light[13]};${theme_light[14]};${theme_light[15]}/
+            " "$HOME/.config/xfce4/terminal/terminalrc"
+    esac
+}
+
 set_dark_theme() {
-    # Xresrouces
+    # Xresources
     xrdb -override << EOF
      *.background: ${theme_dark[background]}
      *.foreground: ${theme_dark[foreground]}
@@ -120,6 +141,7 @@ EOF
     _set_vim_colors "dark" "gruvbox"
     _set_i3_colors "dark"
     _set_tmux_colors "dark"
+    _set_xfce4_terminal_colors "dark"
 }
 
 set_light_theme() {
@@ -148,6 +170,7 @@ EOF
     _set_vim_colors "light" "PaperColor"
     _set_i3_colors "light"
     _set_tmux_colors "light"
+    _set_xfce4_terminal_colors "light"
 }
 
 main() {
