@@ -59,6 +59,9 @@ shopt -s globstar
 # files starting with '.' are included in pathname expansion
 shopt -s dotglob
 
+# expand variables in directory names
+shopt -s direxpand
+
 shopt -s histappend
 
 #------------------------------------------------------------------
