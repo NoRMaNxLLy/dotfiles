@@ -64,6 +64,8 @@ shopt -s direxpand
 
 shopt -s histappend
 
+set +H  # turn off '!!'
+
 #------------------------------------------------------------------
 
 if command -v dircolors > /dev/null 2>&1; then
