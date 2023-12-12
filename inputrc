@@ -1,0 +1,4 @@
+set editing-mode vi
+set colored-completion-prefix on
+set colored-stats on
+#set show-mode-in-prompt on
