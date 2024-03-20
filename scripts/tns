@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# create a new tmux session
+
+set -e
+
+name="$1"
+start_dir="${2:-$(pwd)}"
+
+test -z "$name" && {
+    printf '%s\n' "usage: ${0##*/} <session_name> [dir]"
+    exit 1
+}
+
+tmux new-session -d -s "$name" -c "$start_dir"
+
+if test -n "$TMUX"; then
+    tmux switch-client -t "$name"
+else
+    tmux attach-session -t "$name"
+fi

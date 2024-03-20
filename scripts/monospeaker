@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# remap pulseaudio stereo sink to mono
+
+
+# idk how to dynamically detect the master sink
+master_sink="alsa_output.pci-0000_00_1b.0.analog-stereo"
+
+pacmd load-module module-remap-sink sink_name=mono \
+    master="$master_sink" channels=2 channel_map=mono,mono

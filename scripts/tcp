@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# save the content of a tmux pane to a file.
+# $ tcp > /tmp/log.txt
+
+tmux capture-pane -p -S - -E -

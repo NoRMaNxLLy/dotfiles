@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# create a new tmux window. pipe to it if no command is specified.
+
+if test $# -eq 0; then
+    tsw
+    tmux break-pane
+    trw "[PIPED]"
+else
+    tmux new-window -n "$*" "$*"
+fi

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# split tmux window. pipe stdin to the new pane if no command is given.
+
+direction='-h'
+getopts ':hv' opt && shift $((OPTIND - 1))
+test "$opt" != '?' && direction="-$opt"
+
+if test  $# -eq 0; then
+    tmux split-window "$direction" -l 40% -I
+    tmux copy-mode -uH
+else
+    tmux split-window "$direction" -l 40% "$*"
+fi
