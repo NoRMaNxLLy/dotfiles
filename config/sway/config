@@ -1,33 +1,40 @@
+include /etc/sway/config.d/*
+
+# --- colors
+
+set $bg           #2E3440
+set $fg           #D8DEE9
+set $cursorColor  #D8DEE9
+set $c0           #3B4252
+set $c1           #BF616A
+set $c2           #A3BE8C
+set $c3           #EBCB8B
+set $c4           #81A1C1
+set $c5           #B48EAD
+set $c6           #88C0D0
+set $c7           #E5E9F0
+set $c8           #4C566A
+set $c9           #BF616A
+set $c10:         #A3BE8C
+set $c11:         #EBCB8B
+set $c12:         #81A1C1
+set $c13:         #B48EAD
+set $c14:         #8FBCBB
+set $c15:         #ECEFF4
+
 # --- options
 
 set $mod Mod4
 set $nsi --no-startup-id
+#set $menu dmenu_path | wmenu | xargs swaymsg exec --
+set $menu dmenu_run -p "launch:"
+set $term foot
 
-font pango: monospace 20px
+font pango: monospace 16px
 focus_follows_mouse no
 focus_on_window_activation focus
 floating_modifier $mod
-
-set_from_resource $bg   background
-set_from_resource $fg   foreground
-set_from_resource $c0   color0
-set_from_resource $c1   color1
-set_from_resource $c2   color2
-set_from_resource $c3   color3
-set_from_resource $c4   color4
-set_from_resource $c5   color5
-set_from_resource $c6   color6
-set_from_resource $c7   color7
-set_from_resource $c8   color8
-set_from_resource $c9   color9
-set_from_resource $c10  color10
-set_from_resource $c11  color11
-set_from_resource $c12  color12
-set_from_resource $c13  color13
-set_from_resource $c14  color14
-set_from_resource $c15  color15
-set $bar_bg #3B4252
-set $bar_fg #D8DEE9
+floating_modifier $mod normal
 
 # --- window options
 
@@ -39,8 +46,8 @@ smart_borders on
 
 # class                 border      backgr      text        indicator     child_border
 client.focused          $c4         $c6         $bg         $fg           $c6
-client.focused_inactive $c8         $bg         $fg         $gray         $gray
-client.unfocused        $c8         $bg         $primary    $gray         $gray
+client.focused_inactive $c8         $bg         $fg         $c8           $c8
+client.unfocused        $c8         $bg         $fg         $c8           $c8
 client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
 client.placeholder      #000000     #0c0c0c     #ffffff     #000000       #0c0c0c
 client.background       #ffffff
@@ -53,22 +60,21 @@ set $ws3   3:
 set $ws4   4:
 set $ws5   5:
 set $ws6   6:
-set $ws7   7:
-set $ws8   8:
-set $ws9   9:
-set $ws10 10:
+set $ws7   7
+set $ws8   8
+set $ws9   9
+set $ws10 10
 
-assign [class="firefox"] $ws2
-assign [class="qutebrowser"] $ws2
-assign [class="mpv"] $ws3
-assign [class="Sxiv"] $ws3
-assign [class="Zathura"] $ws4
+assign [app_id="firefox"] $ws2
+assign [app_id="mpv"] $ws3
+#assign [class="Sxiv"] $ws3
+assign [app_id="org.pwmt.zathura"] $ws4
 assign [class="Anki"] $ws4
 assign [instance="libreoffice"] $ws4
 assign [class="PacketTracer"] $ws5
 assign [class="GNS3"] $ws5
-assign [class="TelegramDesktop"] $ws6
-assign [class="Wireshark"] $ws5
+assign [app_id="org.telegram.desktop"] $ws6
+assign [app_id="org.wireshark.Wireshark"] $ws5
 
 for_window [class="mpv"] floating enable, move absolute position center, workspace $ws3
 for_window [class="Sxiv"] floating enable
@@ -147,8 +153,34 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# --- i3bar
+bindsym $mod+x exec scrlock
+bindsym XF86AudioRaiseVolume exec audio up 5%
+bindsym XF86AudioLowerVolume exec audio down 5%
+bindsym XF86AudioMute exec audio toggle
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
+bindsym $mod+Return exec $term
+bindsym $mod+d exec $menu
+bindsym $mod+Home exec pcmanfm
+bindsym $mod+p exec "if ! test -e /tmp/pomo; then pomo start; else pomo stop;fi"
+
+# --- outputs
+
+output * {
+    background ~/.config/wallpaper.jpg fit "#2E3440"
+}
+
+# --- inputs
+
+input type:keyboard {
+    repeat_delay 250
+    repeat_rate 45
+    xkb_layout us,ara
+    xkb_options caps:swapescape,grp:alt_shift_toggle,altwin:menu_win
+}
+
+# --- swaybar
 bar {
     font pango: Inconsolata 16px
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
@@ -166,12 +198,21 @@ bar {
 #                              Border   background    text
             focused_workspace  $c4      $c4           $bg
             active_workspace   $c1      $c1           $fg
-            inactive_workspace $bar_bg  $c8           $c7
+            inactive_workspace $bg      $c8           $c7
             urgent_workspace   $bg      $bg           $c1
             binding_mode       $bg      $bg           $c7
    }
 }
 
+# --- misc
+
+exec swayidle -w \
+         timeout 600 'swaymsg output \* power off' resume 'swaymsg output \* power on'\
+         timeout 300 'swaylock -f -i ~/.config/lockscreen.image' \
+         before-sleep 'swaylock -f -i ~/.config/lockscreen.image'
+
 # --- testing
 
-exec $TERMINAL -e tmux_start
+exec dunst
+exec gammastep -l 32.3256:15.0993 -l manual
+

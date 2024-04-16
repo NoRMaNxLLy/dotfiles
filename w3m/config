@@ -40,8 +40,8 @@ nextpage_topline 1
 color 1
 high-intensity 0
 basic_color terminal
-anchor_color green
-image_color yellow
+anchor_color blue
+image_color cyan
 form_color terminal
 mark_color blue
 bg_color terminal
@@ -60,9 +60,9 @@ emacs_like_lineedit 0
 space_autocomplete 0
 vi_prec_num 0
 mark_all_pages 0
-wrap_search 0
+wrap_search 1
 ignorecase_search 1
-use_mouse 1
+use_mouse 0
 reverse_mouse 0
 relative_wheel_scroll 0
 relative_wheel_scroll_ratio 30
@@ -116,7 +116,7 @@ dns_order 0
 nntpserver 
 nntpmode 
 max_news 50
-use_proxy 1
+use_proxy 0
 http_proxy 
 https_proxy 
 gopher_proxy 

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# pomo returns 1 if no session is started
+{ pomo && pomo stop || pomo start; } 1>/dev/null 2>&1

@@ -7,4 +7,7 @@ set selection-clipboard clipboard
 
 include colors
 
-set font "monospace normal 16"
+set font "Inconsolata normal 18px"
+
+set window-title-home-tilde true
+set statusbar-home-tilde true

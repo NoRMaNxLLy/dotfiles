@@ -1,7 +1,7 @@
 [global]
-background = "#458588"
-foreground = "#282828"
-frame_color = "#458588"
+background = "#3B4252"
+foreground = "#EFE9F0"
+frame_color = "#88C0D0"
 timeout = 5
 frame_width = 1
 
@@ -44,4 +44,4 @@ close_all = ctrl+shift+space
 history = ctrl+grave
 context = ctrl+shift+period
 
-#vim:ft = cfg
+# vim:ft=cfg

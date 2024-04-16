@@ -1,10 +1,13 @@
 #!/bin/sh
 
-if command -v xclip > /dev/null 2>&1; then
-    # rmlastnl remove the newline at the end.
-    xclip -in -selection clipboard -rmlastnl
-elif command -v xsel > /dev/null 2>&1; then
-    xsel --input --clipboard
-else
-    echo "xclip and xsel are not found." 2>&1
+clipfile="/tmp/clip"
+umask 066
+test -f $clipfile && rm $clipfile
+cat - > $clipfile
+
+if test -n "$WAYLAND_DISPLAY"; then
+    wl-copy < $clipfile
+elif test -n "$DISPLAY"; then
+    xclip -in -selection clipboard -rmlastnl < $clipfile || \
+        xsel --input --clipboard < $clipfile
 fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+mapfile -t choices
+
+exec < /dev/tty
+
+select choice in "${choices[@]}"; do
+    [[ -z $choice ]] && break
+    printf '%s\n' "$choice"
+    break
+done

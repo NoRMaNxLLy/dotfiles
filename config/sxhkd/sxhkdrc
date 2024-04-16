@@ -19,7 +19,7 @@ XF86MonBrightness{Up,Down}
 
 # terminal emulator
 super + Return
-	exec $TERMINAL  # i have set my terminal in profile
+	exec st
 
 # program launcher
 super + d
@@ -40,3 +40,7 @@ super + s
 # play youtube vid
 super + y
     ytplay "$(fromclip)"
+
+# run pomo
+super + p
+    if ! test -e /tmp/pomo; then pomo start; else pomo stop;fi

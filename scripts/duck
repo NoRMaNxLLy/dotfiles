@@ -1,6 +1,4 @@
 #!/bin/sh
-#exec w3m "duckduckgo.com/lite?kd=-1&kp=-1&q=$*"
-#exec lynx "https://lite.duckduckgo.com/lite?kd=-1&kp=-1&q=$(urlencode $*)" # 🦆
-#exec lynx "duckduckgo.com/lite?q=$*" # 🦆
-#exec w3m "duckduckgo.com/lite?q=$*"
-exec w3m "duckduckgo.com/lite?q=$(urlencode -s $*)"
+
+test -n "$TMUX" && trw "$*"
+exec w3m "duckduckgo.com/lite?q=$(urlencode -s "$*")"

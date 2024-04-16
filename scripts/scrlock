@@ -1,5 +1,7 @@
 #!/bin/sh
 
-pkill -xu $UID -USR1 dunst
-i3lock -e -c 000000
-pkill -xu $UID -USR2 dunst
+if test -n "$WAYLAND_DISPLAY"; then
+    swaylock -f -i ~/.config/lockscreen.image
+else
+    i3lock -e -c 000000
+fi

@@ -5,7 +5,7 @@
 cache_file="$HOME/.cache/doing"
 
 if test -z "$1"; then
-    read -r < "$cache_file"
+    read -r REPLY < "$cache_file"
     echo "$REPLY"
     exit 0
 fi
