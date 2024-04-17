@@ -13,3 +13,4 @@ application/pdf; /usr/bin/zathura %s
 application/postscript ; /usr/bin/xdg-open %s
 
 text/html; /usr/bin/xdg-open %s ; copiousoutput
+

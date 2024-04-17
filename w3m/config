@@ -163,3 +163,4 @@ use_jisx0213 0
 strict_iso2022 1
 gb18030_as_ucs 0
 simple_preserve_space 0
+

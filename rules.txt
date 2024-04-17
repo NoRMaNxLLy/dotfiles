@@ -1,0 +1,52 @@
+# --- vim
+vim/vimrc .vimrc
+vim/after .vim/after
+vim/ftplugin .vim/ftplugin
+vim/autoload .vim/autoload
+vim/spell .vim/spell
+vim/colors .vim/colors
+vim/keymap .vim/keymap
+vim/syntax .vim/syntax
+
+# --- shell
+shell/bashrc .bashrc
+shell/profile .profile
+
+# --- tmux
+tmux/tmux.conf .tmux.conf
+
+# --- scripts
+scripts scripts
+
+# --- lynx and w3m
+lynx .config/lynx
+w3m/config .w3m/config
+w3m/mailcap .w3m/mailcap
+w3m/keymap .w3m/keymap
+
+# --- terminals
+alacritty .config/alacritty
+foot .config/foot
+
+# --- i3
+i3 .config/i3
+
+# --- sway
+sway .config/sway
+
+# --- mpv
+mpv/mpv.conf .config/mpv/mpv.conf
+mpv/input.conf .config/mpv/input.conf
+mpv/scripts .config/mpv/scripts
+
+# --- misc
+misc/Xresources .Xresources
+misc/xinitrc .xinitrc
+misc/inputrc .inputrc
+misc/dircolors .dircolors
+misc/picom.conf .config/picom.conf
+sxhkd .config/sxhkd
+dunst .config/dunst
+sxiv .config/sxiv
+zathura .config/zathura
+

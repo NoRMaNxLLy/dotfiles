@@ -70,8 +70,8 @@ set +H  # turn off '!!'
 # ---
 
 if command -v dircolors > /dev/null 2>&1; then
-    if [[ -r $HOME/.config/dircolors ]]; then
-        eval "$(dircolors -b "$HOME/.config/dircolors")"
+    if [[ -r $HOME/.dircolors ]]; then
+        eval "$(dircolors -b "$HOME/.dircolors")"
     fi
 fi
 

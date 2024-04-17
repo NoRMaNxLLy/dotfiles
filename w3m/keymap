@@ -22,3 +22,4 @@ keymap y EXTERN "echo %s | toclip"
 
 # yank hyperlink to clipboard
 keymap Y EXTERN_LINK "echo %s | toclip"
+
