@@ -12,7 +12,7 @@ trw() {
     tmux rename-window "$title"
 }
 
-if test $# == 0; then
+if test $# = 0; then
     read -r line
 else
     line="$*"
