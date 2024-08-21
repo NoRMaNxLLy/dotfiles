@@ -7,6 +7,8 @@ export EDITOR="vim"
 [ -d "$HOME/scripts" ] && PATH="$HOME/scripts:${PATH}"
 export PATH="$PATH:${GOPATH:-$HOME/go}/bin"
 
+eval $(ssh-agent -s -t 3h)
+
 #starting X on login
 if [ "$(tty)" = "/dev/tty1" ]; then
     #startx &> /dev/null

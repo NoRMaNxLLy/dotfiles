@@ -20,6 +20,7 @@ set expandtab
 " set hidden
 set timeoutlen=500
 set shortmess=ItTF
+set signcolumn=auto
 
 set fo-=r   " don't auto-insert comment leader on enter in insert
 set fo-=o   " don't auto-insert comment leader on o/O in normal
@@ -34,7 +35,7 @@ set ruf=%50(%=%#Normal#%f\ %y\ %LL\ %l:%c%)
 set omnifunc=syntaxcomplete#Complete
 set completeopt=menu
 
-set cmdheight=2
+set cmdheight=1
 
 filetype plugin on
 
@@ -65,7 +66,7 @@ map <F2> :call ToggleArmor()<CR>
 map <leader>y :silent .w !toclip <CR>
 map <leader>p :silent r !fromclip<CR>
 
-" --- syntax
+" --- syntax and highlights
 
 " mark trailing spaces as errors
 match SpellBad '\s\+$'
@@ -76,6 +77,8 @@ syntax on
 colorscheme nord
 
 hi Normal ctermbg=NONE guibg=NONE
+hi clear SignColumn
+hi link SignColumn ColorColumn
 
 " --- functions
 
@@ -112,6 +115,7 @@ endfunction
 
 call plug#begin('~/.vim/plugged')
 Plug 'natebosch/vim-lsc'
+Plug 'dense-analysis/ale'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 call plug#end()
 
@@ -127,13 +131,34 @@ augroup END
 let g:lsc_server_commands = {
             \ 'c': {'command': 'clangd', 'suppress_stderr': v:true},
             \ 'cpp': {'command': 'clangd', 'suppress_stderr': v:true, 'log_level': 'Warning'},
-            \ 'go': {'command': 'gopls serve', 'suppress_stderr': v:true, 'log_level': -1},
+            \ 'go': {'command': 'gopls', 'suppress_stderr': v:true, 'log_level': 'Warning'},
+            \ 'python': {'command': 'pylsp', 'suppress_stderr': v:true},
             \ }
 let g:lsc_auto_map = {'defaults': v:true, 'Completion': 'omnifunc'}
 let g:lsc_enable_autocomplete = v:false
 let g:lsc_complete_timeout = 1
+let g:lsc_enable_diagnostics = v:false
 let g:lsc_diagnostic_highlights = v:true
 let g:lsc_reference_highlights = v:false
 let g:lsc_change_debounce_time= 1000
+
+" --- ALE ---
+
+let g:ale_enabled = 1
+let g:ale_disable_lsp = 1
+let g:ale_cursor_detail = 0
+let g:ale_detail_to_floating_preview = 1
+let g:ale_sign_error = '🔴'
+let g:ale_sign_warning = '🟡'
+let g:ale_sign_info = '🔵'
+let g:ale_fix_on_save = 1
+let g:ale_sign_highlight_linenrs = 1
+let g:ale_virtualtext_cursor = 2
+let g:ale_lint_on_enter = 1
+let g:ale_echo_msg_format = '(%linter%) %type%: %s'
+
+highlight link ALEVirtualTextError ALEError
+highlight link ALEVirtualTextWarning ALEWarning
+highlight link ALEVirtualTextInfo MoreMsg
 
 " --- testing

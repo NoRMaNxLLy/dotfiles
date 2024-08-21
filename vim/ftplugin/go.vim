@@ -14,4 +14,9 @@ function! GoFmt()
     call winrestview(saved_view)
 endfunction
 
-au BufWritePre <buffer> call GoFmt()
+" au BufWritePre <buffer> call GoFmt()
+
+" --- ALE ---
+
+"let b:ale_linters = ['govet']
+let b:ale_fixers = ['goimports']

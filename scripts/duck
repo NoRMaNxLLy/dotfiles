@@ -1,4 +1,3 @@
 #!/bin/sh
 
-test -n "$TMUX" && trw "$*"
 exec w3m "duckduckgo.com/lite?q=$(urlencode -s "$*")"
