@@ -1,0 +1,7 @@
+#!/bin/sh
+# prepend a prefix at the start of each line read from stdin
+
+s="$*"
+while IFS= read -r l; do
+    echo "$s$l"
+done

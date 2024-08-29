@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# qusasat
+
+icon=
+cache_file="$HOME/.cache/qusash"
+
+if test -z "$1"; then
+    if ! test -s "$cache_file"; then
+        exit 0
+    fi
+    while IFS= read -r l; do
+        printf '%s %s\n' $icon "$l"
+    done < "$cache_file"
+    exit 0
+fi
+
+case "$1" in
+    c|clear) :> "$cache_file";;
+    e|edit) "$EDITOR" "$cache_file";;
+    count) echo "$icon $(wc -l < "$cache_file")";;
+    *) echo "$*" >> "$cache_file"
+esac
+
