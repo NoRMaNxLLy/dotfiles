@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# if command -v rdrview >/dev/null 2>&1; then
+# 	rdrview -H "https://www.maajim.com/thesaurus/$*" | w3m -T text/html -dump
+# 	exit
+# fi
+
+w3m "https://www.maajim.com/thesaurus/$*"

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+#w3m "https://ar.mo3jam.com/term/$*"
+
+w3m "https://www.maajim.com/dictionary/$*"
