@@ -1,0 +1,6 @@
+#!/bin/sed -Ef
+
+# remove leading and trailing whitespaces of each line from stdin
+
+s/^\s+//
+s/\s+$//

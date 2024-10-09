@@ -1,0 +1,8 @@
+#!/bin/sh
+# toggle auto detection of text direction on VTE terminals.
+
+case "$1" in
+    "") printf "\033[?2501h";;
+    on) printf "\033[?2501h";;
+    off) printf "\033[?2501l"
+esac

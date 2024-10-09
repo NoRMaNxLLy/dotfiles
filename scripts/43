@@ -1,0 +1,9 @@
+#!/bin/sh
+# set the screen resolution to 1024x768
+modeline="65.11  1024 1080 1184 1344  768 769 772 795  -HSync +Vsync"
+
+if test -n "$SWAYSOCK"; then
+    swaymsg output '*' modeline "$modeline"
+elif test -n "$DISPLAY"; then
+    xrandr -s 1024x768
+fi

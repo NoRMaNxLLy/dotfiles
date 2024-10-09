@@ -1,0 +1,12 @@
+#!/bin/sh
+
+w=960
+h=720
+
+wm_sway() {
+	swaymsg floating enable \;\
+		resize set width $w px height $h px \;\
+		move position center
+}
+
+wm_sway

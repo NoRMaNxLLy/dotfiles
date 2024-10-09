@@ -1,0 +1,16 @@
+#!/bin/bash
+# make a somewhat random date that will never be greater than the
+# current date
+
+randate() {
+    printf '%(%F %T)T\n' $((RANDOM ** 3 % EPOCHSECONDS))
+}
+
+if [[ -z $1 ]]; then
+    randate
+    exit
+fi
+
+for ((i=0; i < $1; i++)); do
+    randate
+done

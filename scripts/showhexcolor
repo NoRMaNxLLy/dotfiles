@@ -1,0 +1,14 @@
+#!/bin/bash
+
+hexcolor() {
+	color="${1#\#}"
+	printf -v R "%d" "0x${color:0:2}"
+	printf -v G "%d" "0x${color:2:2}"
+    printf -v B "%d" "0x${color:4:2}"
+
+	printf "\033[48;2;%d;%d;%dm%0$(tput cols)s\033[0m\n" $R $G $B
+}
+
+while IFS= read -r line; do
+	hexcolor "$line"
+done

@@ -1,0 +1,39 @@
+#!/bin/sh
+
+g=
+c=
+r=
+
+if test -t 1; then
+  g="\e[1;30m"
+  c="\e[1;34m"
+  r="\e[0m"
+fi
+
+print_cmd() {
+    printf "$c%-4s$r  - $g%s$r\n" "$1" "$2"
+}
+
+print_cmd "dap" "delete around current paragraph"
+print_cmd "dip" "delete current paragraph"
+print_cmd "diw" "delete current word"
+print_cmd "daw" "delete around current word"
+print_cmd "diW" "delete current larger word (ex: --foo-bar)"
+print_cmd "daW" "delete around current larger word"
+print_cmd "yap" "yank around current paragraph"
+print_cmd "yip" "yank current paragraph"
+print_cmd "ea" "append to current word"
+print_cmd "cw" "change to end of current word"
+print_cmd "ciw" "change current word"
+print_cmd "caw" "change around current word"
+print_cmd "dw" "delete to beginning of next word"
+print_cmd "daf" "delete current function"
+print_cmd "yaf" "yank current function"
+print_cmd "dif" "delete current inner function"
+print_cmd "yif" "yank current inner function"
+print_cmd "dd" "delete the current line"
+print_cmd "gqip" "wrap the current paragraph"
+print_cmd "gqap" "wrap around the current paragraph"
+print_cmd ">ip" "indent the current paragraph"
+print_cmd "<ip" "dedent the current paragraph"
+print_cmd "!ip" "send the current paragraph to shell command"

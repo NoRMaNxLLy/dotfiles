@@ -1,0 +1,3 @@
+#!/bin/sh
+
+trans ${VTE_VERSION:+-no-bidi} -no-ansi en:ar ${1:+"$*"}
