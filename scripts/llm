@@ -1,0 +1,98 @@
+#!/bin/sh
+# shellcheck disable=SC3043
+# a script to ask LLMs provided by pollinations.ai.
+# available models at https://text.pollinations.ai/models
+
+deps="curl jq"
+endpoint="https://text.pollinations.ai/openai"
+: "${model:=openai-large}"
+
+_msg=
+_resp=
+
+usage() {
+	while read -r l; do
+		echo "$l"
+	done << EOF
+reads prompt from stdin.
+
+Environment variables:
+
+model	specify the LLM model.
+
+The list of available models located at https://text.pollinations.ai/models
+EOF
+}
+
+chkdeps() {
+	if ! command -v "$1" >/dev/null; then
+		echo "command not found: $1" 1>&2
+		return 1
+	fi
+}
+
+# report whether the stdin is conneted to a pipe
+stdin_piped() {
+	test -t 0 && return 1
+	return 0
+}
+
+# report whether the stdout is conneted to a pipe
+stdout_piped() {
+	test -t 1 && return 1
+	return 0
+}
+
+# make OpenAI-comptabile POST message
+make_msg() {
+	local p="$1"
+	_msg=$(jq -n --arg model "$model" --arg p "$p" '
+	{
+		"model": $model,
+		"messages": [{"role": "user", "content": $p}],
+		"private": true
+	}
+	')
+}
+
+# send the message and receive the response 🐸
+send_and_recv() {
+	local m="$1"
+	_resp=$(curl -s -H "Content-Type: application/json" \
+		-d "$m" \
+		"$endpoint")
+}
+
+# extract the response from the received answer and print it
+print_resp() {
+	local r="$1"
+	jq -r -n --argjson r "$r" \
+		'$r.choices[].message.content'
+}
+
+
+main() {
+	local prompt="$*"
+
+	for d in $deps; do
+		chkdeps "$d" || depmiss=1
+	done
+	test -n "$depmiss" && exit 1
+
+	if stdin_piped; then
+		prompt="$(cat /dev/stdin)"
+	fi
+	if test -z "$prompt"; then
+		usage
+		exit 1
+	fi
+
+	make_msg "$prompt"
+	if ! send_and_recv "$_msg"; then
+		exit 1
+	fi
+
+	print_resp "$_resp"
+}
+
+main "$*"
