@@ -1,0 +1,13 @@
+status-placeholder ""
+list-entry-date-format "%Y-%m-%d"
+menu-section-entry-format "%-2.0u # %t"
+menu-feed-entry-format "%-2.0u %t"
+menu-item-entry-format "%o"
+menu-explore-item-entry-format "  %-8O  %o"
+
+color-status default default
+color-list-item magenta default
+color-list-item-unread blue default
+color-list-item-important green default
+color-list-feed-unread default default
+color-list-section-unread default default
