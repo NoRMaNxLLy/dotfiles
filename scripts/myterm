@@ -1,9 +1,9 @@
 #!/bin/sh
 
 term="sakura"
-font="Liberation Mono Regular 12"
+font="Monospace 13"
 cols="80"
-rows="39"
+rows="29"
 
 lxterminal() {
 	exec lxterminal --geometry="${cols}x${rows}"
