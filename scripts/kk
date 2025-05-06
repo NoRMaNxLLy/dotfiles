@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# كشكول - kk
-
-set -e
-
-export KNSH_DIR="$MYREPOS/kk"
-exec knsh "$@"

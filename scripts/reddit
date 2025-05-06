@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec w3m "https://i.reddit.com/search?q=$(urlencode -s $*)"

@@ -19,7 +19,7 @@ XF86MonBrightness{Up,Down}
 
 # terminal emulator
 super + Return
-	exec st
+	exec myterm
 
 # program launcher
 super + d

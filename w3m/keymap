@@ -9,13 +9,10 @@ keymap : COMMAND
 keymap TAB NEXT_LINK
 
 # clean html
-keymap \\\r COMMAND "READ_SHELL 'rdrview -H $W3M_URL > /tmp/readable.html' ; LOAD /tmp/readable.html; DELETE_PREVBUF"
+keymap \\\r COMMAND "READ_SHELL 'rdrview -E utf8 -H $W3M_URL > /tmp/readable.html' ; LOAD /tmp/readable.html; DELETE_PREVBUF"
 
 # clean html under cursor
-keymap \\\R COMMAND "EXTERN_LINK 'rdrview -H %s > /tmp/readable.html' ; LOAD /tmp/readable.html"
-
-# rtl the text
-keymap \\\a PIPE_BUF "fribidi --width $(tput cols)"
+keymap \\\R COMMAND "EXTERN_LINK 'rdrview -E utf8 -H %s > /tmp/readable.html' ; LOAD /tmp/readable.html"
 
 # yank page url to clipboard
 keymap y EXTERN "echo %s | toclip"
@@ -23,3 +20,9 @@ keymap y EXTERN "echo %s | toclip"
 # yank hyperlink to clipboard
 keymap Y EXTERN_LINK "echo %s | toclip"
 
+# toggle images
+keymap i COMMAND "SET_OPTION display_image=toggle ; RESHAPE"
+
+keymap zz COMMAND "CENTER_V"
+keymap zt COMMAND "CENTER_V; NEXT_HALF_PAGE"
+keymap zb COMMAND "CENTER_V; PREV_HALF_PAGE"

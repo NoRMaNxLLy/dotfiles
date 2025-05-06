@@ -1,12 +1,21 @@
-"setting space as leader key
 let mapleader = " "
+
+" --- plug
+
+call plug#begin('~/.vim/plugged')
+Plug 'natebosch/vim-lsc'
+Plug 'dense-analysis/ale'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+call plug#end()
 
 " --- options
 
 set laststatus=1
-set nonumber norelativenumber
-set colorcolumn=80
-set incsearch hlsearch ruler wildmenu
+set nonumber
+set norelativenumber
+set colorcolumn=0
+set incsearch hlsearch
+set wildmenu
 set showmode showcmd
 set nowrap
 set textwidth=72
@@ -15,91 +24,86 @@ set autoindent
 set smartindent
 set softtabstop=4
 set tabstop=4
-set shiftwidth=4
-set expandtab
-" set hidden
+set shiftwidth=0
 set timeoutlen=500
 set shortmess=ItTF
 set signcolumn=auto
+set nocursorline
+set ignorecase
+set smartcase
+set viminfo='20,<1000,s100,h
+" set ruf=%50(%=%#Normal#%f\ %y\ %LL\ %l:%c%)
+set statusline=%f%=%-y\ \ %l,%v\ \ %LL
+set completeopt=menu
 
 set fo-=r   " don't auto-insert comment leader on enter in insert
 set fo-=o   " don't auto-insert comment leader on o/O in normal
 
-" viminfo
-set viminfo='20,<1000,s100,h
+set fillchars+=eob:\ 
 
-" ruler format
-set ruf=%50(%=%#Normal#%f\ %y\ %LL\ %l:%c%)
-
-" enable omni-completion
-set omnifunc=syntaxcomplete#Complete
-set completeopt=menu
-
-set cmdheight=1
+if !exists("omnifunc")
+    set omnifunc=syntaxcomplete#Complete
+endif
 
 filetype plugin on
 
 " --- remaps
-
-"fzf source /usr/share/doc/fzf/examples/fzf.vim
-nnoremap <leader>f :FZF<CR>
-nnoremap <leader>b :Buffers<CR>
 
 "source vimrc
 nnoremap <leader>r :source $MYVIMRC<CR>
 
 nnoremap <leader>s :let s = synID(line('.'), col('.'), 1) \| echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name') " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
 
-" make Y consitent with D and C (yank til end)
-map Y y$
-
 nnoremap <silent> <C-L> :nohl<CR><C-L>
 
-" switch between arabic and normal
-nnoremap <leader>a :call ToggleArabic()<CR>
+nnoremap <leader>\ :call ToggleArabic()<CR>
+nnoremap <C-\> :call ToggleArabic()<CR>
 
-" toggle linenumber
-map <F1> :call ToggleLineNr()<CR>
-map <F2> :call ToggleArmor()<CR>
-
-" yank and paste to X clipboard
+" yank and paste to the clipboard
 map <leader>y :silent .w !toclip <CR>
 map <leader>p :silent r !fromclip<CR>
+
+nnoremap <leader>ad :ALEDetail<CR>
+nnoremap <leader>an :ALENext<CR>
+nnoremap <leader>ap :ALEPrevious<CR>
 
 " --- syntax and highlights
 
 " mark trailing spaces as errors
-match SpellBad '\s\+$'
+match ColorColumn '\s\+$'
 
-set termguicolors
-set background=dark
 syntax on
-colorscheme nord
 
-hi Normal ctermbg=NONE guibg=NONE
-hi clear SignColumn
-hi link SignColumn ColorColumn
-
-" --- functions
-
-function ToggleLineNr()
-	if &number || &relativenumber
-		set nonumber norelativenumber
-	else
-		set number relativenumber
-	endif
+function Uncolor()
+	hi  Normal       ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  SignColumn   ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  Todo         ctermfg=NONE        ctermbg=NONE      cterm=italic
+	hi  Search       ctermfg=black       ctermbg=yellow    cterm=NONE
+	hi  SpellBad     ctermfg=darkred     ctermbg=NONE      cterm=NONE
+	hi  SpellCap     ctermfg=darkblue    ctermbg=NONE      cterm=NONE
+	hi  SpellLocal   ctermfg=darkyellow  ctermbg=NONE      cterm=NONE
+	hi  SpellRare    ctermfg=darkgreen   ctermbg=NONE      cterm=NONE
+	hi  Comment      ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  Identifier   ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  Statement    ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  Constant     ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  PreProc      ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  Type         ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  Special      ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  Directory    ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  Conceal      ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  Ignore       ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi  Title        ctermfg=NONE        ctermbg=NONE      cterm=bold
+	hi  MatchParen   ctermfg=magenta     ctermbg=NONE      cterm=NONE
+	hi  Underlined   ctermfg=NONE        ctermbg=NONE      cterm=underline
+	hi  LineNr       ctermfg=gray        ctermbg=NONE      cterm=NONE
+	hi  ColorColumn  ctermfg=NONE        ctermbg=darkgray  cterm=NONE
+	"hi  StatusLine   ctermfg=darkgray    ctermbg=NONE      cterm=NONE
+	hi  CursorLine   ctermfg=NONE        ctermbg=NONE      cterm=reverse
 endfunction
+call Uncolor()
 
-function ToggleArmor()
-    call ToggleLineNr()
-    if &number || &relativenumber
-        set colorcolumn=80
-        set laststatus=2
-    else
-        set colorcolumn=0
-        set laststatus&
-    endif
-endfunction
+" --- functions and commands
 
 function ToggleArabic()
     if ! &arabic
@@ -111,36 +115,30 @@ function ToggleArabic()
     endif
 endfunction
 
-" --- plug
-
-call plug#begin('~/.vim/plugged')
-Plug 'natebosch/vim-lsc'
-Plug 'dense-analysis/ale'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-call plug#end()
+command! Cline set cursorline!
 
 " --- auto commands
 
-augroup pandoc_syntax
-    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-augroup END
+" augroup pandoc_syntax
+"     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+" augroup END
 
 
 " --- vim-lsc ---
 
 let g:lsc_server_commands = {
-            \ 'c': {'command': 'clangd', 'suppress_stderr': v:true},
-            \ 'cpp': {'command': 'clangd', 'suppress_stderr': v:true, 'log_level': 'Warning'},
-            \ 'go': {'command': 'gopls', 'suppress_stderr': v:true, 'log_level': 'Warning'},
-            \ 'python': {'command': 'pylsp', 'suppress_stderr': v:true},
-            \ }
+\  'c':       {'command':  'clangd',  'suppress_stderr':  v:true},
+\  'cpp':     {'command':  'clangd',  'suppress_stderr':  v:true,   'log_level':  'Warning'},
+\  'go':      {'command':  'gopls',   'suppress_stderr':  v:true,   'log_level':  'Warning'},
+\  'python':  {'command':  'pylsp',   'suppress_stderr':  v:true},
+\  }
 let g:lsc_auto_map = {'defaults': v:true, 'Completion': 'omnifunc'}
 let g:lsc_enable_autocomplete = v:false
-let g:lsc_complete_timeout = 1
+"let g:lsc_complete_timeout = 1
 let g:lsc_enable_diagnostics = v:false
 let g:lsc_diagnostic_highlights = v:true
 let g:lsc_reference_highlights = v:false
-let g:lsc_change_debounce_time= 1000
+let g:lsc_change_debounce_time= 5000
 
 " --- ALE ---
 
@@ -148,17 +146,73 @@ let g:ale_enabled = 1
 let g:ale_disable_lsp = 1
 let g:ale_cursor_detail = 0
 let g:ale_detail_to_floating_preview = 1
-let g:ale_sign_error = '🔴'
-let g:ale_sign_warning = '🟡'
-let g:ale_sign_info = '🔵'
+"let g:ale_sign_error = '🔴'
+"let g:ale_sign_warning = '🟡'
+"let g:ale_sign_info = '🔵'
 let g:ale_fix_on_save = 1
-let g:ale_sign_highlight_linenrs = 1
-let g:ale_virtualtext_cursor = 2
+let g:ale_sign_highlight_linenrs = 0
+let g:ale_virtualtext_cursor = 0
+let g:ale_virtualtext_prefix = '%type%: '
 let g:ale_lint_on_enter = 1
-let g:ale_echo_msg_format = '(%linter%) %type%: %s'
+let g:ale_echo_cursor = 1
+let g:ale_echo_msg_format = '%s'
+let g:ale_set_highlights = 0
 
-highlight link ALEVirtualTextError ALEError
-highlight link ALEVirtualTextWarning ALEWarning
-highlight link ALEVirtualTextInfo MoreMsg
+let g:ale_fixers = {
+		\ 'python': ['autopep8']
+		\}
+
+highlight ALEErrorSign ctermbg=red ctermfg=red
+highlight ALEWarningSign ctermbg=yellow ctermfg=yellow
+highlight ALEInfoSign ctermbg=blue ctermfg=blue
+"highlight ALEVirtualTextError ctermbg=black ctermfg=red
+"highlight ALEVirtualTextWarning ctermbg=black ctermfg=yellow
+"highlight ALEVirtualTextInfo ctermbg=black ctermfg=blue
 
 " --- testing
+
+" enable termbidi on VTE terminals
+if $VTE_VERSION
+    set termbidi
+endif
+
+" hi Normal ctermfg=NONE ctermbg=NONE cterm=NONE
+" hi StatusLineNC ctermfg=darkgrey ctermbg=grey cterm=NONE
+" hi StatusLineTerm ctermfg=black ctermbg=grey cterm=NONE
+" hi StatusLineTermNC ctermfg=darkgrey ctermbg=grey cterm=NONE
+" hi VertSplit ctermfg=darkgrey ctermbg=grey cterm=NONE
+" hi Pmenu ctermfg=NONE ctermbg=NONE cterm=NONE
+" hi PmenuSel ctermfg=black ctermbg=yellow cterm=NONE
+" hi PmenuSbar ctermfg=NONE ctermbg=black cterm=NONE
+" hi PmenuThumb ctermfg=NONE ctermbg=white cterm=NONE
+" hi PmenuMatch ctermfg=NONE ctermbg=darkgrey cterm=bold
+" hi PmenuMatchSel ctermfg=black ctermbg=yellow cterm=bold
+" hi TabLine ctermfg=black ctermbg=grey cterm=NONE
+" hi TabLineFill ctermfg=NONE ctermbg=white cterm=NONE
+" hi TabLineSel ctermfg=white ctermbg=black cterm=NONE
+" hi ToolbarLine ctermfg=NONE ctermbg=NONE cterm=NONE
+" hi ToolbarButton ctermfg=black ctermbg=darkyellow cterm=NONE
+" hi NonText ctermfg=blue ctermbg=NONE cterm=NONE
+" hi SpecialKey ctermfg=darkgreen ctermbg=NONE cterm=NONE
+" hi Folded ctermfg=darkblue ctermbg=NONE cterm=NONE
+" hi Visual ctermfg=white ctermbg=darkgreen cterm=NONE
+" hi VisualNOS ctermfg=NONE ctermbg=NONE cterm=underline
+" hi FoldColumn ctermfg=darkyellow ctermbg=darkgrey cterm=NONE
+" hi CursorColumn ctermfg=NONE ctermbg=NONE cterm=NONE
+" hi CursorLineNr ctermfg=darkyellow ctermbg=NONE cterm=bold
+" hi QuickFixLine ctermfg=black ctermbg=yellow cterm=NONE
+" hi SignColumn ctermfg=NONE ctermbg=NONE cterm=NONE
+" hi Error ctermfg=red ctermbg=white cterm=reverse
+" hi ErrorMsg ctermfg=red ctermbg=white cterm=reverse
+" hi ModeMsg ctermfg=magenta ctermbg=NONE cterm=bold
+" hi WarningMsg ctermfg=darkred ctermbg=NONE cterm=bold
+" hi MoreMsg ctermfg=darkgreen ctermbg=NONE cterm=bold
+" hi Question ctermfg=green ctermbg=NONE cterm=bold
+" hi IncSearch ctermfg=black ctermbg=yellow cterm=NONE
+" hi WildMenu ctermfg=black ctermbg=darkmagenta cterm=NONE
+" hi debugPC ctermfg=grey ctermbg=NONE cterm=reverse
+" hi debugBreakpoint ctermfg=cyan ctermbg=NONE cterm=reverse
+" hi DiffAdd ctermfg=white ctermbg=darkgreen cterm=NONE
+" hi DiffChange ctermfg=white ctermbg=blue cterm=NONE
+" hi DiffText ctermfg=black ctermbg=grey cterm=NONE
+" hi DiffDelete ctermfg=white ctermbg=magenta cterm=NONE

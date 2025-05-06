@@ -18,5 +18,5 @@ endfunction
 
 " --- ALE ---
 
-"let b:ale_linters = ['govet']
+let b:ale_linters_ignore = ['golangci-lint']
 let b:ale_fixers = ['goimports']

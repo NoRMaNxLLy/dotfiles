@@ -49,4 +49,4 @@ sxhkd .config/sxhkd
 dunst .config/dunst
 sxiv .config/sxiv
 zathura .config/zathura
-
+newsraft/config .config/newsraft/config

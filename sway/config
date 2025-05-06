@@ -28,7 +28,7 @@ set $mod Mod4
 set $nsi --no-startup-id
 #set $menu dmenu_path | wmenu | xargs swaymsg exec --
 set $menu dmenu_run -p "launch:"
-set $term foot
+set $term myterm
 
 font pango: monospace 12px
 focus_follows_mouse no
@@ -39,17 +39,19 @@ floating_modifier $mod normal
 # --- window options
 
 # remove the titlebar for the windows
-default_border pixel 4
+default_border pixel 5
 
 # draw borders if having multiple windows
-smart_borders on
+smart_borders off
 
-# class                 border      backgr      text        indicator     child_border
-client.focused          $bg         $c6         $bg         $fg           $c6
-client.focused_inactive $bg         $c4         $bg         $c8           $c8
-client.unfocused        $bg         $c8         $fg         $c8           $c8
-client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
-client.background       #ffffff
+gaps inner 10
+
+#  class                 border      backgr      text        indicator     child_border
+ client.focused          #52aaad     #52aaad     #000000     #52aaad	#52aaad
+# client.focused_inactive $bg         $c4         $bg         $c8           $c8
+# client.unfocused        $bg         $c8         $fg         $c8           $c8
+# client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
+# client.background       #ffffff
 
 # --- workspace options
 
@@ -119,14 +121,14 @@ bindsym $mod+shift+n move workspace to output right
 bindsym $mod+shift+p move workspace to output left
 
 #resizing
-bindsym $mod+ctrl+l resize grow right 40 px
-bindsym $mod+ctrl+k resize grow up 40 px
-bindsym $mod+ctrl+j resize grow down 40 px
-bindsym $mod+ctrl+h resize grow left 40 px
-bindsym $mod+mod1+h resize shrink right 40 px
-bindsym $mod+mod1+j resize shrink up 40 px
-bindsym $mod+mod1+k resize shrink down 40 px
-bindsym $mod+mod1+l resize shrink left 40 px
+bindsym $mod+ctrl+l resize grow right 5px
+bindsym $mod+ctrl+k resize grow up 5px
+bindsym $mod+ctrl+j resize grow down 5px
+bindsym $mod+ctrl+h resize grow left 5px
+bindsym $mod+mod1+h resize shrink right 5px
+bindsym $mod+mod1+j resize shrink up 5px
+bindsym $mod+mod1+k resize shrink down 5px
+bindsym $mod+mod1+l resize shrink left 5px
 
 bindsym $mod+period workspace next
 bindsym $mod+comma workspace prev
@@ -163,12 +165,13 @@ bindsym $mod+Return exec $term
 bindsym $mod+d exec $menu
 bindsym $mod+Home exec pcmanfm
 bindsym $mod+p exec "if ! test -e /tmp/pomo; then pomo start; else pomo stop;fi"
+bindsym $mod+c move position center
 
 # --- outputs
 
 output * {
     #background ~/.config/wallpaper.jpg fit "#2E3440"
-    background "#2E3440" solid_color
+	background "#737573" solid_color
 }
 
 output eDP-1 {
@@ -188,26 +191,27 @@ input type:keyboard {
 
 # --- swaybar
 bar {
-    font pango: Inconsolata 14px
+    font pango: monospace 12px
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
-    workspace_min_width 25px
+    workspace_min_width 30px
     separator_symbol "  "
     strip_workspace_numbers yes
     modifier $mod+mod1
     position bottom
     bindsym button4 nop
     bindsym button5 nop
-    colors {
-            background $c0
-            statusline $c7
-            separator  $fg
-#                              Border   background    text
-            focused_workspace  $bg      $c6           $bg
-            active_workspace   $bg      $c1           $fg
-            inactive_workspace $bg      $c8           $c7
-            urgent_workspace   $bg      $bg           $c1
-            binding_mode       $bg      $bg           $c7
-   }
+	gaps 10 200
+     colors {
+             background #eaffff
+             statusline #000000
+#             separator  $fg
+#                               Border   background    text
+             focused_workspace  #9eeeee  #9eeeee       #000000
+#             active_workspace   $bg      $c1           $fg
+             inactive_workspace #efffff  #efffff       #000000
+#             urgent_workspace   $bg      $bg           $c1
+#             binding_mode       $bg      $bg           $c7
+    }
 }
 
 # --- misc
@@ -221,4 +225,4 @@ exec swayidle -w \
 
 exec dunst
 exec gammastep -l 32.3256:15.0993 -l manual
-
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway

@@ -5,9 +5,9 @@ setlocal softtabstop=8
 setlocal tabstop=8
 
 " how autoindentation should be (set to 0 to use value of tabstop)
-setlocal shiftwidth=8
+setlocal shiftwidth=0
 
 setlocal nolinebreak
 
 " stop miss aligning cases of switch statments
-set cinoptions+=:0
+setlocal cinoptions+=:0

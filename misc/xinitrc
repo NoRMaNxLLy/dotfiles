@@ -1,5 +1,5 @@
 # wallset -r &
-hsetroot -solid "#000000" &
+#hsetroot -solid "#000000" &
 dunst &
 picom -b &
 sxhkd &
@@ -18,5 +18,6 @@ xset dpms 0 0 600
 xrdb ~/.Xresources
 
 exec i3
+#exec twm
 
 # vim: ft=sh

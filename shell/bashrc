@@ -6,19 +6,20 @@ export REPOS="${HOME}/repos"
 export MYREPOS="${REPOS}/normanxlly"
 export KNSH_DIR="$MYREPOS/knsh"
 export DOTFILES="${MYREPOS}/dotfiles"
-export CDPATH=".:${MYREPOS}:${HOME}:${REPOS}"
 export EDITOR="vim"
 export LESSHISTFILE="/dev/null"
 export CFLAGS="-Wall -Wextra -Werror"
-# colorful manpages
-export PAGER="less --use-color -R -DErk -DPw -DSrk -DdC -Dkr -Ds+Y -DuM"
-export GREP_COLORS='mt=31;40:ms31;40:mc=31;40:fn=32'
-export PS1="\[\033[3m\]\w\[\033[0m\] \[\033[1;36m\]\$\[\033[0m\] "
+export LESS="--use-color -R -DP-- -DE-r -DSkY"
+export GREP_COLORS='mt=43;30:ms31;40:mc=31;40:fn=32'
+PROMPT_DIRTRIM=3
+PS1="\[\033[1m\]\w %\[\033[0m\] "
+CDPATH=".:${MYREPOS}:${HOME}:${REPOS}"
 # 0 - 15 for colors, and 16 for reset.
 Co=( '\033[3'{0..7}m '\033[1;9'{0..7}m '\033[0m' )
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
-HISTFILESIZE=10000
+HISTFILESIZE=100000
+PROMPT_COMMAND=( 'tmux_prompt_indicator' )
 
 # --- Aliases ---
 
@@ -35,19 +36,20 @@ alias neomutt='TERM=screen-256color neomutt'
 alias wget="wget --hsts-file=/dev/null"
 alias ip="ip --color=auto"
 alias bb='busybox'
-alias ?='duck'  # from rwxrob
+alias \?='duck'  # from rwxrob
 alias tt='tt -notheme -blockcursor -highlight1 -w 78'  # terminal based typetesting
-alias mean='trans -w 78 -v en:ar'
 alias clear='printf "\033[2J\033[H"'
 alias cls='clear'
 alias vi='vim'
 alias fribidi='fribidi -w $COLUMNS'
+alias t='tmux'
 
 # --- Functions ---
 
 temp() { cd "$(mktemp -d)" ;}
 _empty() { test -z "$1" ;}
 __in_repo() { git branch --show-current 2>/dev/null ;}
+tmux_prompt_indicator() { printf '\033]133;A\033\\' ;}
 
 # --- Shell Options ---
 
@@ -65,7 +67,10 @@ shopt -s dotglob
 
 shopt -s histappend
 
-set +H  # turn off '!!'
+# turn off '!!'
+set +H
+
+shopt -s lithist
 
 # ---
 
@@ -76,3 +81,10 @@ if command -v dircolors > /dev/null 2>&1; then
 fi
 
 # --- testing ---
+
+# enable auto character direction on VTE terminals
+if test "$TERM" = "xterm-256color"; then
+    printf "\033[?2501h"
+fi
+
+tabs 4

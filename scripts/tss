@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec tmux set @status-right "$*"

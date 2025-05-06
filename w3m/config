@@ -1,14 +1,14 @@
 tabstop 8
 indent_incr 4
-pixel_per_char 11
-pixel_per_line 24
+pixel_per_char 16
+pixel_per_line 64
 frame 0
 target_self 0
 open_tab_blank 0
 open_tab_dl_list 0
 display_link 0
 display_link_number 0
-decode_url 0
+decode_url 1
 display_lineinfo 0
 ext_dirlist 1
 dirlist_cmd file:///$LIB/dirlist.cgi
@@ -29,7 +29,7 @@ auto_image 0
 max_load_image 4
 ext_image_viewer 1
 image_scale 100
-inline_img_protocol 0
+inline_img_protocol 2
 imgdisplay sxiv
 image_map_list 1
 fold_line 0
@@ -41,12 +41,12 @@ color 1
 high-intensity 0
 basic_color terminal
 anchor_color blue
-image_color cyan
+image_color yellow
 form_color terminal
 mark_color blue
 bg_color terminal
 active_style 1
-active_color white
+active_color green
 visited_anchor 1
 visited_color magenta
 pagerline 10000
@@ -60,9 +60,9 @@ emacs_like_lineedit 0
 space_autocomplete 0
 vi_prec_num 0
 mark_all_pages 0
-wrap_search 1
+wrap_search 0
 ignorecase_search 1
-use_mouse 0
+use_mouse 1
 reverse_mouse 0
 relative_wheel_scroll 0
 relative_wheel_scroll_ratio 30
@@ -83,7 +83,7 @@ urimethodmap ~/.w3m/urimethodmap, /usr/etc/w3m/urimethodmap
 editor /usr/bin/vi
 mailto_options 1
 mailer /usr/bin/mail
-extbrowser /usr/bin/firefox --private-window &
+extbrowser /usr/bin/firefox &
 extbrowser2 tmux new-window "w3m %s"
 extbrowser3 
 extbrowser4 
@@ -95,7 +95,7 @@ extbrowser9
 bgextviewer 1
 use_lessopen 0
 passwd_file ~/.w3m/passwd
-disable_secret_security_check 0
+disable_secret_security_check 1
 ftppasswd 
 ftppass_hostnamegen 1
 pre_form_file ~/.w3m/pre_form
@@ -163,4 +163,3 @@ use_jisx0213 0
 strict_iso2022 1
 gb18030_as_ucs 0
 simple_preserve_space 0
-
