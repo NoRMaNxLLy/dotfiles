@@ -58,7 +58,7 @@ make_msg() {
 # send the message and receive the response 🐸
 send_and_recv() {
 	local m="$1"
-	_resp=$(curl -s -H "Content-Type: application/json" \
+	_resp=$(curl -sS -H "Content-Type: application/json" \
 		-d "$m" \
 		"$endpoint")
 }
@@ -66,8 +66,12 @@ send_and_recv() {
 # extract the response from the received answer and print it
 print_resp() {
 	local r="$1"
-	jq -r -n --argjson r "$r" \
-		'$r.choices[].message.content'
+	local f='.choices[].message |
+		.reasoning_content // empty, .content // empty'
+
+	jq -r "$f" <<EOF
+$r
+EOF
 }
 
 
