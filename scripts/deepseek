@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export model=deepseek
+exec llm "$*"
