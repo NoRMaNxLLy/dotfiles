@@ -2,10 +2,10 @@
 # shellcheck disable=SC3043
 # set the colors of tmux windows :)
 
-themes="dark light reset"
+themes="dark light japanesque reset"
 
 dark() {
-	bg="#000000" fg="#ffffff"
+	bg="#000000" fg="#cccccc"
 	c0="#000000" c1="#ff5555" c2="#55ff55" c3="#ffff55" c4="#5555ff" c5="#ff55ff" c6="#55ffff" c7="#bbbbbb"
 	c8="#555555" c9="#ff5555" c10="#55ff55" c11="#ffff55" c12="#5555ff" c13="#ff55ff" c14="#55ffff" c15="#ffffff"
 }
@@ -15,6 +15,12 @@ light() {
 	c0="#000000" c1="#c91b00" c2="#00c200" c3="#c7c400" c4="#0225c7" c5="#ca30c7" c6="#00c5c7" c7="#c7c7c7"
 	c8="#686868" c9="#c91b00" c10="#00c200" c11="#c7c400" c12="#0225c7" c13="#ca30c7" c14="#00c5c7" c15="#ffffff"
 	#c8="#686868" c9="#ff6e67" c10="#5ffa68" c11="#fffc67" c12="#6871ff" c13="#ff77ff" c14="#60fdff" c15="#ffffff"
+}
+
+japanesque() {
+	bg="#1e1e1e" fg="#f7f6ec"
+	c0="#343935" c1="#cf3f61" c2="#7bb75b" c3="#e9b32a" c4="#4c9ad4" c5="#a57fc4" c6="#389aad" c7="#fafaf6"
+	c8="#595b59" c9="#d18fa6" c10="#767f2c" c11="#78592f" c12="#135979" c13="#604291" c14="#76bbca" c15="#b2b5ae"
 }
 
 setcolors() {
