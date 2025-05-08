@@ -2,7 +2,7 @@
 # shellcheck disable=SC3043
 # set the colors of tmux windows :)
 
-themes="dark light japanesque reset"
+themes="dark light japanesque solarized reset"
 
 dark() {
 	bg="#000000" fg="#cccccc"
@@ -21,6 +21,12 @@ japanesque() {
 	bg="#1e1e1e" fg="#f7f6ec"
 	c0="#343935" c1="#cf3f61" c2="#7bb75b" c3="#e9b32a" c4="#4c9ad4" c5="#a57fc4" c6="#389aad" c7="#fafaf6"
 	c8="#595b59" c9="#d18fa6" c10="#767f2c" c11="#78592f" c12="#135979" c13="#604291" c14="#76bbca" c15="#b2b5ae"
+}
+
+solarized() {
+	bg="#001e27" fg="#9cc2c3"
+	c0="#002831" c1="#d11c24" c2="#6cbe6c" c3="#a57706" c4="#2176c7" c5="#c61c6f" c6="#259286" c7="#eae3cb"
+	c8="#006488" c9="#f5163b" c10="#51ef84" c11="#b27e28" c12="#178ec8" c13="#e24d8e" c14="#00b39e" c15="#fcf4dc"
 }
 
 setcolors() {
