@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# default duration: 25m
+prefix_work=
+prefix_break=
+prefix_stop=
 duration="1500"
-work_prefix=
-break_prefix=
-stop_prefix=
+remains=
 
-parse_duration() {
+cmds="start stop print follow"
+
+duration_parse() {
     dur="$1"
     h=0 m=0 s=0
 
@@ -39,47 +41,96 @@ parse_duration() {
     [[ ${1:0:1} == '-' ]] && ((duration *= -1))
 }
 
-output() {
-    prefix=$work_prefix
-    sign=''
-    if ((remains < 0)); then
-        prefix=$break_prefix
-        local sign='-'
-        ((remains *= -1))
-        ((remains % 2 != 0)) && prefix=''   # blinking effect
-    fi
-
-    ((hours   = remains / 3600, remains %= 3600))
-    ((minutes = remains / 60,   remains %= 60))
-
-    printf '%s ' $prefix
-    [[ -n $sign ]] && printf '%s' $sign
-    ((hours != 0)) && printf '%02d:' $hours
-    printf '%02d:%02d\n' $minutes $remains
+# report whether a timer is running
+timer_running() {
+	[[ -e /tmp/pomo ]] || return 1
 }
 
-main() {
-    case "$1" in
-        start)
-            [[ -n $2 ]] && parse_duration "$2"
-            # -1 represents the current time. read bash(1).
-            printf '%(%s)T %d\n' -1 $duration > "/tmp/pomo"
-            ;;
-        stop)
-            rm "/tmp/pomo" 2>/dev/null
-            exit 0
-    esac
-
-    if ! [[ -e /tmp/pomo ]]; then
-        printf '%s %s\n' $stop_prefix '00:00'
-        return 1;
-    fi
+# calculate the remaining seconds
+timer_remains() {
+	local start duration end now
+	remains=
 
     read start duration < "/tmp/pomo"
     ((end = start + duration))
     printf -v now "%(%s)T"
     ((remains = end - now))
-    output
+}
+
+# pretty print the timer
+timer_print() {
+    local p=$prefix_work
+    local sign=''
+
+	((remains == 0)) && p=$prefix_stop
+	((remains < 0)) && p=$prefix_break
+
+	((remains < 0)) && {
+        local sign='-'
+        ((remains *= -1))
+        ((remains % 2 != 0)) && p=''   # blinking effect
+	}
+
+    #((hours   = remains / 3600, remains %= 3600))
+    ((minutes = remains / 60,   remains %= 60))
+
+    printf -v l '%02d:%02d' $minutes $remains
+    [[ -n $sign ]] && l="$sign$l"
+	l="$p $l"
+
+	echo "$l"
+}
+
+# print the current timer
+print() {
+    timer_running || {
+		remains=0
+		timer_print
+        return
+	}
+
+	timer_remains
+	timer_print
+}
+
+# start a new timer
+start() {
+	local d="$1"
+
+	[[ -n $d ]] && duration_parse "$d"
+	# -1 represents the current time. read bash(1).
+	printf '%(%s)T %d\n' -1 "$duration" > "/tmp/pomo"
+}
+
+# stop the timer
+stop() {
+	rm "/tmp/pomo" 2>/dev/null
+}
+
+# keep printing the timer to stdout
+follow() {
+	enable sleep	# enable built-in sleep
+	while :; do
+		print
+		sleep 1
+	done
+}
+
+main() {
+	local cmd="$1"
+
+	[[ -z $cmd ]] && {
+		print
+		return 0
+	}
+	shift
+
+	for c in $cmds; do
+		[[ $c == "$cmd" ]] && {
+			"$c" "$@"
+			return 0
+		}
+	done
 }
 
 main "$@"
