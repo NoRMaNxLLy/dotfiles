@@ -6,8 +6,6 @@ prefix_stop=
 duration="1500"
 remains=
 
-cmds="start stop print follow"
-
 duration_parse() {
     dur="$1"
     h=0 m=0 s=0
