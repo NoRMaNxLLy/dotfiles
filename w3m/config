@@ -1,6 +1,6 @@
 tabstop 8
 indent_incr 4
-pixel_per_char 16
+pixel_per_char 32
 pixel_per_line 64
 frame 0
 target_self 0
