@@ -1,0 +1,42 @@
+#!/bin/sh
+# fetch youtube videos subtitle
+
+fetch_subt() {
+	local v="$1"	# video
+	local l="$2"	# language
+
+	yt-dlp --quiet --skip-download \
+		--write-auto-subs \
+		--sub-langs "$l" \
+		--convert-sub srt \
+		-o "subtitle:$_subtfile" \
+		"$v"
+}
+
+# strip timestamp and extra garabage from the subtitle file
+clean_subt() {
+	local grep_re='^[0-9]+$|^$|^[0-9]{2}:'
+
+	grep -vE "$grep_re" "$_subtfile.$lang.srt" \
+		| sed -E '/\r|^\s*$/d' >"$_subtfile.txt"
+}
+
+main() {
+	local vid="$1"
+	: "${lang:=$2}"
+	: "${lang:=en}"
+	_subtfile="$(mktemp)"
+
+	trap 'rm $_subtfile*' EXIT
+
+	! test -t 0 && read -r vid
+
+	fetch_subt "$vid" "$lang" || {
+		echo "error fetching subtitle." 1>&2
+		exit 1
+	}
+
+	clean_subt
+	cat "$_subtfile.txt"
+}
+main "$@"
