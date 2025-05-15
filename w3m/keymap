@@ -9,7 +9,8 @@ keymap : COMMAND
 keymap TAB NEXT_LINK
 
 # clean html
-keymap \\\r COMMAND "READ_SHELL 'rdrview -E utf8 -H $W3M_URL > /tmp/readable.html' ; LOAD /tmp/readable.html; DELETE_PREVBUF"
+#keymap \\\r COMMAND "READ_SHELL 'rdrview -E utf8 -H $W3M_URL > /tmp/readable.html' ; LOAD /tmp/readable.html; DELETE_PREVBUF"
+keymap \\\r COMMAND "VIEW; PIPE_BUF 'rdrview -E utf8 -H'; VIEW; DELETE_PREVBUF; DELETE_PREVBUF; REDRAW"
 
 # clean html under cursor
 keymap \\\R COMMAND "EXTERN_LINK 'rdrview -E utf8 -H %s > /tmp/readable.html' ; LOAD /tmp/readable.html"
