@@ -1,0 +1,17 @@
+#!/bin/sh
+# fetch a webpage, make it readable.
+
+webpage() {
+	local url="$1"
+
+	command -v "rdrview" >/dev/null 2>&1 || {
+		echo "rdrview not found" 1>&2
+		exit 1
+	}
+
+	! test -t 0 && read -r url
+
+	rdrview -H "$url"
+}
+
+webpage "$1"
