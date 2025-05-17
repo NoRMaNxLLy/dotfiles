@@ -1,0 +1,8 @@
+#!/bin/bash
+# kunnash and tmux integration
+
+cmd="${1:-edit}"
+
+mapfile -t args
+
+tmux new-window "knsh $cmd ${args[*]}"
