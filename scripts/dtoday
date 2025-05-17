@@ -1,3 +1,4 @@
 #!/bin/sh
 
-exec date '+%a, %b %d, %G'
+#exec date '+%a, %b %d, %G'
+exec date '+%F'
