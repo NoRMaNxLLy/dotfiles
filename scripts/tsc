@@ -27,6 +27,13 @@ solarized() {
 	c8="#006488" c9="#f5163b" c10="#51ef84" c11="#b27e28" c12="#178ec8" c13="#e24d8e" c14="#00b39e" c15="#fcf4dc"
 }; themes="$themes solarized"
 
+acme() {
+	bg="#ffffea" fg="#000000"
+	c0="#000000" c1="#c91b00" c2="#00c200" c3="#c7c400" c4="#0225c7" c5="#ca30c7" c6="#00c5c7" c7="#c7c7c7"
+	c8="#686868" c9="#c91b00" c10="#00c200" c11="#c7c400" c12="#0225c7" c13="#ca30c7" c14="#00c5c7" c15="#ffffff"
+	#c8="#686868" c9="#ff6e67" c10="#5ffa68" c11="#fffc67" c12="#6871ff" c13="#ff77ff" c14="#60fdff" c15="#ffffff"
+}; themes="$themes acme"
+
 setcolors() {
 	tmux set -gw window-style "bg=$bg fg=$fg" \; \
 		set -gw pane-colours "$c0 $c1 $c2 $c3 $c4 $c5 $c6 $c7 $c8 $c9 $c10 $c11 $c12 $c13 $c14 $c15" \; \
