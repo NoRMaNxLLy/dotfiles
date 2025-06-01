@@ -34,6 +34,24 @@ acme() {
 	#c8="#686868" c9="#ff6e67" c10="#5ffa68" c11="#fffc67" c12="#6871ff" c13="#ff77ff" c14="#60fdff" c15="#ffffff"
 }; themes="$themes acme"
 
+retro() {
+	bg="#000000" fg="#13a10e"
+	c0="#13a10e" c1="#13a10e" c2="#13a10e" c3="#13a10e" c4="#13a10e" c5="#13a10e" c6="#13a10e" c7="#13a10e"
+	c8="#16ba10" c9="#16ba10" c10="#16ba10" c11="#16ba10" c12="#16ba10" c13="#16ba10" c14="#16ba10" c15="#16ba10"
+}; themes="$themes retro"
+
+seti() {
+	bg="#111213" fg="#cacecd"
+	c0="#323232" c1="#c22832" c2="#8ec43d" c3="#e0c64f" c4="#43a5d5" c5="#8b57b5" c6="#8ec43d" c7="#eeeeee"
+	c8="#323232" c9="#c22832" c10="#8ec43d" c11="#e0c64f" c12="#43a5d5" c13="#8b57b5" c14="#8ec43d" c15="#ffffff"
+}; themes="$themes seti"
+
+homebrew() {
+	bg="#000000" fg="#00ff00"
+	c0="#000000" c1="#990000" c2="#00a600" c3="#999900" c4="#0000b2" c5="#b200b2" c6="#00a6b2" c7="#bfbfbf"
+	c8="#666666" c9="#e50000" c10="#00d900" c11="#e5e500" c12="#0000ff" c13="#e500e5" c14="#00e5e5" c15="#e5e5e5"
+}; themes="$themes homebrew"
+
 setcolors() {
 	tmux set -gw window-style "bg=$bg fg=$fg" \; \
 		set -gw pane-colours "$c0 $c1 $c2 $c3 $c4 $c5 $c6 $c7 $c8 $c9 $c10 $c11 $c12 $c13 $c14 $c15" \; \
@@ -42,7 +60,7 @@ setcolors() {
 		set -gw pane-border-style "fg=brightblack bg=$bg" \; \
 		set -gw pane-active-border-style "fg=brightblack bg=$bg"
 
-}
+	}
 
 resetcolors() {
 	tmux set -ugw window-style \; \
@@ -51,32 +69,32 @@ resetcolors() {
 		set -gw popup-border-style "bg=default fg=cyan" \; \
 		set -gw pane-border-style "fg=brightblack bg=default" \; \
 		set -gw pane-active-border-style "fg=brightblack bg=default"
-}
+	}
 
 list_themes() {
 	set -- $themes
 	local IFS=\|
-	echo "${0##*/} $*"
-}
+		echo "${0##*/} $*"
+	}
 
 main() {
 	local t="$1"
 
 	test "$t" = "reset" && {
 		resetcolors
-		exit 0
-	}
+			exit 0
+		}
 
 	for tt in $themes; do
 		test "$tt" = "$t" && {
 			"$t"
-			setcolors
-			exit 0
-		}
-	done
+					setcolors
+					exit 0
+				}
+		done
 
-	list_themes
-	exit 1
-}
+		list_themes
+		exit 1
+	}
 
 main "$@"
