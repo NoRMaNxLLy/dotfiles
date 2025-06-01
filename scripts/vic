@@ -1,3 +1,5 @@
 #!/bin/sh
 
-exec vi "$(command -v $1)"
+p="$(command -v $1)"
+test -z "$p" && exit 1
+exec vi "$p"
