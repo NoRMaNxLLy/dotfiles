@@ -52,6 +52,12 @@ homebrew() {
 	c8="#666666" c9="#e50000" c10="#00d900" c11="#e5e500" c12="#0000ff" c13="#e500e5" c14="#00e5e5" c15="#e5e5e5"
 }; themes="$themes homebrew"
 
+apple() {
+	bg="#2c2b2b" fg="#d5a200"
+	c0="#000000" c1="#c91b00" c2="#00c200" c3="#c7c400" c4="#0225c7" c5="#ca30c7" c6="#00c5c7" c7="#c7c7c7"
+	c8="#686868" c9="#ff6e67" c10="#5ffa68" c11="#fffc67" c12="#6871ff" c13="#ff77ff" c14="#60fdff" c15="#ffffff"
+}; themes="$themes apple"
+
 setcolors() {
 	tmux set -gw window-style "bg=$bg fg=$fg" \; \
 		set -gw pane-colours "$c0 $c1 $c2 $c3 $c4 $c5 $c6 $c7 $c8 $c9 $c10 $c11 $c12 $c13 $c14 $c15" \; \
@@ -59,8 +65,7 @@ setcolors() {
 		set -gw popup-border-style "bg=$bg fg=cyan" \; \
 		set -gw pane-border-style "fg=brightblack bg=$bg" \; \
 		set -gw pane-active-border-style "fg=brightblack bg=$bg"
-
-	}
+}
 
 resetcolors() {
 	tmux set -ugw window-style \; \
@@ -69,13 +74,13 @@ resetcolors() {
 		set -gw popup-border-style "bg=default fg=cyan" \; \
 		set -gw pane-border-style "fg=brightblack bg=default" \; \
 		set -gw pane-active-border-style "fg=brightblack bg=default"
-	}
+}
 
 list_themes() {
 	set -- $themes
 	local IFS=\|
-		echo "${0##*/} $*"
-	}
+	echo "${0##*/} $*"
+}
 
 main() {
 	local t="$1"
@@ -88,13 +93,13 @@ main() {
 	for tt in $themes; do
 		test "$tt" = "$t" && {
 			"$t"
-					setcolors
-					exit 0
-				}
-		done
+			setcolors
+			exit 0
+		}
+	done
 
-		list_themes
-		exit 1
-	}
+	list_themes
+	exit 1
+}
 
 main "$@"
