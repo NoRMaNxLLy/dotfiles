@@ -1,5 +1,5 @@
 #!/bin/sh
-# shellcheck disable=SC3043
+# shellcheck disable=SC3043,SC2317
 # set the colors of tmux windows :)
 
 dark() {
@@ -34,18 +34,6 @@ acme() {
 	#c8="#686868" c9="#ff6e67" c10="#5ffa68" c11="#fffc67" c12="#6871ff" c13="#ff77ff" c14="#60fdff" c15="#ffffff"
 }; themes="$themes acme"
 
-retro() {
-	bg="#000000" fg="#13a10e"
-	c0="#13a10e" c1="#13a10e" c2="#13a10e" c3="#13a10e" c4="#13a10e" c5="#13a10e" c6="#13a10e" c7="#13a10e"
-	c8="#16ba10" c9="#16ba10" c10="#16ba10" c11="#16ba10" c12="#16ba10" c13="#16ba10" c14="#16ba10" c15="#16ba10"
-}; themes="$themes retro"
-
-seti() {
-	bg="#111213" fg="#cacecd"
-	c0="#323232" c1="#c22832" c2="#8ec43d" c3="#e0c64f" c4="#43a5d5" c5="#8b57b5" c6="#8ec43d" c7="#eeeeee"
-	c8="#323232" c9="#c22832" c10="#8ec43d" c11="#e0c64f" c12="#43a5d5" c13="#8b57b5" c14="#8ec43d" c15="#ffffff"
-}; themes="$themes seti"
-
 homebrew() {
 	bg="#000000" fg="#00ff00"
 	c0="#000000" c1="#990000" c2="#00a600" c3="#999900" c4="#0000b2" c5="#b200b2" c6="#00a6b2" c7="#bfbfbf"
@@ -54,9 +42,21 @@ homebrew() {
 
 apple() {
 	bg="#2c2b2b" fg="#d5a200"
-	c0="#000000" c1="#c91b00" c2="#00c200" c3="#c7c400" c4="#0225c7" c5="#ca30c7" c6="#00c5c7" c7="#c7c7c7"
+	c0="#000000" c1="#c91b00" c2="#00c200" c3="#c7c400" c4="#2967d0" c5="#ca30c7" c6="#00c5c7" c7="#c7c7c7"
 	c8="#686868" c9="#ff6e67" c10="#5ffa68" c11="#fffc67" c12="#6871ff" c13="#ff77ff" c14="#60fdff" c15="#ffffff"
 }; themes="$themes apple"
+
+gruvbox_light() {
+	bg="#fbf1c7" fg="#282828"
+	c0="#fbf1c7" c1="#9d0006" c2="#79740e" c3="#b57614" c4="#076678" c5="#8f3f71" c6="#427b58" c7="#3c3836"
+	c8="#9d8374" c9="#cc241d" c10="#98971a" c11="#d79921" c12="#458588" c13="#b16186" c14="#689d69" c15="#7c6f64"
+}; themes="$themes gruvbox_light"
+
+vimbones() {
+	bg="#f0f0ca" fg="#353535"
+	c0="#f0f0ca" c1="#a8334c" c2="#4f6c31" c3="#944927" c4="#286486" c5="#88507d" c6="#3b8992" c7="#353535"
+	c8="#c6c6a3" c9="#94253e" c10="#3f5a22" c11="#803d1c" c12="#1d5573" c13="#7b3b70" c14="#2b747c" c15="#5c5c5c"
+}; themes="$themes vimbones"
 
 setcolors() {
 	tmux set -gw window-style "bg=$bg fg=$fg" \; \
@@ -87,12 +87,12 @@ main() {
 
 	test "$t" = "reset" && {
 		resetcolors
-			exit 0
-		}
+		exit 0
+	}
 
 	for tt in $themes; do
 		test "$tt" = "$t" && {
-			"$t"
+			$t
 			setcolors
 			exit 0
 		}
