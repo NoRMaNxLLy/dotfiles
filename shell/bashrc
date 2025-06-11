@@ -16,7 +16,7 @@ PS1="\[\033[1m\]\w %\[\033[0m\] "
 CDPATH=".:${MYREPOS}:${HOME}:${REPOS}"
 # 0 - 15 for colors, and 16 for reset.
 Co=( '\033[3'{0..7}m '\033[1;9'{0..7}m '\033[0m' )
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 HISTSIZE=1000
 HISTFILESIZE=100000
 PROMPT_COMMAND=( 'tmux_prompt_indicator' )
