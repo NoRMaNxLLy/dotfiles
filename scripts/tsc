@@ -77,9 +77,12 @@ resetcolors() {
 }
 
 list_themes() {
-	set -- $themes
-	local IFS=\|
-	echo "${0##*/} $*"
+#	set -- $themes
+#	local IFS=\|
+#	echo "${0##*/} $*"
+	for t in $themes; do
+		echo "$t"
+	done | sort
 }
 
 main() {
