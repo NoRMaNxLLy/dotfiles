@@ -58,6 +58,12 @@ vimbones() {
 	c8="#c6c6a3" c9="#94253e" c10="#3f5a22" c11="#803d1c" c12="#1d5573" c13="#7b3b70" c14="#2b747c" c15="#5c5c5c"
 }; themes="$themes vimbones"
 
+solarized_light() {
+	bg="#fdf6e3" fg="#657b83"
+	c0="#073642" c1="#dc322f" c2="#859900" c3="#b58900" c4="#268bd2" c5="#d33682" c6="#2aa198" c7="#eee8d5"
+	c8="#002b36" c9="#cb4b16" c10="#586e75" c11="#657b83" c12="#839496" c13="#6c71c4" c14="#93a1a1" c15="#fdf6e3"
+}; themes="$themes solarized_light"
+
 setcolors() {
 	tmux set -gw window-style "bg=$bg fg=$fg" \; \
 		set -gw pane-colours "$c0 $c1 $c2 $c3 $c4 $c5 $c6 $c7 $c8 $c9 $c10 $c11 $c12 $c13 $c14 $c15" \; \
