@@ -1,0 +1,8 @@
+#!/bin/sh
+# add section number to html headers.
+
+exec pandoc -f html -t html \
+	--standalone \
+	--number-sections \
+	--shift-heading-level-by=-1 \
+	--toc
