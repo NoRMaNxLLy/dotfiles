@@ -1,7 +1,8 @@
 #!/bin/sh
 # add section number to html headers.
 
-exec pandoc -f html -t html \
+pandoc -f html -t html \
+	-L ~/scripts/unwrap.lua \
 	--standalone \
 	--number-sections \
 	--shift-heading-level-by=-1 \

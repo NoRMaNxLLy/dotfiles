@@ -15,6 +15,9 @@ keymap \\\r COMMAND "VIEW; PIPE_BUF 'rdrview -E utf8 --template=title,sitename,u
 # clean html under cursor
 keymap \\\R COMMAND "EXTERN_LINK 'rdrview -E utf8 -H %s > /tmp/readable.html' ; LOAD /tmp/readable.html"
 
+# add TOC and section-number the headers
+keymap \\\s COMMAND "VIEW; PIPE_BUF htmlsec; VIEW; DELETE_PREVBUF; DELETE_PREVBUF; REDRAW"
+
 # yank page url to clipboard
 keymap y EXTERN "echo %s | toclip"
 
