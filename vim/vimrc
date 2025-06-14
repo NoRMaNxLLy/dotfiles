@@ -75,31 +75,32 @@ match ColorColumn '\s\+$'
 syntax on
 
 function Uncolor()
-	hi  Normal       ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  SignColumn   ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  Todo         ctermfg=NONE        ctermbg=NONE      cterm=italic
-	hi  Search       ctermfg=black       ctermbg=yellow    cterm=NONE
-	hi  SpellBad     ctermfg=darkred     ctermbg=NONE      cterm=NONE
-	hi  SpellCap     ctermfg=darkblue    ctermbg=NONE      cterm=NONE
-	hi  SpellLocal   ctermfg=darkyellow  ctermbg=NONE      cterm=NONE
-	hi  SpellRare    ctermfg=darkgreen   ctermbg=NONE      cterm=NONE
-	hi  Comment      ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  Identifier   ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  Statement    ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  Constant     ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  PreProc      ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  Type         ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  Special      ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  Directory    ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  Conceal      ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  Ignore       ctermfg=NONE        ctermbg=NONE      cterm=NONE
-	hi  Title        ctermfg=NONE        ctermbg=NONE      cterm=bold
-	hi  MatchParen   ctermfg=magenta     ctermbg=NONE      cterm=NONE
-	hi  Underlined   ctermfg=NONE        ctermbg=NONE      cterm=underline
-	hi  LineNr       ctermfg=gray        ctermbg=NONE      cterm=NONE
-	hi  ColorColumn  ctermfg=NONE        ctermbg=darkgray  cterm=NONE
+	hi   Normal       ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   SignColumn   ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   Todo         ctermfg=NONE        ctermbg=NONE      cterm=italic
+	hi   Search       ctermfg=black       ctermbg=yellow    cterm=NONE
+	hi   SpellBad     ctermfg=darkred     ctermbg=NONE      cterm=NONE
+	hi   SpellCap     ctermfg=darkblue    ctermbg=NONE      cterm=NONE
+	hi   SpellLocal   ctermfg=darkyellow  ctermbg=NONE      cterm=NONE
+	hi   SpellRare    ctermfg=darkgreen   ctermbg=NONE      cterm=NONE
+	hi   Comment      ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   Identifier   ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   Statement    ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   Constant     ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   PreProc      ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   Type         ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   Special      ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   Directory    ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   Conceal      ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   Ignore       ctermfg=NONE        ctermbg=NONE      cterm=NONE
+	hi   Title        ctermfg=NONE        ctermbg=NONE      cterm=bold
+	hi   MatchParen   ctermfg=magenta     ctermbg=NONE      cterm=NONE
+	hi   Underlined   ctermfg=NONE        ctermbg=NONE      cterm=underline
+	hi   LineNr       ctermfg=gray        ctermbg=NONE      cterm=NONE
+	hi   ColorColumn  ctermfg=NONE        ctermbg=darkgray  cterm=NONE
 	"hi  StatusLine   ctermfg=darkgray    ctermbg=NONE      cterm=NONE
-	hi  CursorLine   ctermfg=NONE        ctermbg=NONE      cterm=reverse
+	hi   CursorLine   ctermfg=NONE        ctermbg=NONE      cterm=reverse
+	hi   Folded       ctermfg=NONE        ctermbg=NONE      cterm=italic
 endfunction
 call Uncolor()
 
@@ -122,6 +123,11 @@ command! Cline set cursorline!
 " augroup pandoc_syntax
 "     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 " augroup END
+
+augroup knsh
+	autocmd!
+    au! BufRead $KNSH_DIR/[0-9]* set filetype=markdown
+augroup END
 
 
 " --- vim-lsc ---
