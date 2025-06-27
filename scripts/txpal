@@ -1,5 +1,10 @@
 #!/bin/sh
 # set terminal color pallete from within tmux
 
+test -z "$TMUX" && {
+	echo "outside tmux" 1>&2
+	exit 1
+}
+
 tty=$(tmux display -p '#{client_tty}')
 termpal "$1" >"$tty"
