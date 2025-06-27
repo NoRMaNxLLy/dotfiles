@@ -17,7 +17,7 @@ CDPATH=".:${MYREPOS}:${HOME}:${REPOS}"
 # 0 - 15 for colors, and 16 for reset.
 Co=( '\033[3'{0..7}m '\033[1;9'{0..7}m '\033[0m' )
 HISTCONTROL=ignoreboth:erasedups
-HISTSIZE=1000
+HISTSIZE=100000
 HISTFILESIZE=100000
 PROMPT_COMMAND=( 'tmux_prompt_indicator' )
 
@@ -42,7 +42,6 @@ alias clear='printf "\033[2J\033[H"'
 alias cls='clear'
 alias vi='vim'
 alias fribidi='fribidi -w $COLUMNS'
-alias t='tmux'
 
 # --- Functions ---
 
