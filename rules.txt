@@ -50,3 +50,4 @@ dunst .config/dunst
 sxiv .config/sxiv
 zathura .config/zathura
 newsraft/config .config/newsraft/config
+misc/termpals .local/share
