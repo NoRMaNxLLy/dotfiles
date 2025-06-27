@@ -52,6 +52,12 @@ gruvbox_light() {
 	c8="#9d8374" c9="#cc241d" c10="#98971a" c11="#d79921" c12="#458588" c13="#b16186" c14="#689d69" c15="#7c6f64"
 }; themes="$themes gruvbox_light"
 
+gruvbox() {
+	fg="#ebdbb2" bg="#282828"
+	c0="#282828" c1="#cc241d" c2="#98971a" c3="#d79921" c4="#458588" c5="#b16286" c6="#689d6a" c7="#a89984"
+	c8="#928374" c9="#fb4934" c10="#b8bb26" c11="#fabd2f" c12="#83a598" c13="#d3869b" c14="#8ec07c" c15="#ebdbb2"
+}; themes="$themes gruvbox"
+
 vimbones() {
 	bg="#f0f0ca" fg="#353535"
 	c0="#f0f0ca" c1="#a8334c" c2="#4f6c31" c3="#944927" c4="#286486" c5="#88507d" c6="#3b8992" c7="#353535"
