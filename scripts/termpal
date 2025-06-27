@@ -1,0 +1,48 @@
+#!/bin/sh
+# change terminal colors
+# OSC 4;N;#RRGGBB   palette index color       \e]4;2;#00FF00\a (green slot)
+# OSC 10;#RRGGBB    default foreground color  \e]10;#FFFFFF\a (white text)
+# OSC 11;#RRGGBB    default background color  \e]11;#000000\a (black bg)
+# OSC 12;#RRGGBB    cursor color              \e]12;#FF00FF\a (magenta)
+
+# the pallete file consists of lines in form of 'name=color'. names are:
+# * fg: foreground
+# * bg: background
+# * cc: cursor color
+# * cN: 0-15 terminal colors
+
+paldir="$HOME/.local/share/termpals"
+# sourcing a pallete file sets these vars
+fg='' bg='' cc=''
+c0='' c1='' c2='' c3='' c4='' c5='' c6='' c7=''
+c8='' c9='' c10='' c11='' c12='' c13='' c14='' c15=''
+
+setcolors() {
+	printf '\e]10;%s\a' "$fg"
+	printf '\e]11;%s\a' "$bg"
+	printf '\e]12;%s\a' "$cc"
+
+	for i in $(seq 0 15); do
+		eval "c=\$c$i"
+		printf '\e]4;%d;%s\a' "$i" "$c"
+	done
+}
+
+main() {
+	pal="$1"
+	test -z "$pal" && {
+		ls "$paldir" 1>&2
+		exit 1
+	}
+
+	! test -f "$paldir/$pal" && {
+		echo "no palette with name $pal" 1>&2
+		exit 1
+	}
+
+	. "$paldir/$pal"
+	setcolors
+	exit 0
+}
+
+main "$@"

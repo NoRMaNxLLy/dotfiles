@@ -1,0 +1,5 @@
+#!/bin/sh
+# set terminal color pallete from within tmux
+
+tty=$(tmux display -p '#{client_tty}')
+termpal "$1" >"$tty"
