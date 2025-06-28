@@ -1,5 +1,5 @@
 #!/bin/sh
-# change terminal colors
+# change terminal color pallete
 # OSC 4;N;#RRGGBB   palette index color       \e]4;2;#00FF00\a (green slot)
 # OSC 10;#RRGGBB    default foreground color  \e]10;#FFFFFF\a (white text)
 # OSC 11;#RRGGBB    default background color  \e]11;#000000\a (black bg)
@@ -39,8 +39,10 @@ main() {
 		echo "no palette with name $pal" 1>&2
 		exit 1
 	}
-
 	. "$paldir/$pal"
+
+	# tmux windows are terminals, so work on the outter terminal
+	test -n "$TMUX" && exec 1>"$(tmux display -p '#{client_tty}')"
 	setcolors
 	exit 0
 }
