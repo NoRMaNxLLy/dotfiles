@@ -101,6 +101,8 @@ function Uncolor()
 	"hi  StatusLine   ctermfg=darkgray    ctermbg=NONE      cterm=NONE
 	hi   CursorLine   ctermfg=NONE        ctermbg=NONE      cterm=reverse
 	hi   Folded       ctermfg=NONE        ctermbg=NONE      cterm=italic
+	hi   Error        ctermfg=black       ctermbg=red       cterm=NONE
+	hi   ErrorMsg     ctermfg=black       ctermbg=red       cterm=NONE
 endfunction
 call Uncolor()
 
