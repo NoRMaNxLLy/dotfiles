@@ -1,8 +1,8 @@
 #!/bin/sh
 
-term="sakura"
+term="lxterminal"
 font="Monospace 13"
-cols="80"
+cols="72"
 rows="29"
 
 lxterminal() {

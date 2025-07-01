@@ -1,3 +1,3 @@
 #!/bin/sh
 
-curl -F 'file=@-' 0x0.st
+curl -sS -F 'file=@-' 0x0.st
