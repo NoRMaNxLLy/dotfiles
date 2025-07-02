@@ -3,12 +3,8 @@
 # a script to ask LLMs provided by pollinations.ai.
 # available models at https://text.pollinations.ai/models
 
-deps="curl jq"
-endpoint="https://text.pollinations.ai/openai"
-: "${model:=openai-large}"
-
-_msg=
-_resp=
+# a quewer is a directory that contains the prompt and the respone from
+# LLM. the de
 
 usage() {
 	while read -r l; do
@@ -31,72 +27,65 @@ chkdeps() {
 	fi
 }
 
-# report whether the stdin is conneted to a pipe
-stdin_piped() {
-	test -t 0 && return 1
-	return 0
-}
-
-# report whether the stdout is conneted to a pipe
-stdout_piped() {
-	test -t 1 && return 1
-	return 0
-}
-
 # make OpenAI-comptabile POST message
-make_msg() {
-	local p="$1"
-	_msg=$(jq -n --arg model "$model" --arg p "$p" '
-	{
+quewer_mkreq() {
+	local q="$1"
+	jq -n --rawfile model "$q/model" \
+		--rawfile p "$q/prompt" \
+		'{
 		"model": $model,
 		"messages": [{"role": "user", "content": $p}],
 		"private": true
-	}
-	')
+	}' >"$q/req.json"
 }
 
-# send the message and receive the response 🐸
-send_and_recv() {
-	local m="$1"
-	_resp=$(curl -sS -H "Content-Type: application/json" \
-		-d "$m" \
-		"$endpoint")
+# send the JSON request to the endpoint, receive the response
+quewer_sndreq() {
+	local q="$1"
+	curl -sSL -H "Content-Type: application/json" \
+		-d "@$q/req.json" \
+		"$endpoint" \
+		>"$q/resp.json"
 }
 
-# extract the response from the received answer and print it
-print_resp() {
-	local r="$1"
-	local f='.choices[].message |
-		.reasoning_content // empty, .content // empty'
+# extract the response from the JSON response
+quewer_resp() {
+	local q="$1"
+	local filter='.choices[].message | .reasoning_content // empty, .content // empty'
 
-	jq -r "$f" <<EOF
-$r
-EOF
+	jq -r "$filter" <"$q/resp.json" >"$q/answer"
 }
-
 
 main() {
-	local prompt="$*"
+	local q
+	q="$XDG_CACHE_HOME/$progname/$(date '+%Y%m%d%H%M%S')"
 
 	for d in $deps; do
 		chkdeps "$d" || depmiss=1
 	done
 	test -n "$depmiss" && exit 1
 
-	if stdin_piped; then
-		prompt="$(cat /dev/stdin)"
-	fi
-	if test -z "$prompt"; then
-		usage
-		exit 1
-	fi
+	mkdir -p "$q" || exit 1
+	echo "$q" 1>&2
+	printf "$model" >"$q/model"
+	printf "$*" >"$q/prompt"
+	test -z "$*" && cat >"$q/prompt"
+	test -s "$q/prompt" || exit # exit if empty
 
-	make_msg "$prompt"
-	if ! send_and_recv "$_msg"; then
+	quewer_mkreq "$q"
+	quewer_sndreq "$q" || {
+		echo "$progname: failed in sending request" 1>&2
 		exit 1
-	fi
+	}
 
-	print_resp "$_resp"
+	quewer_resp "$q"
+	cat "$q/answer"
 }
+
+deps="curl jq"
+endpoint="https://text.pollinations.ai/openai"
+progname="${0##*/}"
+: "${XDG_CACHE_HOME:=$HOME/.cache}"
+: "${model:=openai-large}"
 
 main "$*"
