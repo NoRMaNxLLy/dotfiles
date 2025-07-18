@@ -1,0 +1,13 @@
+#!/bin/sh
+# get description of youtube video
+
+ytdesc() {
+	v="$1"
+    yt-dlp --print description "$v"
+}
+
+test -n "$TESTING_U" && exit
+
+v="$1"
+test -z "$v" && read -r v
+ytdesc "$v"
