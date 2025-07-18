@@ -19,10 +19,10 @@ keymap \\\R COMMAND "EXTERN_LINK 'rdrview -E utf8 -H %s > /tmp/readable.html' ; 
 keymap \\\s COMMAND "VIEW; PIPE_BUF htmlsec; VIEW; DELETE_PREVBUF; DELETE_PREVBUF; REDRAW"
 
 # yank page url to clipboard
-keymap y EXTERN "echo %s | toclip"
+keymap y EXTERN "printf %s | toclip"
 
 # yank hyperlink to clipboard
-keymap Y EXTERN_LINK "echo %s | toclip"
+keymap Y EXTERN_LINK "printf %s | toclip"
 
 # toggle images
 keymap i COMMAND "SET_OPTION display_image=toggle ; RESHAPE"
