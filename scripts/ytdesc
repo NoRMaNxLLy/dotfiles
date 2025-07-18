@@ -6,8 +6,7 @@ ytdesc() {
     yt-dlp --print description "$v"
 }
 
-test -n "$TESTING_U" && exit
-
 v="$1"
 test -z "$v" && read -r v
+test -z "$v" && exit 1
 ytdesc "$v"

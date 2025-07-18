@@ -39,4 +39,6 @@ main() {
 	clean_subt
 	cat "$_subtfile.txt"
 }
+
+test -n "$SRCING_U" && exit 0
 main "$@"
