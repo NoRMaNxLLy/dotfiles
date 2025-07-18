@@ -6,7 +6,8 @@ export REPOS="${HOME}/repos"
 export MYREPOS="${REPOS}/normanxlly"
 export KNSH_DIR="$MYREPOS/knsh"
 export DOTFILES="${MYREPOS}/dotfiles"
-export EDITOR="vim"
+export EDITOR="vi"
+export VISUAL="vi"
 export LESSHISTFILE="/dev/null"
 export CFLAGS="-Wall -Wextra -Werror"
 export LESS="--use-color -R -DP-- -DE-r -DSkY"
@@ -69,6 +70,7 @@ shopt -s histappend
 # turn off '!!'
 set +H
 
+shopt -s cmdhist
 shopt -s lithist
 
 # ---

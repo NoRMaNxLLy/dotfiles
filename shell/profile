@@ -1,5 +1,6 @@
 # variables
-export EDITOR="vim"
+export EDITOR="vi"
+export VISUAL="vi"
 
 # setting up PATH.
 # PATH="$PATH:/sbin:/usr/sbin"
