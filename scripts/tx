@@ -1,3 +1,33 @@
 #!/bin/sh
 
-exec tmux "$@"
+progname="${0##*/}"
+
+help() {
+	echo "usage: $progname <cmd> [args...]" >&2
+}
+
+# print command usage
+cmd_help() {
+	c="$1"
+	test -z "$c" && {
+		help
+		return 1
+	}
+	tmux list-commands "$c"
+}
+
+main() {
+	cmd="$1"
+	test -z "$cmd" && {
+		help
+		return 1
+	}
+	shift
+
+	type "cmd_$cmd" >/dev/null 2>&1 && {
+		"cmd_$cmd" "$@"
+		return 0
+	}
+	tmux "$cmd" "$@"
+}
+main "$@"
