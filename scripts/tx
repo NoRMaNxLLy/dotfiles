@@ -28,6 +28,6 @@ main() {
 		"cmd_$cmd" "$@"
 		return 0
 	}
-	tmux "$cmd" "$@"
+	exec tmux "$cmd" "$@"
 }
 main "$@"
