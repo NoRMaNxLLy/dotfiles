@@ -23,7 +23,7 @@ get_description() {
 }
 
 _play() {
-    exec mpv --ytdl-format="$1" "$2"
+    exec mpv --terminal=no --ytdl-format="$1" "$2"
 }
 
 main() {
