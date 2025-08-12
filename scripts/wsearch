@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec w3m "https://searxng.shreven.org/search?q=$*"
