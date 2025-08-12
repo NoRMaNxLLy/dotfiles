@@ -1,7 +1,4 @@
 #!/bin/dash
 # concatenate multiple lines into a single line ended with line-feed
 
-while read -r line; do
-    printf '%s ' "$line"
-done
-printf '\n'
+exec paste -s -d ' '
