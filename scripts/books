@@ -1,0 +1,5 @@
+#!/bin/sh
+
+dir="$HOME/pdfs"
+b=$(find "$dir" | dmenu -fn Monospace-14 -i -l 7 -p "choose: ") \
+	&& exec zathura "$b"
