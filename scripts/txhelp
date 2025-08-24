@@ -1,0 +1,12 @@
+#!/bin/sh
+# print help information about the given tmux command
+
+tx_help() { tmux list-commands "$1"; }
+
+cmd="$1"
+test -z "$cmd" && {
+	echo "Usage: $0 <cmd>" >&2
+	exit 0
+}
+
+tx_help "$cmd"
