@@ -30,3 +30,7 @@ keymap i COMMAND "SET_OPTION display_image=toggle ; RESHAPE"
 keymap zz COMMAND "CENTER_V"
 keymap zt COMMAND "CENTER_V; NEXT_HALF_PAGE"
 keymap zb COMMAND "CENTER_V; PREV_HALF_PAGE"
+
+keymap mm MARK
+keymap mn NEXT_MARK
+keymap mp PREV_MARK

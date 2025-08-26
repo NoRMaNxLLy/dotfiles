@@ -1,12 +1,12 @@
 tabstop 8
 indent_incr 4
-pixel_per_char 32
-pixel_per_line 64
+pixel_per_char 16
+pixel_per_line 32
 frame 0
 target_self 0
 open_tab_blank 0
 open_tab_dl_list 0
-display_link 0
+display_link 1
 display_link_number 0
 decode_url 1
 display_lineinfo 0
@@ -20,8 +20,8 @@ graphic_char 0
 display_borders 0
 disable_center 0
 fold_textarea 0
-display_ins_del 1
-ignore_null_img_alt 0
+display_ins_del 2
+ignore_null_img_alt 1
 view_unseenobject 0
 display_image 0
 pseudo_inlines 0
@@ -32,7 +32,7 @@ image_scale 100
 inline_img_protocol 2
 imgdisplay sxiv
 image_map_list 1
-fold_line 0
+fold_line 1
 show_lnum 0
 show_srch_str 1
 label_topline 0
@@ -43,7 +43,7 @@ basic_color terminal
 anchor_color blue
 image_color yellow
 form_color terminal
-mark_color blue
+mark_color cyan
 bg_color terminal
 active_style 1
 active_color green
@@ -55,7 +55,7 @@ history 100
 save_hist 1
 confirm_qq 0
 close_tab_back 0
-mark 0
+mark 1
 emacs_like_lineedit 0
 space_autocomplete 0
 vi_prec_num 0
@@ -67,7 +67,7 @@ reverse_mouse 0
 relative_wheel_scroll 0
 relative_wheel_scroll_ratio 30
 fixed_wheel_scroll_count 5
-clear_buffer 1
+clear_buffer 0
 decode_cte 0
 auto_uncompress 0
 preserve_timestamp 1
