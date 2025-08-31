@@ -1,8 +1,10 @@
 #!/bin/sh
 # toggle auto detection of text direction on VTE terminals.
 
+test -n "$TMUX" && exec 1>"$(tmux display -p '#{client_tty}')"
 case "$1" in
-    "") printf "\033[?2501h";;
-    on) printf "\033[?2501h";;
-    off) printf "\033[?2501l"
+"" | on) printf "\033[?2501h" ;;
+off) printf "\033[?2501l" ;;
+l) printf '\033[1 k' ;;
+r) printf '\033[2 k' ;;
 esac
