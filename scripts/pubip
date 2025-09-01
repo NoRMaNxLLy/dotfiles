@@ -1,0 +1,4 @@
+#!/bin/sh
+# fetch the current public IP
+# ifconfig.me, icanhazip.com, ident.me
+curl -sS ifconfig.me
