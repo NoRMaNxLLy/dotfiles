@@ -1,0 +1,36 @@
+#!/bin/sh
+
+read -r text
+pane_dir="$(tmux display -p '#{pane_current_path}')"
+
+_t_file() { test -f "$1" && return 0; return 1; }
+_t_dir()  { test -d "$1" && return 0; return 1; }
+_t_img()  { case "$1" in *.png|*.jpeg|*.jpg) return 0;; esac; return 1; }
+_t_pdf()  { case "$1" in *.pdf) return 0;; esac; return 1; }
+_t_http() { case "$1" in http*|www*) return 0;; esac; return 1; }
+_t_man()  { case "$1" in [[:alnum:]]*\([0-9]\)) return 0;; esac; return 1; }
+
+_o_file() {
+	IFS=: read -r file addr _ <<EOF
+$1
+EOF
+	exec tmux new-window "vi +${addr:-1} $file"
+}
+_o_dir()  { cd "$1"; exec tmux new-window; }
+_o_img()  { exec sxiv -- "$1"; }
+_o_pdf()  { exec "zathura -- $1"; }
+_o_http() { exec tmux new-window "w3m $1"; }
+_o_man()  { exec tmux new-window "man $1"; }
+
+cd "$pane_dir" || exit 1
+
+_t_dir "$text" && _o_dir "$text"
+_t_file "$text" && {
+	_t_img  "$text" && _o_img "$text"
+	_t_pdf  "$text" && _o_pdf "$text"
+	_o_file "$text"
+}
+_t_http "$text" && _o_http "$text"
+_t_man  "$text" && _o_man "$text"
+
+exec tmux display "plumber cant identify $text"
