@@ -1,0 +1,15 @@
+#!/bin/sh
+# read args from stdin and use
+cmd="$*"
+pane_dir="$(tmux display -p "#{pane_current_path}")"
+pane_cmd="$(tmux display -p "#{pane_current_command}")"
+
+tr '\n' ' ' | tr -s ' ' | tmux load-buffer -b args -
+cd "$pane_dir" || exit
+
+case "$pane_cmd" in
+	sh|bash) :;;
+	*) tmux split-window;;
+esac
+
+tmux send-keys -l "$(tmux show-buffer -b args)[1~"
