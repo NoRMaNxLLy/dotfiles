@@ -5,7 +5,6 @@ let mapleader = " "
 call plug#begin('~/.vim/plugged')
 Plug 'natebosch/vim-lsc'
 Plug 'dense-analysis/ale'
-Plug 'vim-pandoc/vim-pandoc-syntax'
 call plug#end()
 
 " --- options
@@ -17,7 +16,7 @@ set colorcolumn=0
 set incsearch hlsearch
 set wildmenu
 set showmode showcmd
-set nowrap
+set wrap
 set textwidth=72
 set noswapfile
 set autoindent
@@ -32,17 +31,16 @@ set nocursorline
 set ignorecase
 set smartcase
 set viminfo='20,<1000,s100,h
-" set ruf=%50(%=%#Normal#%f\ %y\ %LL\ %l:%c%)
 set statusline=%f%=%-y\ \ %l,%v\ \ %LL
 set completeopt=menu
 
-set fo-=r   " don't auto-insert comment leader on enter in insert
-set fo-=o   " don't auto-insert comment leader on o/O in normal
+set formatoptions-=r   " don't auto-insert comment leader on enter in insert
+set formatoptions-=o   " don't auto-insert comment leader on o/O in normal
 
 set fillchars+=eob:\ 
 
 if !exists("omnifunc")
-    set omnifunc=syntaxcomplete#Complete
+    setlocal omnifunc=syntaxcomplete#Complete
 endif
 
 filetype plugin on
@@ -73,6 +71,7 @@ nnoremap <leader>ap :ALEPrevious<CR>
 match ColorColumn '\s\+$'
 
 syntax on
+colorscheme default
 
 function Uncolor()
 	hi   Normal       ctermfg=NONE        ctermbg=NONE      cterm=NONE
@@ -99,10 +98,12 @@ function Uncolor()
 	hi   LineNr       ctermfg=gray        ctermbg=NONE      cterm=NONE
 	hi   ColorColumn  ctermfg=NONE        ctermbg=darkgray  cterm=NONE
 	"hi  StatusLine   ctermfg=darkgray    ctermbg=NONE      cterm=NONE
-	hi   CursorLine   ctermfg=NONE        ctermbg=NONE      cterm=reverse
+	hi   CursorLine   ctermfg=black       ctermbg=magenta   cterm=NONE
 	hi   Folded       ctermfg=NONE        ctermbg=NONE      cterm=italic
 	hi   Error        ctermfg=black       ctermbg=red       cterm=NONE
 	hi   ErrorMsg     ctermfg=black       ctermbg=red       cterm=NONE
+	hi   Pmenu        ctermfg=black       ctermbg=yellow    cterm=NONE
+	hi   PmenuSel     ctermfg=black       ctermbg=gray      cterm=NONE
 endfunction
 call Uncolor()
 
@@ -121,10 +122,6 @@ endfunction
 command! Cline set cursorline!
 
 " --- auto commands
-
-" augroup pandoc_syntax
-"     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-" augroup END
 
 augroup knsh
 	autocmd!
@@ -184,13 +181,10 @@ if $VTE_VERSION
     set termbidi
 endif
 
-" hi Normal ctermfg=NONE ctermbg=NONE cterm=NONE
 " hi StatusLineNC ctermfg=darkgrey ctermbg=grey cterm=NONE
 " hi StatusLineTerm ctermfg=black ctermbg=grey cterm=NONE
 " hi StatusLineTermNC ctermfg=darkgrey ctermbg=grey cterm=NONE
 " hi VertSplit ctermfg=darkgrey ctermbg=grey cterm=NONE
-" hi Pmenu ctermfg=NONE ctermbg=NONE cterm=NONE
-" hi PmenuSel ctermfg=black ctermbg=yellow cterm=NONE
 " hi PmenuSbar ctermfg=NONE ctermbg=black cterm=NONE
 " hi PmenuThumb ctermfg=NONE ctermbg=white cterm=NONE
 " hi PmenuMatch ctermfg=NONE ctermbg=darkgrey cterm=bold
