@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# rename tmux window. reads from stdin if no arguments.
+
+if test $# = 0; then
+	read -r title
+else
+	title="$*"
+fi
+tmux rename-window "$title"

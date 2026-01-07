@@ -1,0 +1,3 @@
+#!/bin/sh
+url="https://maajim.com/dictionary/$*/5/الصحاح في اللغة"
+exec wget -O- "$url" 2>/dev/null | rdrview |more

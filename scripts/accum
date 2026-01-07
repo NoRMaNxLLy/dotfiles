@@ -1,0 +1,4 @@
+#!/bin/awk -f
+
+{ acc += $0 }
+END{print acc}

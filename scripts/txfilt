@@ -1,0 +1,15 @@
+#!/bin/sh
+
+cmd="$*"
+txdir="${TMUX%/*}"
+pane_dir="$(tmux display -p "#{pane_current_path}")"
+pane_cmd="$(tmux display -p "#{pane_current_command}")"
+
+cd "$pane_dir" || exit 1
+tmux load-buffer -b filt -
+
+case "$pane_cmd" in
+	sh|bash) :;;
+	*) tmux split-window;;
+esac
+tmux send-keys -l "tmux showb -b filt |$cmd"
