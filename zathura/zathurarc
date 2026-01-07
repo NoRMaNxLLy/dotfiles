@@ -5,10 +5,13 @@ map D toggle_page_mode
 
 set selection-clipboard clipboard
 
-include colors
-
 set font "Inconsolata normal 12"
 
 set window-title-basename true
 set window-title-home-tilde true
 set statusbar-home-tilde true
+
+set  recolor-lightcolor  "#000000"
+set  recolor-darkcolor   "#ffffff"
+set  recolor             "true"
+
