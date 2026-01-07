@@ -59,7 +59,7 @@ mark 1
 emacs_like_lineedit 0
 space_autocomplete 0
 vi_prec_num 0
-mark_all_pages 0
+mark_all_pages 1
 wrap_search 0
 ignorecase_search 1
 use_mouse 1
@@ -100,12 +100,12 @@ ftppasswd
 ftppass_hostnamegen 1
 pre_form_file ~/.w3m/pre_form
 siteconf_file ~/.w3m/siteconf
-user_agent Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
-no_referer 0
-cross_origin_referer 1
-accept_language en;q=1.0
-accept_encoding gzip, compress, bzip, bzip2, deflate, br
-accept_media text/html, text/*;q=0.5, image/*
+user_agent Mozilla/5.0 (Windows NO 10.0; rev:91.0) Gecko/20100101 Firefox91.0
+no_referer 1
+cross_origin_referer 0
+accept_language en-US,en;q=0.5
+accept_encoding gzip, deflate
+accept_media text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 argv_is_url 1
 retry_http 1
 default_url 1
@@ -123,7 +123,7 @@ gopher_proxy
 ftp_proxy 
 no_proxy 
 noproxy_netaddr 1
-no_cache 0
+no_cache 1
 ssl_forbid_method 2, 3, t, 5
 ssl_min_version 
 ssl_cipher 
