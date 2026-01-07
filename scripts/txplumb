@@ -14,18 +14,18 @@ _o_file() {
 	IFS=: read -r file addr _ <<EOF
 $1
 EOF
-	exec tmux new-window "vi +${addr:-1} $file"
+	exec tmux new-window "vi +${addr:-1} '$file'"
 }
 _o_dir()  { cd "$1"; exec tmux new-window; }
 _o_img()  { exec sxiv -- "$1"; }
-_o_pdf()  { exec "zathura -- $1"; }
-_o_http() { exec tmux new-window "w3m $1"; }
-_o_man()  { exec tmux new-window "man $1"; }
+_o_pdf()  { exec zathura -- "$1"; }
+_o_http() { exec tmux new-window "w3m '$1'"; }
+_o_man()  { exec tmux new-window "man '$1'"; }
 
 cd "$pane_dir" || exit 1
 
 _t_dir "$text" && _o_dir "$text"
-_t_file "$text" && {
+_t_file "${text%%:*}" && {
 	_t_img  "$text" && _o_img "$text"
 	_t_pdf  "$text" && _o_pdf "$text"
 	_o_file "$text"

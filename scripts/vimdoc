@@ -1,5 +1,5 @@
 #!/bin/sh
 # read the vim help
 
-test -z "$1" && exit 1
+#test -z "$1" && exit 1
 exec vim -c "help $1 | wincmd o"

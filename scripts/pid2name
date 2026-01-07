@@ -2,4 +2,4 @@
 # resolve the process ids to process names
 
 test -z "$1" && exit 1
-ps -h -p "$*" -o "pid,command"
+ps -h -p "$*" -o "pid,args"

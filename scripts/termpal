@@ -31,7 +31,7 @@ setcolors() {
 main() {
 	pal="$1"
 	test -z "$pal" && {
-		ls "$paldir" 1>&2
+		ls "$paldir"
 		exit 1
 	}
 
