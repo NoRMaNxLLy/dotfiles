@@ -7,69 +7,68 @@ beverbose=1
 
 # comment_line checks if a line is a comment 🐸
 comment_line() {
-    case "$1" in
-    \#*) return 0 ;;
-    esac
-    return 1
+	case "$1" in
+	\#*) return 0 ;;
+	esac
+	return 1
 }
 
 # empty_line checks if a line is empty 😆
 empty_line() {
-    test -z "$1" && return 0
+	test -z "$1" && return 0
 
-    return 1
+	return 1
 }
 
 # log prints information to stderr
 log() {
-    local msg="$1"
+	local msg="$1"
 
-    printf '%s\n' "$msg" 1>&2
+	printf '%s\n' "$msg" 1>&2
 }
 
 # error logs the error and exit immediately
 error() {
-    printf '\033[1;31m'
-    log "$1"
-    printf '\033[0m'
-    exit 1
+	printf '\033[1;31m'
+	log "$1"
+	printf '\033[0m'
+	exit 1
 }
 
 symlink() {
-    ln -nsf "$1" "$2"
+	ln -nsf "$1" "$2"
 }
 
 main() {
-    cd "${0%/*}" || error "could not change directory to ${0%/*}"
+	cd "${0%/*}" || error "could not change directory to ${0%/*}"
 
-    counter=0
-    while read -r line; do
-        counter=$((counter + 1))
-        comment_line "$line" && continue
-        empty_line "$line" && continue
+	counter=0
+	while read -r line; do
+		counter=$((counter + 1))
+		comment_line "$line" && continue
+		empty_line "$line" && continue
 
-        read -r src dst _ <<-EOL
-            $line
-EOL
+		read -r src dst _ <<-EOL
+			            $line
+		EOL
 
-        if ! test -e "$src"; then
-            error "line $counter: $src: no such file or directory"
-        fi
-        if test -z "$dst"; then
-            error "Error on line $counter: destination is missing"
-        fi
+		test -e "$src" &&
+			error "line $counter: $src: no such file or directory"
 
-        src="$PWD/$src"
-        dst="$HOME/$dst"
-        # make sure the parent directory exists
-        if ! test -d "${dst%/*}"; then
-            test $beverbose && log "CREATING A DIRECTORY ${dst%/*} FOR $src"
-            mkdir -p "${dst%/*}"
-        fi
+		test -n "$dst" ||
+			error "Error on line $counter: destination is missing"
 
-        test $beverbose && log "SYMLINK $src AT $dst"
-        symlink "$src" "$dst"
-    done <rules.txt
+		src="$PWD/$src"
+		dst="$HOME/$dst"
+		# make sure the parent directory exists
+		if ! test -d "${dst%/*}"; then
+			test $beverbose && log "CREATING A DIRECTORY ${dst%/*} FOR $src"
+			mkdir -p "${dst%/*}"
+		fi
+
+		test $beverbose && log "SYMLINK $src AT $dst"
+		symlink "$src" "$dst"
+	done <rules.txt
 }
 
 main "$@"
