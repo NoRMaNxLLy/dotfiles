@@ -30,7 +30,7 @@ set $nsi --no-startup-id
 set $menu dmenu_run -p "launch:"
 set $term myterm
 
-font pango: monospace 12px
+font pango: Monospace Regular 13px
 focus_follows_mouse no
 focus_on_window_activation focus
 floating_modifier $mod
@@ -39,15 +39,16 @@ floating_modifier $mod normal
 # --- window options
 
 # remove the titlebar for the windows
-default_border pixel 5
+# default_border pixel 3
+title_align center
 
 # draw borders if having multiple windows
 smart_borders off
 
-gaps inner 10
+gaps inner 4
 
-#  class                 border      backgr      text        indicator     child_border
- client.focused          #52aaad     #52aaad     #000000     #52aaad	#52aaad
+# class                 border      backgr      text        indicator     child_border
+  client.focused        #eaffff     #eaffff     #000000     #eaffff       #eaffff
 # client.focused_inactive $bg         $c4         $bg         $c8           $c8
 # client.unfocused        $bg         $c8         $fg         $c8           $c8
 # client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
@@ -83,7 +84,7 @@ for_window [class="Zathura"] workspace $ws4
 for_window [class="Pcmanfm"] floating enable, resize set 600 700
 for_window [workspace=$ws5] floating disable
 for_window [window_type="dialog"] floating enable
-for_window [class="Gcolor3"] floating enable
+for_window [app_id="nl.hjdskes.gcolor3"] floating enable
 for_window [class="matplotlib"] floating enable
 # packettracer thing
 for_window [title="PDU Information at Device:.*"] floating enable
@@ -174,10 +175,9 @@ output * {
 	background "#737573" solid_color
 }
 
-output eDP-1 {
-    modeline 64.11  1024 1080 1184 1344  768 769 772 795  -HSync +Vsync
-    pos 0 0
-    res 1366x768
+output DP-2 {
+    #modeline 85.86  1368 1440 1584 1800  768 769 772 795  -HSync +Vsync
+	modeline 118.25  1600 1688 1856 2112  900 903 908 934 -hsync +vsync
 }
 
 # --- inputs
@@ -191,16 +191,16 @@ input type:keyboard {
 
 # --- swaybar
 bar {
-    font pango: monospace 12px
+    font pango: Monospace Regular 13px
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
     workspace_min_width 30px
-    separator_symbol "  "
+    separator_symbol "	"
     strip_workspace_numbers yes
     modifier $mod+mod1
     position bottom
     bindsym button4 nop
     bindsym button5 nop
-	gaps 10 200
+	gaps 4 4
      colors {
              background #eaffff
              statusline #000000
@@ -208,7 +208,7 @@ bar {
 #                               Border   background    text
              focused_workspace  #9eeeee  #9eeeee       #000000
 #             active_workspace   $bg      $c1           $fg
-             inactive_workspace #efffff  #efffff       #000000
+             inactive_workspace #eaffff  #eaffff       #000000
 #             urgent_workspace   $bg      $bg           $c1
 #             binding_mode       $bg      $bg           $c7
     }
