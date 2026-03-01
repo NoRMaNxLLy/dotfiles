@@ -39,7 +39,7 @@ floating_modifier $mod normal
 # --- window options
 
 # remove the titlebar for the windows
-# default_border pixel 3
+default_border normal
 title_align center
 
 # draw borders if having multiple windows
@@ -48,7 +48,7 @@ smart_borders off
 gaps inner 4
 
 # class                 border      backgr      text        indicator     child_border
-  client.focused        #eaffff     #eaffff     #000000     #eaffff       #eaffff
+  client.focused        #55aaaa     #eaffff     #000000     #55aaaa       #55aaaa
 # client.focused_inactive $bg         $c4         $bg         $c8           $c8
 # client.unfocused        $bg         $c8         $fg         $c8           $c8
 # client.urgent           #2f343a     #900000     #ffffff     #900000       #900000
@@ -57,7 +57,7 @@ gaps inner 4
 # --- workspace options
 
 set $ws1   1:
-set $ws2   2:
+set $ws2   2:
 set $ws3   3:
 set $ws4   4:
 set $ws5   5:
@@ -191,7 +191,7 @@ input type:keyboard {
 
 # --- swaybar
 bar {
-    font pango: Monospace Regular 13px
+    font pango:monospace, Font Awesome 5 Free 13px
     status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
     workspace_min_width 30px
     separator_symbol "	"
@@ -201,12 +201,13 @@ bar {
     bindsym button4 nop
     bindsym button5 nop
 	gaps 4 4
+	height 23
      colors {
              background #eaffff
              statusline #000000
 #             separator  $fg
 #                               Border   background    text
-             focused_workspace  #9eeeee  #9eeeee       #000000
+             focused_workspace  #55aaaa  #eaffff       #000000
 #             active_workspace   $bg      $c1           $fg
              inactive_workspace #eaffff  #eaffff       #000000
 #             urgent_workspace   $bg      $bg           $c1
